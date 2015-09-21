@@ -94,13 +94,9 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
         <div id="sidebarR">
             <img src="img/Urban-Food-Growing-Trail.png"
                  alt="Urban Food Growing Trail">
-            <p><button type="button"
-                       onclick="rightSidebar.hide();leftSidebar.show()">
-                    INTRODUCTION</button></p>
-            <p><button type="button" onclick=platform3()>
-                    Platform 3, Temple Meads</button></p>
-            <p><button type="button" onclick=outdoorBeds()>
-                    Outdoor Beds, Temple Meads</button></p>
+            <div id="sidebarButtons">
+                (Links to locations failed to load)
+            </div>
         </div>
 
         <div id="map"></div>
@@ -108,7 +104,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
         <script src="Leaflet.defaultextent/dist/leaflet.defaultextent.js"></script>
         <script src="Leaflet.locateme/dist/leaflet.locateme.js"></script>
         <script src="bower_components/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
-        <script src="urban_food_trail_leaflet_data.js"></script>
+        <script src="trail_geojson.js"></script>
+        <script src="trail_info.js"></script>
         <script src="urban_food_trail_leaflet_v2.js"></script>
     </body>
 </html>
