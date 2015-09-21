@@ -12,18 +12,100 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 -->
 <html>
     <head>
-        <title>Urban Food Growing Trail (Version selector)</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        
-        
+
+        <!-- Include Leaflet library -->
+        <!--
+            <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+        -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+        <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+
+        <link rel="stylesheet" href="Leaflet.defaultextent/dist/leaflet.defaultextent.css">
+        <link rel="stylesheet" href="Leaflet.locateme/dist/leaflet.locateme.css">
+        <link rel="stylesheet" href="bower_components/leaflet-sidebar/src/L.Control.Sidebar.css">
+
+        <link rel="stylesheet" media="all" href="urban_food_trail.css">
+
+        <title>Incredible#Edible Bristol Urban Food Growing Trail</title>
     </head>
     <body>
-        <div>
-            <h1>Urban Food Growing Trail</h1>
-            <p><a href="urban_food_trail_leaflet.html">Leaflet: KML + Raw Locator></a></p>
-            <p><a href="urban_food_trail_leaflet_v2.html">Leaflet: add sidebars></a></p>
+
+        <!-- Left Sidebar: Site Information Pane -->
+        <div id="sidebarL">
+
+            <p>Incredible Edible Bristol, Bee The Change and Grow Bristol are
+                collaborating on an exciting project that is bringing food
+                growing to the centre of the city:</p>
+            <p><img src="img/Urban-Food-Growing-Trail.png"
+                    alt="Urban Food Growing Trail"
+                    onclick="leftSidebar.hide();rightSidebar.show()"></p>
+            <p>You will see a trail of food
+                growing spaces springing up as you walk from Platform 3 at
+                Temple Meads past the council offices at 100 Temple Street and
+                along Redcliffe Way to Millennium Square. Its aim is to inspire
+                and educate – showing that food growing can be, and is, relevant
+                in the urban landscape, as well as to provide free food for
+                people and pollinators.</p>
+            <p>Click on each location for details. Read more on the main
+                websites:</p>
+
+            <p>
+                <a href="http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/"
+                   target="_blank">
+                    <img src="img/Incredible-Edible-Bristol-400x400.png"
+                         alt="Incredible Edible Bristol"
+                         width='70'></a>
+                <a href="https://heathershoneybees.wordpress.com/"
+                   target="_blank">
+                    <img src="img/Bee-The-Change.jpg" alt="Bee the Change"
+                         width='80'></a>
+                <a href="http://growbristol.co.uk/?project=the-urban-food-trail"
+                   target="_blank">
+                    <img src="img/Grow-Bristol-Logo.jpg" alt="Grow Bristol"
+                         width='80'></a>
+            </p>      
+<!--            
+            <p>
+                <img src="img/Incredible-Edible-Favicon.png" alt="Incredible Edible">
+                <a href="http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/"
+                   target="_blank">Incredible Edible Bristol</a>
+            </p>
+            <p>
+                <img src="img/bee.png" alt="Bee the Change">
+                <a href="https://heathershoneybees.wordpress.com/"
+                   target="_blank">
+                    Bee the Change</a>
+            </p>
+            <p>
+                <img src="img/Grow-Bristol-Favicon.jpg" alt="Grow Bristol">
+                <a href="http://growbristol.co.uk/?project=the-urban-food-trail"
+                   target="_blank">
+                    Grow Bristol</a>
+            </p>
+            -->
         </div>
+
+        <!-- Right Sidebar: Site selector -->
+        <div id="sidebarR">
+            <img src="img/Urban-Food-Growing-Trail.png"
+                 alt="Urban Food Growing Trail">
+            <div id="sidebarButtons">
+                (Links to locations failed to load)
+            </div>
+        </div>
+
+        <div id="map"></div>
+
+        <script src="Leaflet.defaultextent/dist/leaflet.defaultextent.js"></script>
+        <script src="Leaflet.locateme/dist/leaflet.locateme.js"></script>
+        <script src="bower_components/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
+        <script src="trail_geojson.js"></script>
+        <script src="trail_info.js"></script>
+        <script src="urban_food_trail.js"></script>
     </body>
 </html>
