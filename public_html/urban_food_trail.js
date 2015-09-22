@@ -133,7 +133,7 @@ function updatesidebarL(locationID) {
 function selectLocation(locationID) {
     rightSidebar.hide();
     updatesidebarL(locationID);
-    leftSidebar.show();
+    trailInfo[locationID].marker.openPopup();
 }
 
 // Add buttons to Right Sidebar
