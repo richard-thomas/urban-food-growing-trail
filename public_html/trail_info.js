@@ -1,3 +1,6 @@
+/**
+ * Main data store for non-spatial information on each trail location
+ */
 trailInfo = {
     "intro": {
         "fullname": "INTRODUCTION"
@@ -9,7 +12,7 @@ trailInfo = {
         "link": "http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/platform-3-temple-meads/"
     },
     "tm-outdoor-beds": {
-        "fullname": "Outdoor Beds, Temple Meads Concourse",
+        "fullname": "Outdoor Beds, Temple Meads",
         "summary": "Raised bed by the Passenger Shed at Temple Meads: an immensely sunny aspect and so needed planting with a crop that would cope with some drought.",
         "details": "The raised bed by the Passenger Shed at Temple Meads is one that is difficult to manage as it has an immensely sunny aspect and so needed planting with a crop that would cope with some drought. With this in mind, and because our aim is to introduce some more unusual species to Bristol in terms of what we traditionally think we can grow, we introduced a dwarf Nectarine to this bed.<br><br>And so far it is doing well and has some fruit starting to swell!!",
         "link": "http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/temple-meads-concourse/"
@@ -24,25 +27,19 @@ trailInfo = {
         "fullname": "100 Temple Street",
         "summary": "Brick raised beds in front of Bristol City Council offices",
         "details": "<img src=\"http://ediblebristol.org.uk/wp-content/uploads/2015/05/IMG_3444-300x225.jpg\" height=\"200\" width=\"auto\" /><br><br>The decisions around what to plant into this garden were taken looking making it productive for 2015 as well as looking beyond this year and into the future. The backbone of the garden are the 2 apple trees, and the perennial fruit and vegetable plants which will remain in place and productive for many years to come. However, it was also necessary to ensure productivity for this year whilst the perennial plants are young and concentrating on putting roots out into the soil rather than cropping so we also added some annual vegetables as well as some edible flowers to fill in the gaps as it were. The edible flowers will self seed and so become a yearly part of the garden too.<br><br>Plants included: 2 Apple Trees, Globe Artichokes, Grapevine Venus, Blackcurrant Titania, Redcurrant Red Lake, Rhubarb Victoria, Rhubarb Timperly Early, Climbing French Bean Blue Lake, Kohl Rabi, Black Kale, Curly Kale, Sweetcorn, Butternut Squash, Calendula, Nasturtium",
-        "link": "http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/100-temple-street/",
-        "tempDataStore": {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -2.5884323,
-                    51.449061,
-                    0
-                ]
-            },
-            "properties": {
-                "name": "Thomas Chatterton’s Birthplace Garden",
-                "styleUrl": "#icon-ci-1",
-                "styleHash": "-1846bb07",
-                "description": "<img src=\"http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_5779-225x300.jpg\" height=\"200\" width=\"auto\" /><br><br>The garden outside Thomas Chatterton’s Birthplace has been designed with permaculture firmly at the forefront of it’s being. Rather than producing a garden that needs huge amounts of maintenance we have put together a garden that is mainly perennial and that has minimal watering needs. In it we have also included a pollinator bed that is full of perennial plants that are bee and pollinator friendly, therefore feeding ourselves but also ensuring plenty of food for the creatures we rely on to pollinate our crops.<br><br>In the bee bed we have the following: Sage, Chives, Verbena bonariensis, Echinops, Perennial Scabious, Perennial Cornflower, Field Poppies, Borage, Veronicastrum<br><br>In the beds for humans are the following: Japanese Quince, Chokeberries, Greengage, Red veined sorrel, Alpine strawberries Rhubarb, Rosemary, Fennel<br><br>We will be adding to these beds throughout the year to create a wonderful, perennial and year round garden which is good for man and beast.",
-                "gx_media_links": "http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_5779-225x300.jpg"
-            }
-        }
+        "link": "http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/100-temple-street/"
+    },
+    "chatterton-birthplace": {
+        "fullname": "Thomas Chatterton’s Birthplace Garden",
+        "summary": "TBD Summary Chatterton",
+        "details": "<img src=\"http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_5779-225x300.jpg\" height=\"200\" width=\"auto\" /><br><br>The garden outside Thomas Chatterton’s Birthplace has been designed with permaculture firmly at the forefront of it’s being. Rather than producing a garden that needs huge amounts of maintenance we have put together a garden that is mainly perennial and that has minimal watering needs. In it we have also included a pollinator bed that is full of perennial plants that are bee and pollinator friendly, therefore feeding ourselves but also ensuring plenty of food for the creatures we rely on to pollinate our crops.<br><br>In the bee bed we have the following: Sage, Chives, Verbena bonariensis, Echinops, Perennial Scabious, Perennial Cornflower, Field Poppies, Borage, Veronicastrum<br><br>In the beds for humans are the following: Japanese Quince, Chokeberries, Greengage, Red veined sorrel, Alpine strawberries Rhubarb, Rosemary, Fennel<br><br>We will be adding to these beds throughout the year to create a wonderful, perennial and year round garden which is good for man and beast.",
+        "link": "http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/thomas-chattertons-birthplace-garden/"
+    },
+    "mary-redcliffe": {
+        "fullname": "St Mary Redcliffe Fruit Garden",
+        "summary": "TBD Summary Redcliffe",
+        "details": "<img src=\"http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_3691-300x225.jpg\" height=\"200\" width=\"auto\" /><br><br>All of the trees and shrubs in this garden were chosen by the parish committee at St Mary Redcliffe, and we were very pleased that they went for the trees that we suggested as they are rarely found in the urban landscape and so will offer harvests that we do not see often in the city . As you will see when you visit the garden, we have bought substantially sized trees so that there will be fruit in the next couple of years and one of the trees had fruitlets on it when planted.<br><br>Trees: Medlar, Quince Vranja<br>Soft fruit: 3 Blackcurrants, 3 Gooseberries, 2 Redcurrants, 1 Whitecurrant.<br><br>There will be limited fruit production this year but next year everything in the garden will fruit, with the soft fruit beginning in late June and July, the Quince in late September to October and the Medlar in October and November.",
+        "link": "http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/st-mary-redcliffe-fruit-garden/"
     }
 };
  

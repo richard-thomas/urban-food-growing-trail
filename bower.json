@@ -1,0 +1,14 @@
+{
+  "name": "UrbanFoodTrail",
+  "version": "1.0.0",
+  "main": "path/to/main.css",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "leaflet": "0.7.3",
+    "leaflet-sidebar": "0.1.8"
+  },
+  "devDependencies": {}
+}

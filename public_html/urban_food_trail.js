@@ -34,8 +34,8 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 // Create a custom icon (the Leaflet green leaf)
 var greenIcon = L.icon({
-    iconUrl: 'leaf-green.png',
-    shadowUrl: 'leaf-shadow.png',
+    iconUrl: 'img/leaf-green.png',
+    shadowUrl: 'img/leaf-shadow.png',
     iconSize:     [38, 95], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -50,27 +50,6 @@ var trailStyle = {
     "weight": 3,
     "opacity": 0.65
 };
-
-// Load GeoJSON data (exported from Google as KML & converted to JSON, hacked to JSON-P)
-trail_layer = L.geoJson(trailGeoJson, {
-    style: trailStyle,
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {icon: greenIcon});
-    },
-    onEachFeature: function onEachFeature(feature, layer) {
-        var info = trailInfo[feature.properties.name];
-        if (info !== undefined && info !== null) {
-            var popupContent = "<strong>" + info.fullname +
-                    "</strong><br>" + info.summary +
-                "<br><button type='button' onclick='updatesidebarL(\"" +
-                feature.properties.name + "\");leftSidebar.show()'>" +
-                "More Info</button>";
-            layer.bindPopup(popupContent);
-        }
-    }
-});
-
-trail_layer.addTo(map);
 
 var leftSidebar = L.control.sidebar('sidebarL', {
     closeButton: true,
@@ -89,6 +68,46 @@ var rightSidebar = L.control.sidebar('sidebarR', {
     autoPan: false
 });
 map.addControl(rightSidebar);
+
+// Switch from showing summary in popup to details in left sidebar
+function moreInfo(locationNameStr) {
+    trailInfo[locationNameStr]["marker"].closePopup();
+    updatesidebarL(locationNameStr);
+    leftSidebar.show();
+}
+
+// Load GeoJSON data (exported from Google as KML & converted to JSON, hacked to JSON-P)
+trail_layer = L.geoJson(trailGeoJson, {
+    style: trailStyle,
+    pointToLayer: function (feature, latlng) {
+        var newMarker = L.marker(latlng, {
+            icon: greenIcon,
+            title: trailInfo[feature.properties.name]["fullname"]
+        });  
+        
+        // Pass pointer to current marker and its popup
+        trailInfo[feature.properties.name]["marker"] = newMarker;
+        
+        // Ensure that if we open a popup left sidebar is closed (if open)
+        newMarker.addEventListener('click', function() {leftSidebar.hide();});
+        
+        return newMarker;
+    },
+    onEachFeature: function onEachFeature(feature, layer) {
+        var info = trailInfo[feature.properties.name];
+        if (info !== undefined && info !== null) {
+            var popupContent = "<strong>" + info.fullname +
+                    "</strong><br>" + info.summary +
+                    "<br><button type='button' onclick=moreInfo(\"" +
+                    feature.properties.name + "\")>More Info</button>";
+            layer.bindPopup(popupContent);
+            
+            // Pass pointer to current marker and its popup
+            //trailInfo["layer"] = layer;
+        }
+    }
+});
+trail_layer.addTo(map);
 
 function updatesidebarL(locationID) {
     var headerStr = trailInfo[locationID]["fullname"];

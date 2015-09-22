@@ -1,0 +1,12 @@
+.leaflet-control-locateme {
+
+}
+
+.leaflet-control-locateme-toggle {
+  text-indent: -9999px;
+  white-space: nowrap;
+  background-image: url('leaflet.locate.png');
+  width: 26px;
+  height: 26px;
+  display: block;
+}
