@@ -2,9 +2,6 @@
  * Main data store for non-spatial information on each trail location
  */
 trailInfo = {
-    "intro": {
-        "fullname": "INTRODUCTION"
-    },
     "tm-plat3": {  
         "fullname": "Platform 3, Temple Meads",
         "summary": "A work in progress: currently a Family Apple Tree, which is one that has been grafted with 2 different varieties, a Blackcurrant bush in reverence to the fact that Ribena was first made in Bristol, and a rhubarb which is currently hiding.",

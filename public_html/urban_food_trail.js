@@ -9,139 +9,175 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+var trail = (function () {
+    /* global L */
+    /* global trailGeoJson */
+    /* global trailInfo */
 
-/* global L */
-/* global trailGeoJson */
-/* global trailInfo */
+    // Set up map
+    var mapCenter = [51.4493, -2.5806];
+    var map = L.map('map', {
+      defaultExtentControl: true,   // Add "Home" button to reset extent
+      locateMeControl: true,        // Add "Locate Me" button to pan to location
+      center: mapCenter,
+      zoom: 16
+    });
 
-// Set up map
-var mapCenter = [51.4493, -2.5806];
-var map = L.map('map', {
-  defaultExtentControl: true,   // Add "Home" button to reset extent
-  locateMeControl: true,        // Add "Locate Me" button to pan to location
-  center: mapCenter,
-  zoom: 16
-});
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>' +
+            'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
+            'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: 'richardthomas.2e651224',
+        accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiIxYWMwNTMyMjMzYzRlNWU0NWY4ODYyNDQzYWVkMjQzNSJ9.VAF-W-QsoepmXOZyvoXzxw'
+    }).addTo(map);
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>' +
-        'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
-        'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18,
-    id: 'richardthomas.2e651224',
-    accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiIxYWMwNTMyMjMzYzRlNWU0NWY4ODYyNDQzYWVkMjQzNSJ9.VAF-W-QsoepmXOZyvoXzxw'
-}).addTo(map);
+    // Create a custom icon (the Leaflet green leaf)
+    var greenIcon = L.icon({
+        iconUrl: 'img/leaf-green.png',
+        shadowUrl: 'img/leaf-shadow.png',
+        iconSize:     [38, 95], // size of the icon
+        shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
 
-// Create a custom icon (the Leaflet green leaf)
-var greenIcon = L.icon({
-    iconUrl: 'img/leaf-green.png',
-    shadowUrl: 'img/leaf-shadow.png',
-    iconSize:     [38, 95], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
+    // Style for recommended walking route (polyline vector)
+    var trailStyle = {
+        "color": "#008000",
+        "dashArray": "5, 5",
+        "weight": 3,
+        "opacity": 0.65
+    };
 
-// Style for recommended walking route (polyline vector)
-var trailStyle = {
-    "color": "#008000",
-    "dashArray": "5, 5",
-    "weight": 3,
-    "opacity": 0.65
-};
-
-var leftSidebar = L.control.sidebar('sidebarL', {
-    closeButton: true,
-    position: 'left',
-    autoPan: false
-});
-map.addControl(leftSidebar);
-leftSidebar.show();
-
-// Get a copy of the introduction text
-trailInfo.intro.details = document.getElementById("sidebarL").innerHTML;
-
-var rightSidebar = L.control.sidebar('sidebarR', {
-    closeButton: true,
-    position: 'right',
-    autoPan: false
-});
-map.addControl(rightSidebar);
-
-// Switch from showing summary in popup to details in left sidebar
-function moreInfo(locationNameStr) {
-    trailInfo[locationNameStr]["marker"].closePopup();
-    updatesidebarL(locationNameStr);
+    var leftSidebar = L.control.sidebar('sidebarL', {
+        closeButton: true,
+        position: 'left',
+        autoPan: false
+    });
+    map.addControl(leftSidebar);
     leftSidebar.show();
-}
 
-// Load GeoJSON data (exported from Google as KML & converted to JSON, hacked to JSON-P)
-trail_layer = L.geoJson(trailGeoJson, {
-    style: trailStyle,
-    pointToLayer: function (feature, latlng) {
-        var newMarker = L.marker(latlng, {
-            icon: greenIcon,
-            title: trailInfo[feature.properties.name]["fullname"]
-        });  
-        
-        // Pass pointer to current marker and its popup
-        trailInfo[feature.properties.name]["marker"] = newMarker;
-        
-        // Ensure that if we open a popup left sidebar is closed (if open)
-        newMarker.addEventListener('click', function() {leftSidebar.hide();});
-        
-        return newMarker;
-    },
-    onEachFeature: function onEachFeature(feature, layer) {
-        var info = trailInfo[feature.properties.name];
-        if (info !== undefined && info !== null) {
-            var popupContent = "<strong>" + info.fullname +
-                    "</strong><br>" + info.summary +
-                    "<br><button type='button' onclick=moreInfo(\"" +
-                    feature.properties.name + "\")>More Info</button>";
-            layer.bindPopup(popupContent);
-            
+    // Get a copy of the introduction text
+    //trailInfo.intro.details = document.getElementById("sidebarL").innerHTML;
+    // TODO: different method so this isn't overwritten!
+    
+    var rightSidebar = L.control.sidebar('sidebarR', {
+        closeButton: true,
+        position: 'right',
+        autoPan: false
+    });
+    map.addControl(rightSidebar);
+
+    // Switch from showing summary in popup to details in left sidebar
+    function moreInfo(locationNameStr) {
+        trailInfo[locationNameStr]["marker"].closePopup();
+        updatesidebarL(locationNameStr);
+        leftSidebar.show();
+    }
+
+    // Load GeoJSON data (exported from Google as KML & converted to JSON, hacked to JSON-P)
+    trail_layer = L.geoJson(trailGeoJson, {
+        style: trailStyle,
+        pointToLayer: function (feature, latlng) {
+            var newMarker = L.marker(latlng, {
+                icon: greenIcon,
+                title: trailInfo[feature.properties.name]["fullname"]
+            });  
+
             // Pass pointer to current marker and its popup
-            //trailInfo["layer"] = layer;
+            trailInfo[feature.properties.name]["marker"] = newMarker;
+
+            // Ensure that if we open a popup left sidebar is closed (if open)
+            newMarker.addEventListener('click', function() {leftSidebar.hide();});
+
+            return newMarker;
+        },
+        onEachFeature: function onEachFeature(feature, layer) {
+            var info = trailInfo[feature.properties.name];
+            if (info !== undefined && info !== null) {
+                var popupContent = "<strong>" + info.fullname +
+                        "</strong><br>" + info.summary +
+                        "<br><button type='button' onclick=trail.moreInfo(\"" +
+                        feature.properties.name + "\")>More Info</button>";
+                layer.bindPopup(popupContent);
+
+                // Pass pointer to current marker and its popup
+                //trailInfo["layer"] = layer;
+            }
         }
-    }
-});
-trail_layer.addTo(map);
+    });
+    trail_layer.addTo(map);
 
-function updatesidebarL(locationID) {
-    var headerStr = trailInfo[locationID]["fullname"];
-    var infoStr = "";
-    if (headerStr !== "INTRODUCTION") {
-        /*** TBD: remove when button to open right sidebar exists ***/
-        infoStr += '<p><img src="img/Urban-Food-Growing-Trail.png"' +
-                ' alt="Urban Food Growing Trail"' +
-                ' onclick="leftSidebar.hide();rightSidebar.show()"></p>';
-         /*** TODO: remove when button to open right sidebar exists ***/
-         
-       infoStr += "<h3>" + headerStr + "</h3>";
-    }
-    infoStr += trailInfo[locationID]["details"];
-    var mainLink = trailInfo[locationID]["link"];
-    if (mainLink !== undefined) {
-        infoStr += "<p><a href='" + mainLink + "' target='_blank'>" +
-                "(Further location info on main website)</a></p>";
-    }
-    document.getElementById("sidebarL").innerHTML = infoStr;
-}
+    function updatesidebarL(locationID) {
+        var headerStr = trailInfo[locationID]["fullname"];
+        var infoStr = "";
+        if (headerStr !== "INTRODUCTION") {
+            /*** TBD: remove when button to open right sidebar exists ***/
+            infoStr += '<p><img id="trail-logo-sidebar-left2"' +
+                    ' src="img/Urban-Food-Growing-Trail.png"></p>';
+             /*** TODO: remove when button to open right sidebar exists ***/
 
-function selectLocation(locationID) {
-    rightSidebar.hide();
-    updatesidebarL(locationID);
-    trailInfo[locationID].marker.openPopup();
-}
+           infoStr += "<h3>" + headerStr + "</h3>";
+        }
+        infoStr += trailInfo[locationID]["details"];
+        var mainLink = trailInfo[locationID]["link"];
+        if (mainLink !== undefined) {
+            infoStr += "<p><a href='" + mainLink + "' target='_blank'>" +
+                    "(Further location info on main website)</a></p>";
+        }
+        document.getElementById("sidebarL").innerHTML = infoStr;
+        
+        // TODO: Temporary until a button exists for this
+        document.getElementById("trail-logo-sidebar-left2")
+            .addEventListener("click", shiftLeftToRightSidebar, false);
+ 
+    }
 
-// Add buttons to Right Sidebar
-var buttonStr = '';
-for (var locationID in trailInfo) {
-    buttonStr += '<p><button type="button"' +
-            'onclick=selectLocation("' + locationID + '")>' +
-            trailInfo[locationID]["fullname"] + '</button></p>';
-}
-document.getElementById("sidebarButtons").innerHTML = buttonStr;
-               
+    // TODO: need to reload intro text into left sidebar
+    function showIntro() {
+        rightSidebar.hide();
+        leftSidebar.show();
+    };
+
+    function selectLocation(locationID) {
+        rightSidebar.hide();
+        updatesidebarL(locationID);
+        trailInfo[locationID].marker.openPopup();
+    }
+
+    // Add buttons to Right Sidebar
+    document.getElementById("intro-button").onclick=showIntro;
+    var sidebarButtonsContainer = document.getElementById("sidebarButtons");
+
+    for (var locationID in trailInfo) {
+        var btnText = document.createTextNode(trailInfo[locationID]["fullname"]);
+        var btn = document.createElement("button");
+        btn.type = "button";
+        // btn.className = "site-button";  // TODO: to Add styling information
+        btn.onclick=(function(){            // TODO: overly complex?
+            var _loc = locationID;
+            return function() { selectLocation(_loc); };
+        })();
+        btn.appendChild(btnText);           
+        var buttonPara = document.createElement("p");
+        buttonPara.appendChild(btn);
+        sidebarButtonsContainer.appendChild(buttonPara);
+    }
+    
+    // TODO: Temporary until a button exists for this
+    document.getElementById("trail-logo-sidebar-left")
+            .addEventListener("click", shiftLeftToRightSidebar, false);
+    
+    function shiftLeftToRightSidebar() {
+        leftSidebar.hide();
+        rightSidebar.show();
+    }
+
+    // Publicly-visible functions
+    return {
+        moreInfo: moreInfo
+    };
+
+}());
