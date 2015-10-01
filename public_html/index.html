@@ -26,6 +26,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
         <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
 
         <link rel="stylesheet" href="Leaflet.defaultextent/dist/leaflet.defaultextent.css">
+        <link rel="stylesheet" href="leaflet.navicon3bar.css">
         <link rel="stylesheet" href="Leaflet.locateme/dist/leaflet.locateme.css">
         <link rel="stylesheet" href="bower_components/leaflet-sidebar/src/L.Control.Sidebar.css">
 
@@ -37,6 +38,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
         <!-- Left Sidebar: Site Information Pane -->
         <div id="sidebarL">
+            <div id="intro-info" style="display:none">
 
             <p>Incredible Edible Bristol, Bee The Change and Grow Bristol are
                 collaborating on an exciting project that is bringing food
@@ -69,22 +71,54 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
                     <img src="img/Grow-Bristol-Logo.jpg" alt="Grow Bristol"
                          width='80'></a>
             </p>
+            </div>
+            <div id="tm-plat3-info" style="display:none">
+
+            <p>TM platform 3</p>
+            <p><img id="trail-logo-sidebar-left2"
+                    src="img/Urban-Food-Growing-Trail.png"
+                    alt="Urban Food Growing Trail"></p>
+            </div>
+            
+            <div id="tm-outdoor-beds-info" style="display:none">
+            <p>tm-outdoor-beds</p>
+            </div>
+            
+            <div id="engine-shed-info" style="display:none">
+            <p>engine-shed</p>
+            </div>
+            
+            <div id="temple-st-100-info" style="display:none">
+            <p>temple-st-100</p>
+            </div>
+            
+            <div id="chatterton-birthplace-info" style="display:none">
+            <p>chatterton-birthplace</p>
+            </div>
+            
+            <div id="mary-redcliffe-info" style="display:none">
+            <p>mary-redcliffe</p>
+            </div>
         </div>
 
         <!-- Right Sidebar: Site selector -->
-        <div id="sidebarR">
+        <div id="sidebarR" style="display:none">
             <img src="img/Urban-Food-Growing-Trail.png"
                  alt="Urban Food Growing Trail">
             <div id="sidebarButtons">
                 <p><button id="intro-button" type="button">INTRODUCTION
                     </button></p>
             </div>
+            <p>Auto-hide navigation menu
+                <input type="checkbox" id="auto-hide-checkbox" checked="true">
+            </p>
         </div>
 
         <div id="map"></div>
 
         <script src="Leaflet.defaultextent/dist/leaflet.defaultextent.js"></script>
         <script src="Leaflet.locateme/dist/leaflet.locateme.js"></script>
+        <script src="leaflet.navicon3bar.js"></script>
         <script src="bower_components/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
         <script src="trail_geojson.js"></script>
         <script src="trail_info.js"></script>

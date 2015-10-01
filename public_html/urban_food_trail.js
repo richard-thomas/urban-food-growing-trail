@@ -18,6 +18,7 @@ var trail = (function () {
     var mapCenter = [51.4493, -2.5806];
     var map = L.map('map', {
       defaultExtentControl: true,   // Add "Home" button to reset extent
+      navIcon3BarControl: true,     // Add "NavIcon(3 bar)" button for menu
       locateMeControl: true,        // Add "Locate Me" button to pan to location
       center: mapCenter,
       zoom: 16
@@ -56,9 +57,8 @@ var trail = (function () {
         position: 'left',
         autoPan: false
     });
-    map.addControl(leftSidebar);
-    leftSidebar.show();
-
+    map.addControl(leftSidebar);    // TODO: Breaks IE8
+    
     // Get a copy of the introduction text
     //trailInfo.intro.details = document.getElementById("sidebarL").innerHTML;
     // TODO: different method so this isn't overwritten!
@@ -69,7 +69,13 @@ var trail = (function () {
         autoPan: false
     });
     map.addControl(rightSidebar);
-
+    
+    // Safe to make sidebar contents visible now without them getting flashed
+    // across the display
+    document.getElementById("sidebarR").style.display="inline";
+    
+    showIntro();
+    
     // Switch from showing summary in popup to details in left sidebar
     function moreInfo(locationNameStr) {
         trailInfo[locationNameStr]["marker"].closePopup();
@@ -77,8 +83,8 @@ var trail = (function () {
         leftSidebar.show();
     }
 
-    // Load GeoJSON data (exported from Google as KML & converted to JSON, hacked to JSON-P)
-    trail_layer = L.geoJson(trailGeoJson, {
+    // Load GeoJSON data (exported from Google as KML & converted to JSON)
+    trailLayer = L.geoJson(trailGeoJson, {
         style: trailStyle,
         pointToLayer: function (feature, latlng) {
             var newMarker = L.marker(latlng, {
@@ -90,6 +96,7 @@ var trail = (function () {
             trailInfo[feature.properties.name]["marker"] = newMarker;
 
             // Ensure that if we open a popup left sidebar is closed (if open)
+            // TODO: addEventListener not supported in IE8
             newMarker.addEventListener('click', function() {leftSidebar.hide();});
 
             return newMarker;
@@ -108,7 +115,7 @@ var trail = (function () {
             }
         }
     });
-    trail_layer.addTo(map);
+    trailLayer.addTo(map);
 
     function updatesidebarL(locationID) {
         var headerStr = trailInfo[locationID]["fullname"];
@@ -127,8 +134,16 @@ var trail = (function () {
             infoStr += "<p><a href='" + mainLink + "' target='_blank'>" +
                     "(Further location info on main website)</a></p>";
         }
-        document.getElementById("sidebarL").innerHTML = infoStr;
+        //document.getElementById("sidebarL").innerHTML = infoStr;
         
+        // Ensure all info pane content is hidden
+        var divList = document.getElementById("sidebarL")
+                .getElementsByTagName("div");
+        for (var i = 0; i < divList.length; i++) {
+            divList[i].style.display="none";
+        }
+        document.getElementById(locationID + "-info").style.display="inline";
+
         // TODO: Temporary until a button exists for this
         document.getElementById("trail-logo-sidebar-left2")
             .addEventListener("click", shiftLeftToRightSidebar, false);
@@ -138,11 +153,16 @@ var trail = (function () {
     // TODO: need to reload intro text into left sidebar
     function showIntro() {
         rightSidebar.hide();
+        document.getElementById("intro-info").style.display="inline";
+        // TODO: need to hide any other info pane divs
         leftSidebar.show();
     };
 
     function selectLocation(locationID) {
-        rightSidebar.hide();
+        // TODO: this isn't the right place to be hiding R sidebar
+        if (document.getElementById("auto-hide-checkbox").checked) {
+            rightSidebar.hide();
+        }
         updatesidebarL(locationID);
         trailInfo[locationID].marker.openPopup();
     }
@@ -154,7 +174,6 @@ var trail = (function () {
     for (var locationID in trailInfo) {
         var btnText = document.createTextNode(trailInfo[locationID]["fullname"]);
         var btn = document.createElement("button");
-        btn.type = "button";
         // btn.className = "site-button";  // TODO: to Add styling information
         btn.onclick=(function(){            // TODO: overly complex?
             var _loc = locationID;
@@ -167,6 +186,7 @@ var trail = (function () {
     }
     
     // TODO: Temporary until a button exists for this
+    // (Not valid in IE8)
     document.getElementById("trail-logo-sidebar-left")
             .addEventListener("click", shiftLeftToRightSidebar, false);
     
@@ -177,7 +197,8 @@ var trail = (function () {
 
     // Publicly-visible functions
     return {
-        moreInfo: moreInfo
+        moreInfo: moreInfo,
+        shiftLeftToRightSidebar: shiftLeftToRightSidebar
     };
 
 }());
