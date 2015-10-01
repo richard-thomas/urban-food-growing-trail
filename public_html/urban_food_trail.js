@@ -103,6 +103,7 @@ var trail = (function () {
         },
         onEachFeature: function onEachFeature(feature, layer) {
             var info = trailInfo[feature.properties.name];
+            // TBD: only prompt for more info if info-pane content exists
             if (info !== undefined && info !== null) {
                 var popupContent = "<strong>" + info.fullname +
                         "</strong><br>" + info.summary +
@@ -118,41 +119,31 @@ var trail = (function () {
     trailLayer.addTo(map);
 
     function updatesidebarL(locationID) {
-        var headerStr = trailInfo[locationID]["fullname"];
-        var infoStr = "";
-        if (headerStr !== "INTRODUCTION") {
-            /*** TBD: remove when button to open right sidebar exists ***/
-            infoStr += '<p><img id="trail-logo-sidebar-left2"' +
-                    ' src="img/Urban-Food-Growing-Trail.png"></p>';
-             /*** TODO: remove when button to open right sidebar exists ***/
-
-           infoStr += "<h3>" + headerStr + "</h3>";
-        }
-        infoStr += trailInfo[locationID]["details"];
-        var mainLink = trailInfo[locationID]["link"];
-        if (mainLink !== undefined) {
-            infoStr += "<p><a href='" + mainLink + "' target='_blank'>" +
-                    "(Further location info on main website)</a></p>";
-        }
-        //document.getElementById("sidebarL").innerHTML = infoStr;
-        
+        document.getElementById("info-pane-title").innerHTML =
+                trailInfo[locationID]["fullname"];
+               
         // Ensure all info pane content is hidden
         var divList = document.getElementById("sidebarL")
                 .getElementsByTagName("div");
         for (var i = 0; i < divList.length; i++) {
             divList[i].style.display="none";
         }
-        document.getElementById(locationID + "-info").style.display="inline";
-
-        // TODO: Temporary until a button exists for this
-        document.getElementById("trail-logo-sidebar-left2")
-            .addEventListener("click", shiftLeftToRightSidebar, false);
+        
+        // TODO: add link at bottom (how?)
+//        var mainLink = trailInfo[locationID]["link"];
+//        if (mainLink !== undefined) {
+//            infoStr += "<p><a href='" + mainLink + "' target='_blank'>" +
+//                    "(Further location info on main website)</a></p>";
+//        }
+        //document.getElementById("sidebarL").innerHTML = infoStr;
  
+        document.getElementById(locationID + "-info").style.display="inline"; 
     }
 
     // TODO: need to reload intro text into left sidebar
     function showIntro() {
         rightSidebar.hide();
+        document.getElementById("info-pane-title").innerHTML = "";
         document.getElementById("intro-info").style.display="inline";
         // TODO: need to hide any other info pane divs
         leftSidebar.show();
@@ -185,11 +176,8 @@ var trail = (function () {
         sidebarButtonsContainer.appendChild(buttonPara);
     }
     
-    // TODO: Temporary until a button exists for this
-    // (Not valid in IE8)
-    document.getElementById("trail-logo-sidebar-left")
-            .addEventListener("click", shiftLeftToRightSidebar, false);
-    
+    // TODO: show-site-labels checkbox drives map labelling
+       
     function shiftLeftToRightSidebar() {
         leftSidebar.hide();
         rightSidebar.show();
