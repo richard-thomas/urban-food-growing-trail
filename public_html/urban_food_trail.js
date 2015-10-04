@@ -23,6 +23,7 @@ var trail = (function () {
       center: mapCenter,
       zoom: 16
     });
+    L.control.scale().addTo(map);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>' +
@@ -73,18 +74,15 @@ var trail = (function () {
     // Safe to make sidebar contents visible now without them getting flashed
     // across the display
     document.getElementById("sidebarR").style.display="inline";
+ 
+    // Delay initial showing of intro text to work around some CSS quirks
+    // with 'sidebar' plugin
+    setTimeout(function () {
+        showIntro();
+    }, 500);    
     
-    showIntro();
-    
-    // Switch from showing summary in popup to details in left sidebar
-    function moreInfo(locationNameStr) {
-        trailInfo[locationNameStr]["marker"].closePopup();
-        updatesidebarL(locationNameStr);
-        leftSidebar.show();
-    }
-
     // Load GeoJSON data (exported from Google as KML & converted to JSON)
-    trailLayer = L.geoJson(trailGeoJson, {
+    var markerLayer = L.geoJson(trailGeoJson, {
         style: trailStyle,
         pointToLayer: function (feature, latlng) {
             var newMarker = L.marker(latlng, {
@@ -93,6 +91,8 @@ var trail = (function () {
             });  
 
             // Pass pointer to current marker and its popup
+            // TODO: generate right panel buttons here so we don't have to
+            //       store pointers to markers in an intermediate array?
             trailInfo[feature.properties.name]["marker"] = newMarker;
 
             // Ensure that if we open a popup left sidebar is closed (if open)
@@ -101,9 +101,10 @@ var trail = (function () {
 
             return newMarker;
         },
+        // TODO: should all this be in pointToLayer as only for markers?
         onEachFeature: function onEachFeature(feature, layer) {
             var info = trailInfo[feature.properties.name];
-            // TBD: only prompt for more info if info-pane content exists
+            // TODO: only prompt for more info if info-pane content exists
             if (info !== undefined && info !== null) {
                 var popupContent = "<strong>" + info.fullname +
                         "</strong><br>" + info.summary +
@@ -116,7 +117,15 @@ var trail = (function () {
             }
         }
     });
-    trailLayer.addTo(map);
+    markerLayer.addTo(map);
+
+    // Switch from showing summary in popup to details in left sidebar
+    function moreInfo(locationNameStr) {
+        // TODO: Only close if "auto-close popup" selected
+        map.closePopup();
+        updatesidebarL(locationNameStr);
+        leftSidebar.show();
+    }
 
     function updatesidebarL(locationID) {
         document.getElementById("info-pane-title").innerHTML =
@@ -146,7 +155,9 @@ var trail = (function () {
         document.getElementById("info-pane-title").innerHTML = "";
         document.getElementById("intro-info").style.display="inline";
         // TODO: need to hide any other info pane divs
+        
         leftSidebar.show();
+
     };
 
     function selectLocation(locationID) {
@@ -155,6 +166,9 @@ var trail = (function () {
             rightSidebar.hide();
         }
         updatesidebarL(locationID);
+        markerPos = trailInfo[locationID].marker.getLatLng();
+        L.circle(markerPos, 30, {fillOpacity: 0.1, color: 'red', weight: 2,
+        clickable: false}).addTo(map);
         trailInfo[locationID].marker.openPopup();
     }
 

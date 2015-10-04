@@ -12,6 +12,7 @@
 
 (function () {
   /* global L */
+  /* global trail */
   'use strict';
   L.Control.NavIcon3Bar = L.Control.extend({
     options: {
