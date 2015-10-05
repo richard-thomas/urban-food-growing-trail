@@ -49,9 +49,10 @@
       return link;
     },
     _navEvent: function () {
-        // TODO: need to hide this control when menu is open (or stop sliding)
+        // TODO: need to hide this control when menu is open (or stop sliding),
+        //       or make it change to a menu hide icon (say '>
         // TODO: nasty fn call. Too tightly coupled as well
-      trail.shiftLeftToRightSidebar();
+        trail.openSiteMenu();
     }
   });
 
