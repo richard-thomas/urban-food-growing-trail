@@ -1,15 +1,4 @@
-
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(["leaflet"], factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('leaflet'));
-  } else {
-    root.L.Control.LocateMe = factory(root.L);
-  }
-}(this, function(L) {
-
-return (function () {
+(function () {
   /* global L */
   'use strict';
   L.Control.LocateMe = L.Control.extend({
@@ -65,7 +54,7 @@ return (function () {
             this._meCircle = L.circle(e.latlng, radius).addTo(this._map);
             this._meMarkerExists = true;
         } else {
-            this._meMarker.setLatLng(e.latlng).update;
+            this._meMarker.setLatLng(e.latlng).update();
             this._meMarker.setPopupContent("You have moved to within " + radius + " metres of this point");
             this._meCircle.setLatLng(e.latlng);
             this._meCircle.setRadius(radius);
@@ -110,6 +99,3 @@ return (function () {
   return L.Control.LocateMe;
 
 }());
-;
-
-}));

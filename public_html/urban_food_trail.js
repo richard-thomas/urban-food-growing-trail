@@ -70,7 +70,7 @@ var trail = (function () {
         hideInfoPaneContent();
         document.getElementById("intro-info").style.display="inline";
         leftSidebar.show();
-    };
+    }
 
     // Now able to show startup splash screen (before markers and right sidebar
     // are set up)
@@ -80,7 +80,7 @@ var trail = (function () {
         hideInfoPaneContent();
 
         // Set Info pane heading
-        infoPaneTitleEl.innerHTML = trailInfo[locationID]["fullname"];
+        infoPaneTitleEl.innerHTML = trailInfo[locationID].fullname;
 
         // Show details specific to this site
         document.getElementById(locationID + "-info").style.display="inline";
@@ -134,9 +134,10 @@ var trail = (function () {
     var sidebarButtonsContainer = document.getElementById("sidebarButtons");
 
     for (var locationID in trailInfo) {
-        var btnText = document.createTextNode(trailInfo[locationID]["fullname"]);
+        var btnText = document.createTextNode(trailInfo[locationID].fullname);
         var btn = document.createElement("button");
         // btn.className = "site-button";  // TODO: to Add styling information
+        // TODO: jshint says "Don't make functions within a loop"
         btn.onclick=(function(){            // TODO: overly complex?
             var _loc = locationID;
             return function() { selectLocation(_loc); };
@@ -210,12 +211,12 @@ var trail = (function () {
             var siteInfo = trailInfo[siteName];
             var newMarker = L.marker(latlng, {
                 icon: greenIcon,
-                title: siteInfo["fullname"]
+                title: siteInfo.fullname
             });
 
             // Export pointer to current marker to allow site list generation
             // later (but not in the random order from the GeoJSON data)
-            siteInfo["marker"] = newMarker;
+            siteInfo.marker = newMarker;
 
             // Handle other map objects when a popup opens
             // TODO: addEventListener() not supported in IE8

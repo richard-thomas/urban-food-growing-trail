@@ -6,9 +6,6 @@
     ".jshintrc",
     "**/*.txt"
   ],
-  "dependencies": {
-    "leaflet": "0.7.3",
-    "leaflet-sidebar": "0.1.8"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }
