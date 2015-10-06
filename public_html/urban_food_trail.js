@@ -122,8 +122,14 @@ var trail = (function () {
     // across the display
     document.getElementById("sidebarR").style.display="inline";
 
-    function selectLocation(locationID) {
-        trailInfo[locationID].marker.openPopup();
+    /**
+     * Callback function for all buttons in site selection menu
+     * 
+     * @param {type} ev     button event
+     */
+    function selectLocation(ev) {
+        var locId = ev.target.getAttribute('data-loc-id');
+        trailInfo[locId].marker.openPopup();
     }
 
     // Add buttons to Right Sidebar
@@ -136,12 +142,9 @@ var trail = (function () {
     for (var locationID in trailInfo) {
         var btnText = document.createTextNode(trailInfo[locationID].fullname);
         var btn = document.createElement("button");
+        btn.setAttribute('data-loc-id', locationID);
         // btn.className = "site-button";  // TODO: to Add styling information
-        // TODO: jshint says "Don't make functions within a loop"
-        btn.onclick=(function(){            // TODO: overly complex?
-            var _loc = locationID;
-            return function() { selectLocation(_loc); };
-        })();
+        btn.onclick=selectLocation;
         btn.appendChild(btnText);
         var buttonPara = document.createElement("p");
         buttonPara.appendChild(btn);
