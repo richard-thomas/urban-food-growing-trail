@@ -11,8 +11,6 @@
   "author": "Richard Thomas",
   "contributors": [],
   "dependencies": {
-    "leaflet": "0.7.5",
-    "leaflet-sidebar": "0.1.6",
     "leaflet.defaultextent": "0.0.3"
   },
   "devDependencies": {

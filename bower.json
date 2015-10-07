@@ -6,6 +6,10 @@
     ".jshintrc",
     "**/*.txt"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "leaflet": "0.7.5",
+    "leaflet-sidebar": "0.1.8",
+    "Leaflet.ShowAll": "git://github.com/florpor/Leaflet.ShowAll.git#0.1"
+  },
   "devDependencies": {}
 }
