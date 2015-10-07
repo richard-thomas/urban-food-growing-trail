@@ -46,7 +46,7 @@ gulp.task('external', ['external:images'], function() {
       'public_html/bower_components/leaflet/dist/leaflet.js',
       'public_html/bower_components/leaflet/dist/leaflet.css',
       'public_html/bower_components/leaflet-sidebar/src/*',
-      'public_html/Leaflet.defaultextent/dist/*'])
+      'public_html/bower_components/Leaflet.defaultextent/dist/*'])
     .pipe(gulp.dest('public_html/dist'));
 });
 

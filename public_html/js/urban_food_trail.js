@@ -18,15 +18,15 @@ var trail = (function () {
     /*
      * ---- Basemap and custom controls
      */
-    var MAP_CENTRE = [51.4493, -2.5806];
+    
+    // Boundary of full trail
+    // (specifically the coordinates of the furthest apart points on trail)
+    var trailBounds = [[51.4486598, -2.5899263], [51.4493936, -2.5805962]];
+    
     var map = L.map('map', {
-      defaultExtentControl: true,   // Add "Home" button to reset extent
-      navIcon3BarControl: true,     // Add "NavIcon(3 bar)" button for menu
-      locateMeControl: true,        // Add "Locate Me" button to pan to location
-      center: MAP_CENTRE,
-      zoom: 16
-    });
-    L.control.scale().addTo(map);
+        navIcon3BarControl: true,     // Add "NavIcon(3 bar)" button for menu
+        locateMeControl: true        // Add "Locate Me" button to pan to location
+    }).fitBounds(trailBounds);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
     {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>' +
@@ -36,7 +36,11 @@ var trail = (function () {
         id: 'richardthomas.2e651224',
         accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiIxYWMwNTMyMjMzYzRlNWU0NWY4ODYyNDQzYWVkMjQzNSJ9.VAF-W-QsoepmXOZyvoXzxw'
     }).addTo(map);
+    L.control.scale().addTo(map);
 
+    // Add "Home" button to reset to the initial extent (i.e. the full trail)
+    L.control.defaultExtent().addTo(map);
+    
 /*
  * ---- Left Sidebar (Intro/Site Information Pane) ----
  */
