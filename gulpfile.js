@@ -11,64 +11,98 @@
  */
 
 var gulp = require('gulp'),
-        jshint = require('gulp-jshint'),
-        rename = require('gulp-rename'),
-        concat = require('gulp-concat'),
-        notify = require('gulp-notify'),
-        uglify = require('gulp-uglify'),
-        del = require('del');
+    jshint = require('gulp-jshint'),
+    csslint = require('gulp-csslint'),
+    rename = require('gulp-rename'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    header = require('gulp-header'),
+    del = require('del');
 
-// "Tasks in Gulp run concurrently together and have no order in which they’ll
-// finish, so we need to make sure the clean task is completed before running
-// additional tasks. Note: It’s advised against using gulp.start in favour of
-// executing tasks in the dependency arrary, but in this scenario to ensure
-// clean fully completes, it seems the best option."
-gulp.task('default', ['clean'], function () {
-    // place code for your default task here
-        gulp.start('build');
-
-});
+var pkg = require('./package.json'),
+    basename = pkg.name + '-' + pkg.version,
+    banner = '/*! {{ pkg.name }} v{{ pkg.version }} */';
 
 gulp.task('clean', function(cb) {
     del(['public_html/dist'], cb);
 });
 
-gulp.task('styles', function() {
-  return gulp.src([
-      'public_html/Leaflet.locateme/dist/*.png',
-      'public_html/Leaflet.locateme/dist/*.css'])
-    .pipe(gulp.dest('public_html/dist'));
-});
-
-gulp.task('images', function() {
+// Copy across unchanged files
+gulp.task('images', ['images:favicon'], function() {
   return gulp.src([
       'public_html/img/*'])
     .pipe(gulp.dest('public_html/dist/img'));
 });
 
-gulp.task('external', function() {
+gulp.task('images:favicon', function() {
+    return gulp.src([
+        'public_html/favicon.ico'])
+    .pipe(gulp.dest('public_html/dist/'));
+});
+
+// Copy external libraries and plugins
+gulp.task('external', ['external:images'], function() {
   return gulp.src([
-      'node_modules/leaflet/dist/*',
-      'node_modules/leaflet/dist/*/*',
-      'node_modules/leaflet-sidebar/src/*',
-      'node_modules/leaflet.defaultextent/dist/*'])
+      'public_html/bower_components/leaflet/dist/leaflet.js',
+      'public_html/bower_components/leaflet/dist/leaflet.css',
+      'public_html/bower_components/leaflet-sidebar/src/*',
+      'public_html/Leaflet.defaultextent/dist/*'])
     .pipe(gulp.dest('public_html/dist'));
 });
 
-gulp.task('buildindex', function() {
+gulp.task('external:images', function() {
+  return gulp.src([
+      'public_html/bower_components/leaflet/dist/images/*'])
+    .pipe(gulp.dest('public_html/dist/images'));
+});
+
+// Lint JS + CSS
+gulp.task('lint', ['lint:js']);
+//gulp.task('lint', ['lint:js', 'lint:css']);
+
+gulp.task('lint:js', function() {
+  return gulp.src('public_html/js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('lint:css', function() {
+  return gulp.src('public_html/css/*.css')
+    .pipe(csslint({
+      'adjoining-classes': false,
+      'box-sizing': false,
+      'fallback-colors': false
+    }))
+    .pipe(csslint.reporter());
+});
+
+// Build HTML, JS + CSS
+gulp.task('build:html', function() {
     return gulp.src('public_html/index-dist.html')
     .pipe(rename('index.html'))
     .pipe(gulp.dest('public_html/dist/'));
 });
-gulp.task('build', ['buildindex', 'styles', 'images', 'external'], function() {
-    return gulp.src([
-        'public_html/Leaflet.locateme/dist/*.js',
-        'public_html/*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+
+gulp.task('build:js', function() {
+    return gulp.src('public_html/js/*.js')
     .pipe(concat('main.js'))
     .pipe(gulp.dest('public_html/dist/'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
+    .pipe(header(banner, { pkg : pkg } ))
     .pipe(gulp.dest('public_html/dist/'));
+});
+
+gulp.task('build:css', function() {
+    return gulp.src('public_html/css/*.css')
+    .pipe(concat('main.css'))
+    .pipe(header(banner, { pkg : pkg } ))
+    .pipe(gulp.dest('public_html/dist/'));
+});
+
+gulp.task('build',
+    ['lint', 'build:html', 'build:js', 'build:css', 'images', 'external']);
+
+gulp.task('default', function () {
+    gulp.start('lint');
 });
