@@ -12,7 +12,6 @@
 
 var trail = (function () {
     /* global L */
-    /* global trailGeoJson */
     /* global trailInfo */
 
     /*
@@ -156,42 +155,81 @@ var trail = (function () {
     }
 
 /*
+ * ---- Callbacks for non-site-specific buttons
+ */
+    /**
+     * Open right sidebar to show selector for garden sites
+     */
+    function openSiteMenu() {
+        leftSidebar.hideOnAuto();
+        rightSidebar.show();
+    }
+    // TODO: could I override map.navicon3Bar._navmenu() here so not having to
+    // make the function public? Something like...
+    //map.navIcon3Bar._navEvent = openSiteMenu;
+    //map.navIcon3Bar.setNavEvent(openSiteMenu);
+    
+    /**
+     * Switch from showing summary in popup to details in infopane left sidebar
+     * 
+     * @param {String} locationNameStr garden location as a string
+     */ 
+    function moreInfo(locationNameStr) {
+        map.closePopup();
+        leftSidebar.show();
+    }
+
+    // Publicly visible functions
+    return {
+        map: map,
+        leftSidebarHideOnAuto: leftSidebar.hideOnAuto,
+        rightSidebarHideOnAuto: rightSidebar.hideOnAuto,
+        showSiteDetails: showSiteDetails,
+        moreInfo: moreInfo,
+        openSiteMenu: openSiteMenu
+    };
+
+}());
+
+/*
  * ---- Map Markers ----
  */
+trail.markers = (function (map) {
+    /* global L */
+    /* global trailGeoJson */
+    /* global trailInfo */
 
-    // TODO: why doesn't this ** generate fn documentation in NetBeans?
+    // Circle marker object indicating selected garden
+    var _siteCircleMarker = null;
+
     /**
      * Move location of a circle marker (create it first if not present)
+     * @param {latlng} latLng New centre of circle
      */
-    map.setCircleMarker = (function() {
-        var _siteMarker = null;
+    function setCircleMarker(latLng) {
+        if (_siteCircleMarker) {
+            _siteCircleMarker.setLatLng(latLng);
+        } else {
+            _siteCircleMarker = L.circleMarker(latLng, {
+                fillOpacity: 0.1,
+                color: 'red',
+                weight: 2,
+                radius: 30,
+                clickable: false
+            });
+            _siteCircleMarker.addTo(map);
+        }
+    }
 
-        var selectSite = function(latLng) {
-            if (_siteMarker) {
-                _siteMarker.setLatLng(latLng);
-            } else {
-                _siteMarker = L.circleMarker(latLng, {
-                    fillOpacity: 0.1,
-                    color: 'red',
-                    weight: 2,
-                    radius: 30,
-                    clickable: false
-                });
-                _siteMarker.addTo(map);
-            }
-        };
-        return selectSite;
-    })();
-
-    // Create a custom icon (the Leaflet green leaf)
+    // Create custom icon for garden markers (the Leaflet green leaf)
     var greenIcon = L.icon({
         iconUrl: 'img/leaf-green.png',
         shadowUrl: 'img/leaf-shadow.png',
         iconSize:     [38, 95], // size of the icon
         shadowSize:   [50, 64], // size of the shadow
-        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        iconAnchor:   [22, 94], // point of icon which corresponds to marker location
         shadowAnchor: [4, 62],  // the same for the shadow
-        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        popupAnchor:  [-3, -76] // point from which popup opens relative to iconAnchor
     });
 
     // Style for recommended walking route (polyline vector)
@@ -226,13 +264,15 @@ var trail = (function () {
             siteInfo.marker = newMarker;
 
             // Handle other map objects when a popup opens
-            // TODO: addEventListener() not supported in IE8
+            // TODO: addEventListener() not supported in IE8, but does Leaflet
+            //       version work round this?
             var sitePopupOpen = function(site) {
-                leftSidebar.hideOnAuto();
-                rightSidebar.hideOnAuto();
-                map.setCircleMarker(siteLatLng);
-                showSiteDetails(site);
+                trail.leftSidebarHideOnAuto();
+                trail.rightSidebarHideOnAuto();
+                setCircleMarker(siteLatLng);
+                trail.showSiteDetails(site);
             };
+//            newMarker.on('popupopen', function() {  // alias for addEventListener
             newMarker.addEventListener('popupopen', function() {
                 sitePopupOpen(siteName);
             });
@@ -251,36 +291,7 @@ var trail = (function () {
         }
     });
     markerLayer.addTo(map);
-
-/*
- * ---- Callbacks for non-site-specific buttons
- */
-    /**
-     * Open right sidebar to show selector for garden sites
-     */
-    function openSiteMenu() {
-        leftSidebar.hideOnAuto();
-        rightSidebar.show();
-    }
-    // TODO: could I override map.navicon3Bar._navmenu() here so not having to
-    // make the function public? Something like...
-    //map.navIcon3Bar._navEvent = openSiteMenu;
-    //map.navIcon3Bar.setNavEvent(openSiteMenu);
     
-    /**
-     * Switch from showing summary in popup to details in infopane left sidebar
-     * 
-     * @param {String} locationNameStr garden location as a string
-     */ 
-    function moreInfo(locationNameStr) {
-        map.closePopup();
-        leftSidebar.show();
-    }
+    // Publicly visible functions (none)
 
-    // Publicly visible functions
-    return {
-        moreInfo: moreInfo,
-        openSiteMenu: openSiteMenu
-    };
-
-}());
+}(trail.map));
