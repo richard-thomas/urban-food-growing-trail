@@ -255,6 +255,9 @@ var trail = (function () {
 /*
  * ---- Callbacks for non-site-specific buttons
  */
+    /**
+     * Open right sidebar to show selector for garden sites
+     */
     function openSiteMenu() {
         leftSidebar.hideOnAuto();
         rightSidebar.show();
@@ -264,7 +267,11 @@ var trail = (function () {
     //map.navIcon3Bar._navEvent = openSiteMenu;
     //map.navIcon3Bar.setNavEvent(openSiteMenu);
     
-    // Switch from showing summary in popup to details in infopane left sidebar
+    /**
+     * Switch from showing summary in popup to details in infopane left sidebar
+     * 
+     * @param {String} locationNameStr garden location as a string
+     */ 
     function moreInfo(locationNameStr) {
         map.closePopup();
         leftSidebar.show();

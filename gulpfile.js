@@ -17,6 +17,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     header = require('gulp-header'),
+    replace = require('gulp-replace'),
     del = require('del');
 
 var pkg = require('./package.json'),
@@ -78,8 +79,11 @@ gulp.task('lint:css', function() {
 
 // Build HTML, JS + CSS
 gulp.task('build:html', function() {
-    return gulp.src('public_html/index-dist.html')
-    .pipe(rename('index.html'))
+//    return gulp.src('public_html/index-dist.html')
+//    .pipe(rename('index.html'))
+    return gulp.src('public_html/index.html')
+    .pipe(replace(/.*gulp-replace\(delete-line\).*/g, ''))
+    .pipe(replace(/.*gulp-replace\(delete-block([0-9]+)-start\).*[^]*.*delete-block\1-end.*/g, ''))
     .pipe(gulp.dest('public_html/dist/'));
 });
 

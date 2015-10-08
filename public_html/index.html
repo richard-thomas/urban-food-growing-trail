@@ -16,6 +16,17 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <meta name="apple-mobile-web-app-capable" content="yes">
 
+        <!-- Production.start - gulp-replace(delete-line)
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="stylesheet" href="leaflet.css">
+        <link rel="stylesheet" href="leaflet.defaultextent.css">
+        <link rel="stylesheet" href="L.Control.Sidebar.css">
+        <link rel="stylesheet" media="all" href="main.css">
+
+        <title>Incredible#Edible Bristol Urban Food Growing Trail</title>
+        .... Production.end - gulp-replace(delete-line) -->
+
+        <!-- Dev.start - gulp-replace(delete-block1-start) -->
         <link rel="shortcut icon" href="favicon.ico">
         <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
         <link rel="stylesheet" href="bower_components/Leaflet.defaultextent/dist/leaflet.defaultextent.css">
@@ -25,6 +36,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
         <link rel="stylesheet" media="all" href="css/urban_food_trail.css">
 
         <title>(DEV) Incredible#Edible Bristol Urban Food Growing Trail</title>
+         <!-- Dev.end - gulp-replace(delete-block1-end) -->
+
     </head>
     <body>
         <!-- Left Sidebar: Site Information Pane -->
@@ -214,6 +227,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
         <div id="map"></div>
 
+        <!-- Production.start - gulp-replace(delete-line)
+        <script src="leaflet.js"></script>
+        <script src="leaflet.defaultextent.js"></script>
+        <script src="L.Control.Sidebar.js"></script>
+        <script src="main.js"></script>
+        .... Production.end - gulp-replace(delete-line) -->
+        
+        <!-- Dev.start - gulp-replace(delete-block2-start) -->
         <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
         <script src="bower_components/Leaflet.defaultextent/dist/leaflet.defaultextent.js"></script>
         <script src="bower_components/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
@@ -222,5 +243,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
         <script src="js/trail_geojson.js"></script>
         <script src="js/trail_info.js"></script>
         <script src="js/urban_food_trail.js"></script>
-    </body>
+         <!-- Dev.end - gulp-replace(delete-block2-end) -->
+   </body>
 </html>
