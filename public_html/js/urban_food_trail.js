@@ -23,7 +23,6 @@ var trail = (function () {
     var trailBounds = [[51.4486598, -2.5899263], [51.4493936, -2.5805962]];
     
     var map = L.map('map', {
-        navIcon3BarControl: true,     // Add "NavIcon(3 bar)" button for menu
         locateMeControl: true        // Add "Locate Me" button to pan to location
     }).fitBounds(trailBounds);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
@@ -39,7 +38,7 @@ var trail = (function () {
 
     // Add "Home" button to reset to the initial extent (i.e. the full trail)
     L.control.defaultExtent().addTo(map);
-    
+
 /*
  * ---- Left Sidebar (Intro/Site Information Pane) ----
  */
@@ -107,6 +106,20 @@ var trail = (function () {
 /*
  * ---- Right Sidebar (Site selector) ----
  */ 
+    // Add menu button to select site (via right sidebar)
+    L.control.navIcon3Bar({
+        position: 'topright',
+        text: 'Nav Icon',
+        title: 'Select growing site',
+        className: 'leaflet-control-navicon3bar',
+        callback: openSiteMenu
+    }).addTo(map);
+    L.control.navIcon3Bar({
+        text: 'Settings Icon',
+        title: 'Settings',
+        className: 'leaflet-control-settings',
+        callback: function () {alert('settings?');}}).addTo(map);
+
     var rightSidebar = L.control.sidebar('sidebarR', {
         closeButton: true,
         position: 'right',
@@ -121,6 +134,14 @@ var trail = (function () {
         }
     };
 
+    /**
+     * Open right sidebar to show selector for garden sites
+     */
+    function openSiteMenu() {
+        leftSidebar.hideOnAuto();
+        rightSidebar.show();
+    }
+    
     // Safe to make sidebar contents visible now without them getting flashed
     // across the display
     document.getElementById("sidebarR").style.display="inline";
@@ -157,18 +178,7 @@ var trail = (function () {
 /*
  * ---- Callbacks for non-site-specific buttons
  */
-    /**
-     * Open right sidebar to show selector for garden sites
-     */
-    function openSiteMenu() {
-        leftSidebar.hideOnAuto();
-        rightSidebar.show();
-    }
-    // TODO: could I override map.navicon3Bar._navmenu() here so not having to
-    // make the function public? Something like...
-    //map.navIcon3Bar._navEvent = openSiteMenu;
-    //map.navIcon3Bar.setNavEvent(openSiteMenu);
-    
+
     /**
      * Switch from showing summary in popup to details in infopane left sidebar
      * 
@@ -185,8 +195,7 @@ var trail = (function () {
         leftSidebarHideOnAuto: leftSidebar.hideOnAuto,
         rightSidebarHideOnAuto: rightSidebar.hideOnAuto,
         showSiteDetails: showSiteDetails,
-        moreInfo: moreInfo,
-        openSiteMenu: openSiteMenu
+        moreInfo: moreInfo
     };
 
 }());

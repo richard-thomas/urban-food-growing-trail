@@ -11,61 +11,39 @@
  */
 
 (function () {
-  /* global L */
-  /* global trail */
-  'use strict';
-  L.Control.NavIcon3Bar = L.Control.extend({
-    options: {
-      position: 'topright',
-      text: 'Nav Icon',
-      title: 'Open Navigation Sidebar',
-      className: 'leaflet-control-navicon3bar'
-    },
-    onAdd: function (map) {
-      this._map = map;
-      return this._initLayout();
-    },
-    _initLayout: function () {
-      var container = L.DomUtil.create('div', 'leaflet-bar ' +
-        this.options.className);
-      this._container = container;
-      this._navIconButton = this._createNavIconButton(container);
+    /* global L */
+    'use strict';
+    L.Control.NavIcon3Bar = L.Control.extend({
+        options: {
+            position: 'topright',
+            text: 'Icon Alt Text',
+            title: '(Hover description)',
+            className: 'class-for-css-image-selection',
+            callback: function() {}
+        },
+        onAdd: function (map) {
+            this._map = map;
+            var container = L.DomUtil.create('div', 'leaflet-bar ' +
+                    this.options.className);
+            this._container = container;
+            var link = L.DomUtil.create('a', this.options.className + '-toggle',
+                    this._container);
+            link.href = '#';
+            link.innerHTML = this.options.text;
+            link.title = this.options.title;
 
-      L.DomEvent.disableClickPropagation(container);
+            L.DomEvent
+                .on(link, 'mousedown dblclick', L.DomEvent.stopPropagation)
+                .on(link, 'click', L.DomEvent.stop)
+                .on(link, 'click', this.options.callback, this);
+            L.DomEvent.disableClickPropagation(container);
 
-      return this._container;
-    },
-    _createNavIconButton: function () {
-      var link = L.DomUtil.create('a', this.options.className + '-toggle',
-        this._container);
-      link.href = '#';
-      link.innerHTML = this.options.text;
-      link.title = this.options.title;
+            return this._container;
+        }
+    });
 
-      L.DomEvent
-        .on(link, 'mousedown dblclick', L.DomEvent.stopPropagation)
-        .on(link, 'click', L.DomEvent.stop)
-        .on(link, 'click', this._navEvent, this);
-      return link;
-    },
-    _navEvent: function () {
-        // TODO: need to hide this control when menu is open (or stop sliding),
-        //       or make it change to a menu hide icon (say '>
-        // TODO: nasty fn call. Too tightly coupled as well
-        trail.openSiteMenu();
-    }
-  });
-
-  L.Map.addInitHook(function () {
-    if (this.options.navIcon3BarControl) {
-      this.addControl(new L.Control.NavIcon3Bar());
-    }
-  });
-
-  L.control.navIcon3Bar = function (options) {
-    return new L.Control.NavIcon3Bar(options);
-  };
-
-  return L.Control.NavIcon3Bar;
-
+    // Create new instance of "class"
+    L.control.navIcon3Bar = function (options) {
+        return new L.Control.NavIcon3Bar(options);
+    };
 }());
