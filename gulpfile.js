@@ -83,7 +83,7 @@ gulp.task('build:html', function() {
 //    .pipe(rename('index.html'))
     return gulp.src('public_html/index.html')
     .pipe(replace(/.*gulp-replace\(delete-line\).*/g, ''))
-    .pipe(replace(/.*gulp-replace\(delete-block([0-9]+)-start\).*[^]*.*delete-block\1-end.*/g, ''))
+    .pipe(replace(/.*gulp-replace\(delete-block-start\).*[^]*?.*delete-block-end.*/g, ''))
     .pipe(gulp.dest('public_html/dist/'));
 });
 
