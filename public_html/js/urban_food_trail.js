@@ -59,6 +59,8 @@ var trail = (function () {
     var leftSidebarEl = leftSidebar.getContainer();
     var infoPaneTitleEl = document.getElementById("info-pane-title");
     var infoPaneDivs = leftSidebarEl.getElementsByTagName("div");
+    var siteSpecificLinkEl = document.getElementById("site-specific-link");
+    var siteLinkEl = document.getElementById("site-link");
     
     // Ensure all info pane content is hidden
     function hideInfoPaneContent() {
@@ -84,17 +86,22 @@ var trail = (function () {
         // Set Info pane heading
         infoPaneTitleEl.innerHTML = trailInfo[locationID].fullname;
 
+        // Get site-specific details element (if it exists in DOM)
+        var siteDetailsDomEl = document.getElementById(locationID + "-info");
+
         // Show details specific to this site
-        document.getElementById(locationID + "-info").style.display="inline";
+        if (siteDetailsDomEl) {
+            siteDetailsDomEl.style.display="inline";
+        }
         
-        // TODO: add link at bottom (how?)
-        //       better to do in original HTML? (as done for 1st site)
-//        var mainLink = trailInfo[locationID]["link"];
-//        if (mainLink !== undefined) {
-//            infoStr += "<p><a href='" + mainLink + "' target='_blank'>" +
-//                    "(Further location info on main website)</a></p>";
-//        }
-        //document.getElementById("sidebarL").innerHTML = infoStr;
+        // Display link to site-specific trail page (if it exists)
+        var siteLink = trailInfo[locationID].link;
+        if (siteLink) {
+            siteLinkEl.href =
+                    "http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/" +
+                    siteLink;
+            siteSpecificLinkEl.style.display="inline";
+        }
     }
 
     // Delay initial showing of intro text to work around some CSS quirks
@@ -286,15 +293,18 @@ trail.markers = (function (map) {
                 sitePopupOpen(siteName);
             });
 
+            // Try to get site-specific details to see if they exist in DOM
+            var siteDetailsDomEl = document.getElementById(siteName + "-info");
+
             // TODO: only prompt for more info if info-pane content exists
-            if (true) {
-                var popupContent = "<strong>" + siteInfo.fullname +
-                        "</strong><br>" + siteInfo.summary +
-                        "<br><button type='button'" +
-                        " onclick='trail.moreInfo();')>" +
-                        "More Info</button>";
-                newMarker.bindPopup(popupContent);
+            var popupContent = "<strong>" + siteInfo.fullname +
+                    "</strong><br>" + siteInfo.summary;
+            
+            if (siteDetailsDomEl) {
+                popupContent += "<br><button type='button'" +
+                        " onclick='trail.moreInfo();')>More Info</button>";
             }
+            newMarker.bindPopup(popupContent);
 
             return newMarker;
         }
