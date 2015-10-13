@@ -105,6 +105,161 @@ trailGeoJson = {
         {
             "type": "Feature",
             "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.5930631,
+                    51.4495039,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "hole-in-the-wall",
+                "styleUrl": "#icon-503-DB4436-nodesc",
+                "styleHash": "-3b37c65d"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.5959492,
+                    51.4504283,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "destination-bristol",
+                "styleUrl": "#icon-503-DB4436-nodesc",
+                "styleHash": "-3b37c65d"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.59988,
+                    51.4506005,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "anchor-square",
+                "styleUrl": "#icon-503-DB4436-nodesc",
+                "styleHash": "-3b37c65d"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.6009005,
+                    51.4498199,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "millenium-square",
+                "styleUrl": "#icon-503-DB4436-nodesc",
+                "styleHash": "-3b37c65d"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -2.5899263,
+                        51.4486598,
+                        0
+                    ],
+                    [
+                        -2.5901878,
+                        51.4485745,
+                        0
+                    ],
+                    [
+                        -2.5905901,
+                        51.4486147,
+                        0
+                    ],
+                    [
+                        -2.591089,
+                        51.4492632,
+                        0
+                    ],
+                    [
+                        -2.5925857,
+                        51.4494872,
+                        0
+                    ],
+                    [
+                        -2.5927037,
+                        51.4494304,
+                        0
+                    ],
+                    [
+                        -2.5930631,
+                        51.4495039,
+                        0
+                    ],
+                    [
+                        -2.5937498,
+                        51.4498048,
+                        0
+                    ],
+                    [
+                        -2.5946939,
+                        51.4505202,
+                        0
+                    ],
+                    [
+                        -2.5964239,
+                        51.4506565,
+                        0
+                    ],
+                    [
+                        -2.5963797,
+                        51.4508011,
+                        0
+                    ],
+                    [
+                        -2.5973225,
+                        51.4508846,
+                        0
+                    ],
+                    [
+                        -2.5975169,
+                        51.4500138,
+                        0
+                    ],
+                    [
+                        -2.59988,
+                        51.4506005,
+                        0
+                    ],
+                    [
+                        -2.5999832,
+                        51.4501241,
+                        0
+                    ],
+                    [
+                        -2.6009005,
+                        51.4498199,
+                        0
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Line 11"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
                 "type": "LineString",
                 "coordinates": [
                     [
@@ -224,5 +379,4 @@ trailGeoJson = {
             }
         }
     ]
-};
-
+}

@@ -20,7 +20,7 @@ var trail = (function () {
     
     // Boundary of full trail
     // (specifically the coordinates of the furthest apart points on trail)
-    var trailBounds = [[51.4486598, -2.5899263], [51.4493936, -2.5805962]];
+    var trailBounds = [[51.4486598, -2.6009005], [51.4493936, -2.5805962]];
     
     var map = L.map('map', {
         locateMeControl: true        // Add "Locate Me" button to pan to location
