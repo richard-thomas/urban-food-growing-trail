@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2015 Richard Thomas
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the Artistic License 2.0 as published by the
+Open Source Initiative (http://opensource.org/licenses/Artistic-2.0)
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <style>
+
+html {
+   height: 100%;
+          overflow:visible;
+   
+}
+body {
+   height: 100%;
+          overflow:visible;
+   
+}
+      div#sidebarL.leaflet-control {
+          color: red;
+          height:100%;
+          overflow:visible;
+      }
+    </style>
+
+   <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="bower_components/Leaflet.defaultextent/dist/leaflet.defaultextent.css">
+    <link rel="stylesheet" href="bower_components/leaflet-sidebar/src/L.Control.Sidebar.css">
+    <link rel="stylesheet" href="css/leaflet.locateme.css">
+    <link rel="stylesheet" media="all" href="css/urban_food_trail.css">
+
+    
+   
+    <title>(DEV) Test for Defy</title>
+
+</head>
+<body>
+        <h4 id='info-pane-title'></h4>
+
+
+    <div id="sidebarL">
+            <p>unIncredible Edible Bristol, Bee The Change and Grow Bristol are
+                collaborating on an exciting project that is bringing food
+                growing to the centre of the city.You will see a trail of food
+                growing spaces springing up as you walk from Platform 3 at
+                Temple Meads past the council offices at 100 Temple Street and
+                along Redcliffe Way to Millennium Square. Its aim is to inspire
+                and educate - showing that food growing can be, and is, relevant
+                in the urban landscape, as well as to provide free food for
+                people and pollinators.After considerable conversation with Network Rail it was
+                agreed that we could put our first garden on Platform 3 of
+                Temple Meads Station. This is a difficult bed as it has very
+                limited light and water and we are in the middle of deciding
+                what is best to do with the planting in it. However, at the
+                moment it has a Family Apple Tree, which is one that has
+                been grafted with 2 different varieties, a Blackcurrant bush
+                in reverence to the fact that Ribena was first made in
+                Bristol, and a rhubarb which is currently hiding.The raised bed by the Passenger Shed at Temple Meads is one
+                that is difficult to manage as it has an immensely sunny
+                aspect and so needed planting with a crop that would cope
+                with some drought. With this in mind, and because our aim is
+                to introduce some more unusual species to Bristol in terms
+                of what we traditionally think we can grow, we introduced a
+                dwarf Nectarine to this bed.And so far it is doing well and has some fruit starting to
+                swell!!When James, our strategy team member and maker of
+                extraordinary raised beds mentioned the video below, we
+                immediately knew we had to make one of these for our Urban
+                Growing Trail. The Engine Shed seemed like the optimum
+                place to put the bed as it's as low tech as it gets whilst
+                being seriously high tech in the way it uses capillary
+                action to create this amazing bed that only needs watering
+                every 3 weeks of so!! In the bed are a variety of
+                crops that are really proving that the capillary action in
+                the bed works! Tomatoes, squashes, fennel, brassicas and
+                sweet marjoram are all looking well and will soon be
+                cropping at which point we will replant with crops that will
+                continue to produce food well into the autumnYou will see looking at the bed that we took the design stage
+                a step further than the Food For Free project. The decisions around what to plant into this garden were
+                taken looking making it productive for 2015 as well as
+                looking beyond this year and into the future. The backbone
+                of the garden are the 2 apple trees, and the perennial
+                fruit and vegetable plants which will remain in place and
+                productive for many years to come. However, it was also
+                necessary to ensure productivity for this year whilst the
+                perennial plants are young and concentrating on putting
+                roots out into the soil rather than cropping so we also
+                added some annual vegetables as well as some edible flowers
+                to fill in the gaps as it were. The edible flowers will
+                self seed and so become a yearly part of the garden too.Plants included: 2 Apple Trees, Globe Artichokes, Grapevine
+                Venus, Blackcurrant Titania, Redcurrant Red Lake, Rhubarb
+                Victoria, Rhubarb Timperly Early, Climbing French Bean Blue
+                Lake, Kohl Rabi, Black Kale, Curly Kale, Sweetcorn,
+                 Butternut Squash, Calendula, NasturtiumThe garden outside Thomas Chatterton's Birthplace has been
+                designed with permaculture firmly at the forefront of it's
+                being. Rather than producing a garden that needs huge
+                amounts of maintenance we have put together a garden that is
+                mainly perennial and that has minimal watering needs. In it
+                we have also included a pollinator bed that is full of
+                perennial plants that are bee and pollinator friendly,
+                therefore feeding ourselves but also ensuring plenty of food
+                for the creatures we rely on to pollinate our crops.</p>
+    </div>
+    
+        <!-- Selectable Content: Introduction -->
+        <div id="intro-info" >
+            <p>Incredible Edible Bristol</p>
+              </div>
+    <div id="map"></div>
+
+    <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+    <script src="bower_components/Leaflet.defaultextent/dist/leaflet.defaultextent.js"></script>
+    <script src="bower_components/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
+    <script src="js/leaflet.locateme.js"></script>
+    <script src="js/leaflet.button.js"></script>
+    <script src="js/trail_geojson.js"></script>
+    <script src="js/trail_info.js"></script>
+    <script>
+var map = L.map('map', {
+        locateMeControl: true        // Add "Locate Me" button to pan to location
+    });
+var leftSidebar = L.control.sidebar('sidebarL', {
+        closeButton: true,
+        position: 'left',
+        autoPan: false
+    });
+    map.addControl(leftSidebar);
+        leftSidebar.show();
+    
+    </script>
+    
+</body>
+</html>
