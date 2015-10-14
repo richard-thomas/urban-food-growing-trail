@@ -4,12 +4,12 @@
 trailInfo = {
     "tm-plat3": {  
         "fullname": "Platform 3, Temple Meads",
-        "summary": "A work in progress: currently a Family Apple Tree, which is one that has been grafted with 2 different varieties, a Blackcurrant bush in reverence to the fact that Ribena was first made in Bristol, and a rhubarb which is currently hiding.",
+        "summary": "A work in progress: an apple tree, a blackcurrant bush (as Ribena was first made in Bristol!) and rhubarb",
         "link": "platform-3-temple-meads"
     },
     "tm-outdoor-beds": {
         "fullname": "Outdoor Beds, Temple Meads",
-        "summary": "Raised bed by the Passenger Shed at Temple Meads: an immensely sunny aspect and so needed planting with a crop that would cope with some drought.",
+        "summary": "Raised bed by the Passenger Shed at Temple Meads: an immensely sunny aspect and so needed planting with a crop that would cope with some drought",
         "link": "temple-meads-concourse"
     },
     "engine-shed": {
@@ -24,7 +24,7 @@ trailInfo = {
     },
     "chatterton-birthplace": {
         "fullname": "Thomas Chatterton’s Birthplace Garden",
-        "summary": "Beds for humans and bees designed on permaculture principles",
+        "summary": "Beds for humans and bees; designed on permaculture principles",
         "link": "thomas-chattertons-birthplace-garden"
     },
     "mary-redcliffe": {

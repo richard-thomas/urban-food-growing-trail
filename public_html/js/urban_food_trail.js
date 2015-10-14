@@ -125,7 +125,13 @@ var trail = (function () {
         text: 'Settings Icon',
         title: 'Settings',
         className: 'leaflet-control-settings',
-        callback: function () {alert('settings?');}}).addTo(map);
+        callback: function () {
+            alert('window width' +
+                    (window.innerWidth
+                    || document.documentElement.clientWidth
+                    || document.body.clientWidth)
+                    );
+        }}).addTo(map);
 
     var rightSidebar = L.control.sidebar('sidebarR', {
         closeButton: true,
@@ -257,6 +263,16 @@ trail.markers = (function (map) {
         "title": "Recommended walking route"
     };
 
+    // Popup sizing: Pad from window edge and limit max width so popup doesn't
+    // hide under buttons. Subtract extra width (40) to take account of MaxWidth
+    // being of text, but margins added in popup.
+    var paddingLR = 45;
+    var winWidth = window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.body.clientWidth;
+    var popupMaxWidth = winWidth - (2 * paddingLR) - 40;
+    popupMaxWidth = (popupMaxWidth > 300) ? 300 : popupMaxWidth;
+            
     // Create site markers (and walking trail route) from GeoJSON data
     // (which was exported from Google as KML & converted to JSON)
     var markerLayer = L.geoJson(trailGeoJson, {
@@ -296,15 +312,19 @@ trail.markers = (function (map) {
             // Try to get site-specific details to see if they exist in DOM
             var siteDetailsDomEl = document.getElementById(siteName + "-info");
 
-            // TODO: only prompt for more info if info-pane content exists
             var popupContent = "<strong>" + siteInfo.fullname +
                     "</strong><br>" + siteInfo.summary;
             
+            // Only prompt for more info if info-pane content exists
             if (siteDetailsDomEl) {
                 popupContent += "<br><button type='button'" +
                         " onclick='trail.moreInfo();')>More Info</button>";
             }
-            newMarker.bindPopup(popupContent);
+
+            newMarker.bindPopup(popupContent, {
+                autoPanPadding: L.point(paddingLR, 5),
+                maxWidth: popupMaxWidth
+            });
 
             return newMarker;
         }

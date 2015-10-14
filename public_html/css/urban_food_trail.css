@@ -20,3 +20,10 @@ html, body, #map {
     height: 100%;
 }
 
+/* Moto G Resolution: 720 x 1280 pixels, but pretends width is half this */
+/* Nexus 7 2013 resolution: 1920 x 1200, but pretends width is half this */
+/*@media (max-width: 359px) {
+    .map-popup {
+        width: 50px;
+    }
+}*/
