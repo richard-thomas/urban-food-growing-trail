@@ -27,3 +27,12 @@ html, body, #map {
         width: 50px;
     }
 }*/
+
+.leaflet-button-sitelist {
+  text-indent: -9999px;
+  white-space: nowrap;
+  background-image: url('../img/Incredible-Edible-26x26.png');
+  width: 26px;
+  height: 26px;
+  display: block;
+}

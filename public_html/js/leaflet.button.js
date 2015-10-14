@@ -10,10 +10,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/*
+ * Create generic Leaflet button with a callback function on clicking
+ */
 (function () {
     /* global L */
     'use strict';
-    L.Control.NavIcon3Bar = L.Control.extend({
+    L.Control.Button = L.Control.extend({
         options: {
             position: 'topright',
             text: 'Icon Alt Text',
@@ -26,7 +29,7 @@
             var container = L.DomUtil.create('div', 'leaflet-bar ' +
                     this.options.className);
             this._container = container;
-            var link = L.DomUtil.create('a', this.options.className + '-toggle',
+            var link = L.DomUtil.create('a', this.options.className,
                     this._container);
             link.href = '#';
             link.innerHTML = this.options.text;
@@ -42,8 +45,8 @@
         }
     });
 
-    // Create new instance of "class"
-    L.control.navIcon3Bar = function (options) {
-        return new L.Control.NavIcon3Bar(options);
+    // Function to create new instance of "class"
+    L.control.button = function (options) {
+        return new L.Control.Button(options);
     };
 }());

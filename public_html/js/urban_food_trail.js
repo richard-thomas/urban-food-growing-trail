@@ -113,25 +113,16 @@ var trail = (function () {
 /*
  * ---- Right Sidebar (Site selector) ----
  */ 
+    var siteMenuOpen = false;
+    
     // Add menu button to select site (via right sidebar)
-    L.control.navIcon3Bar({
+    L.control.button({
         position: 'topright',
         text: 'Nav Icon',
         title: 'Select growing site',
-        className: 'leaflet-control-navicon3bar',
-        callback: openSiteMenu
+        className: 'leaflet-button-sitelist',
+        callback: toggleSiteMenu
     }).addTo(map);
-    L.control.navIcon3Bar({
-        text: 'Settings Icon',
-        title: 'Settings',
-        className: 'leaflet-control-settings',
-        callback: function () {
-            alert('window width' +
-                    (window.innerWidth
-                    || document.documentElement.clientWidth
-                    || document.body.clientWidth)
-                    );
-        }}).addTo(map);
 
     var rightSidebar = L.control.sidebar('sidebarR', {
         closeButton: true,
@@ -148,11 +139,16 @@ var trail = (function () {
     };
 
     /**
-     * Open right sidebar to show selector for garden sites
+     * Open/Close right sidebar to show selector for garden sites
      */
-    function openSiteMenu() {
-        leftSidebar.hideOnAuto();
-        rightSidebar.show();
+    function toggleSiteMenu() {
+        if (siteMenuOpen) {
+            rightSidebar.hide();
+        } else {
+            leftSidebar.hideOnAuto();
+            rightSidebar.show();
+        }
+        siteMenuOpen = !siteMenuOpen;
     }
     
     // Safe to make sidebar contents visible now without them getting flashed
