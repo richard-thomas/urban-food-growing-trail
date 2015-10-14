@@ -11,45 +11,48 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 -->
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-        <!-- Production.start - gulp-replace(delete-line)
-        <link rel="shortcut icon" href="favicon.ico">
-        <link rel="stylesheet" href="leaflet.css">
-        <link rel="stylesheet" href="leaflet.defaultextent.css">
-        <link rel="stylesheet" href="L.Control.Sidebar.css">
-        <link rel="stylesheet" media="all" href="main.css">
+    <!-- Production.start - gulp-replace(delete-line)
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="leaflet.css">
+    <link rel="stylesheet" href="leaflet.defaultextent.css">
+    <link rel="stylesheet" href="L.Control.Sidebar.css">
+    <link rel="stylesheet" media="all" href="main.css">
 
-        <title>Incredible#Edible Bristol Urban Food Growing Trail</title>
-        .... Production.end - gulp-replace(delete-line) -->
+    <title>Incredible#Edible Bristol Urban Food Growing Trail</title>
+    .... Production.end - gulp-replace(delete-line) -->
 
-        <!-- Dev.start - gulp-replace(delete-block-start) -->
-        <link rel="shortcut icon" href="favicon.ico">
-        <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
-        <link rel="stylesheet" href="bower_components/Leaflet.defaultextent/dist/leaflet.defaultextent.css">
-        <link rel="stylesheet" href="bower_components/leaflet-sidebar/src/L.Control.Sidebar.css">
-        <link rel="stylesheet" href="css/leaflet.locateme.css">
-        <link rel="stylesheet" media="all" href="css/urban_food_trail.css">
+    <!-- Dev.start - gulp-replace(delete-block-start) -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="bower_components/Leaflet.defaultextent/dist/leaflet.defaultextent.css">
+    <link rel="stylesheet" href="bower_components/leaflet-sidebar/src/L.Control.Sidebar.css">
+    <link rel="stylesheet" href="css/leaflet.locateme.css">
+    <link rel="stylesheet" media="all" href="css/urban_food_trail.css">
 
-        <title>(DEV) Incredible#Edible Bristol Urban Food Growing Trail</title>
-         <!-- Dev.end - gulp-replace(delete-block-end) -->
+    <title>(DEV) Incredible#Edible Bristol Urban Food Growing Trail</title>
+     <!-- Dev.end - gulp-replace(delete-block-end) -->
 
-    </head>
-    <body>
-        <!-- Left Sidebar: Site Information Pane -->
-        <div id="sidebarL">
+</head>
+<body>
+    <!-- Left Sidebar: Site Information Pane -->
+    <div id="sidebarL">
+
+        <!-- This Trail banner image is all that is seen during site loading -->
         <a href="http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/"
            target="_blank">
             <img src="img/Urban-Food-Growing-Trail.png"
                  alt="Urban Food Growing Trail"></a>
-            <h4 id='info-pane-title'></h4>
-            
-            <!-- Selectable Content: Introduction -->
-            <div id="intro-info" style="display:none">
 
+        <!-- Title updated to match info-pane contents -->
+        <h4 id='info-pane-title'></h4>
+
+        <!-- Selectable Content: Introduction -->
+        <div id="intro-info" style="display:none">
             <p>Incredible Edible Bristol, Bee The Change and Grow Bristol are
                 collaborating on an exciting project that is bringing food
                 growing to the centre of the city.You will see a trail of food
@@ -77,178 +80,223 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
                     <img src="img/Grow-Bristol-Logo.jpg" alt="Grow Bristol"
                          width='80'></a>
             </p>
-            </div>
-            
-            <!-- Selectable Content: Temple Meads Platform 3 -->
-            <div id="tm-plat3-info" style="display:none">
-                <p>After considerable conversation with Network Rail it was
-                    agreed that we could put our first garden on Platform 3 of
-                    Temple Meads Station. This is a difficult bed as it has very
-                    limited light and water and we are in the middle of deciding
-                    what is best to do with the planting in it. However, at the
-                    moment it has a Family Apple Tree, which is one that has
-                    been grafted with 2 different varieties, a Blackcurrant bush
-                    in reverence to the fact that Ribena was first made in
-                    Bristol, and a rhubarb which is currently hiding.</p>
-                <!-- TODO: add links for other sites -->
-                <p><a href='http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/platform-3-temple-meads/'
-                      target='_blank'>
-                        (Latest location-specific information on main website)
-                    </a></p>
-            </div>
-
-            <!-- Selectable Content: Temple Meads Outdoor Beds -->
-            <div id="tm-outdoor-beds-info" style="display:none">
-                <p>The raised bed by the Passenger Shed at Temple Meads is one
-                    that is difficult to manage as it has an immensely sunny
-                    aspect and so needed planting with a crop that would cope
-                    with some drought. With this in mind, and because our aim is
-                    to introduce some more unusual species to Bristol in terms
-                    of what we traditionally think we can grow, we introduced a
-                    dwarf Nectarine to this bed.</p>
-                <p>And so far it is doing well and has some fruit starting to
-                    swell!!</p>
-            </div>
-            
-            <!-- Selectable Content: Engine Shed -->
-            <div id="engine-shed-info" style="display:none">
-                <img src="http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_3277-e1435529904625-300x300.jpg"
-                     alt="Wicking Bed" height="200">
-                <p>When James, our strategy team member and maker of
-                    extraordinary raised beds mentioned the video below, we
-                    immediately knew we had to make one of these for our Urban
-                    Growing Trail. The Engine Shed seemed like the optimum
-                    place to put the bed as it's as low tech as it gets whilst
-                    being seriously high tech in the way it uses capillary
-                    action to create this amazing bed that only needs watering
-                    every 3 weeks of so!!</p>
-                <p>In the bed are a variety of
-                    crops that are really proving that the capillary action in
-                    the bed works! Tomatoes, squashes, fennel, brassicas and
-                    sweet marjoram are all looking well and will soon be
-                    cropping at which point we will replant with crops that will
-                    continue to produce food well into the autumn.</p>
-                <p>You will see looking at the bed that we took the design stage
-                    a step further than the Food For Free project.
-                    <a href="http://shapestudio.co.uk/">Shape Studio</a>
-                    did a brilliant job of making the bed not only productive
-                    but also beautiful.</p>
-            </div>
-            
-            <!-- Selectable Content: 100 Temple Street -->
-            <div id="temple-st-100-info" style="display:none">
-                <img src="http://ediblebristol.org.uk/wp-content/uploads/2015/05/IMG_3444-300x225.jpg"
-                     alt="Temple Street Beds" height="200">
-                <p>The decisions around what to plant into this garden were
-                    taken looking making it productive for 2015 as well as
-                    looking beyond this year and into the future. The backbone
-                    of the garden are the 2 apple trees, and the perennial
-                    fruit and vegetable plants which will remain in place and
-                    productive for many years to come. However, it was also
-                    necessary to ensure productivity for this year whilst the
-                    perennial plants are young and concentrating on putting
-                    roots out into the soil rather than cropping so we also
-                    added some annual vegetables as well as some edible flowers
-                    to fill in the gaps as it were. The edible flowers will
-                    self seed and so become a yearly part of the garden too.</p>
-                <p>Plants included: 2 Apple Trees, Globe Artichokes, Grapevine
-                    Venus, Blackcurrant Titania, Redcurrant Red Lake, Rhubarb
-                    Victoria, Rhubarb Timperly Early, Climbing French Bean Blue
-                    Lake, Kohl Rabi, Black Kale, Curly Kale, Sweetcorn,
-                     Butternut Squash, Calendula, Nasturtium</p>
-            </div>
-            
-            <!-- Selectable Content: Chatterton's Birthplace -->
-            <div id="chatterton-birthplace-info" style="display:none">
-                <img src="http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_5779-225x300.jpg"
-                     alt="Chatterton Beds" height="200">
-                <p>The garden outside Thomas Chatterton's Birthplace has been
-                    designed with permaculture firmly at the forefront of it's
-                    being. Rather than producing a garden that needs huge
-                    amounts of maintenance we have put together a garden that is
-                    mainly perennial and that has minimal watering needs. In it
-                    we have also included a pollinator bed that is full of
-                    perennial plants that are bee and pollinator friendly,
-                    therefore feeding ourselves but also ensuring plenty of food
-                    for the creatures we rely on to pollinate our crops.</p>
-                <p>In the bee bed we have the following: Sage, Chives, Verbena
-                    bonariensis, Echinops, Perennial Scabious, Perennial
-                    Cornflower, Field Poppies, Borage, Veronicastrum</p>
-                <p>In the beds for humans are the following: Japanese Quince,
-                     Chokeberries, Greengage, Red veined sorrel, Alpine
-                    strawberries Rhubarb, Rosemary, Fennel</p>
-                <p>We will be adding to these beds throughout the year to create
-                    a wonderful, perennial and year round garden which is good
-                    for man and beast.</p>
-            </div>
-            
-            <!-- Selectable Content: Mary Redcliffe Church -->
-            <div id="mary-redcliffe-info" style="display:none">
-                <img src="http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_3691-300x225.jpg"
-                     alt="Mary Redcliffe beds" height="200">
-                <p>All of the trees and shrubs in this garden were chosen by the
-                    parish committee at St Mary Redcliffe, and we were very
-                    pleased that they went for the trees that we suggested as
-                    they are rarely found in the urban landscape and so will
-                    offer harvests that we do not see often in the city. As you
-                    will see when you visit the garden, we have bought
-                    substantially sized trees so that there will be fruit in the
-                    next couple of years and one of the trees had fruitlets on
-                    it when planted.</p>
-                <p>Trees: Medlar, Quince Vranja</p>
-                <p>Soft fruit: 3 Blackcurrants, 3 Gooseberries, 2 Redcurrants,
-                     1 Whitecurrant.</p>
-                <p>There will be limited fruit production this year but next
-                    year everything in the garden will fruit, with the soft
-                    fruit beginning in late June and July, the Quince in late
-                    September to October and the Medlar in October and November.
-                </p>
-            </div>
-            
-            <!-- Optional link to site-specific info on main website -->
-            <div id="site-specific-link" style="display:none">
-                <p><a id="site-link" href="#" target="_blank">
-                        (Latest site-specific information on main website)</a>
-                </p>
-            </div>
         </div>
 
-        
-        <!-- Right Sidebar: Site selector -->
-        <div id="sidebarR" style="display:none">
-            <img src="img/Urban-Food-Growing-Trail.png"
-                 alt="Urban Food Growing Trail">
-            <div id="sidebarButtons">
-                <p><button id="intro-button" type="button">INTRODUCTION
-                    </button></p>
-                <h3>Site locations:</h3>
-            </div>
-<!--            <p><input type="checkbox" id="show-site-labels">
-                Show site labels on map</p>-->
-            <p><input type="checkbox" id="auto-hide-site-selector" checked="true">
-                Auto-hide navigation menu</p>
-            <p><input type="checkbox" id="auto-hide-info-pane" checked="true">
-                Auto-hide information pane on new popup</p>
+        <!-- Selectable Content: Temple Meads Platform 3 -->
+        <div id="tm-plat3-info" style="display:none">
+            <p>After considerable conversation with Network Rail it was
+                agreed that we could put our first garden on Platform 3 of
+                Temple Meads Station. This is a difficult bed as it has very
+                limited light and water and we are in the middle of deciding
+                what is best to do with the planting in it. However, at the
+                moment it has a Family Apple Tree, which is one that has
+                been grafted with 2 different varieties, a Blackcurrant bush
+                in reverence to the fact that Ribena was first made in
+                Bristol, and a rhubarb which is currently hiding.</p>
+            <!-- TODO: add links for other sites -->
+            <p><a href='http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/platform-3-temple-meads/'
+                  target='_blank'>
+                    (Latest location-specific information on main website)
+                </a></p>
         </div>
 
-        <div id="map"></div>
+        <!-- Selectable Content: Temple Meads Outdoor Beds -->
+        <div id="tm-outdoor-beds-info" style="display:none">
+            <p>The raised bed by the Passenger Shed at Temple Meads is one
+                that is difficult to manage as it has an immensely sunny
+                aspect and so needed planting with a crop that would cope
+                with some drought. With this in mind, and because our aim is
+                to introduce some more unusual species to Bristol in terms
+                of what we traditionally think we can grow, we introduced a
+                dwarf Nectarine to this bed.</p>
+            <p>And so far it is doing well and has some fruit starting to
+                swell!!</p>
+        </div>
 
-        <!-- Production.start - gulp-replace(delete-line)
-        <script src="leaflet.js"></script>
-        <script src="leaflet.defaultextent.js"></script>
-        <script src="L.Control.Sidebar.js"></script>
-        <script src="main.js"></script>
-        .... Production.end - gulp-replace(delete-line) -->
+        <!-- Selectable Content: Engine Shed -->
+        <div id="engine-shed-info" style="display:none">
+            <img src="http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_3277-e1435529904625-300x300.jpg"
+                 alt="Wicking Bed" height="200">
+            <p>When James, our strategy team member and maker of
+                extraordinary raised beds mentioned the video below, we
+                immediately knew we had to make one of these for our Urban
+                Growing Trail. The Engine Shed seemed like the optimum
+                place to put the bed as it's as low tech as it gets whilst
+                being seriously high tech in the way it uses capillary
+                action to create this amazing bed that only needs watering
+                every 3 weeks of so!!</p>
+            <p>In the bed are a variety of
+                crops that are really proving that the capillary action in
+                the bed works! Tomatoes, squashes, fennel, brassicas and
+                sweet marjoram are all looking well and will soon be
+                cropping at which point we will replant with crops that will
+                continue to produce food well into the autumn.</p>
+            <p>You will see looking at the bed that we took the design stage
+                a step further than the Food For Free project.
+                <a href="http://shapestudio.co.uk/">Shape Studio</a>
+                did a brilliant job of making the bed not only productive
+                but also beautiful.</p>
+        </div>
+
+        <!-- Selectable Content: 100 Temple Street -->
+        <div id="temple-st-100-info" style="display:none">
+            <img src="http://ediblebristol.org.uk/wp-content/uploads/2015/05/IMG_3444-300x225.jpg"
+                 alt="Temple Street Beds" height="200">
+            <p>The decisions around what to plant into this garden were
+                taken looking making it productive for 2015 as well as
+                looking beyond this year and into the future. The backbone
+                of the garden are the 2 apple trees, and the perennial
+                fruit and vegetable plants which will remain in place and
+                productive for many years to come. However, it was also
+                necessary to ensure productivity for this year whilst the
+                perennial plants are young and concentrating on putting
+                roots out into the soil rather than cropping so we also
+                added some annual vegetables as well as some edible flowers
+                to fill in the gaps as it were. The edible flowers will
+                self seed and so become a yearly part of the garden too.</p>
+            <p>Plants included: 2 Apple Trees, Globe Artichokes, Grapevine
+                Venus, Blackcurrant Titania, Redcurrant Red Lake, Rhubarb
+                Victoria, Rhubarb Timperly Early, Climbing French Bean Blue
+                Lake, Kohl Rabi, Black Kale, Curly Kale, Sweetcorn,
+                 Butternut Squash, Calendula, Nasturtium</p>
+        </div>
+
+        <!-- Selectable Content: Chatterton's Birthplace -->
+        <div id="chatterton-birthplace-info" style="display:none">
+            <img src="http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_5779-225x300.jpg"
+                 alt="Chatterton Beds" height="200">
+            <p>The garden outside Thomas Chatterton's Birthplace has been
+                designed with permaculture firmly at the forefront of it's
+                being. Rather than producing a garden that needs huge
+                amounts of maintenance we have put together a garden that is
+                mainly perennial and that has minimal watering needs. In it
+                we have also included a pollinator bed that is full of
+                perennial plants that are bee and pollinator friendly,
+                therefore feeding ourselves but also ensuring plenty of food
+                for the creatures we rely on to pollinate our crops.</p>
+            <p>In the bee bed we have the following: Sage, Chives, Verbena
+                bonariensis, Echinops, Perennial Scabious, Perennial
+                Cornflower, Field Poppies, Borage, Veronicastrum</p>
+            <p>In the beds for humans are the following: Japanese Quince,
+                 Chokeberries, Greengage, Red veined sorrel, Alpine
+                strawberries Rhubarb, Rosemary, Fennel</p>
+            <p>We will be adding to these beds throughout the year to create
+                a wonderful, perennial and year round garden which is good
+                for man and beast.</p>
+        </div>
+
+        <!-- Selectable Content: Mary Redcliffe Church -->
+        <div id="mary-redcliffe-info" style="display:none">
+            <img src="http://ediblebristol.org.uk/wp-content/uploads/2015/06/IMG_3691-300x225.jpg"
+                 alt="Mary Redcliffe beds" height="200">
+            <p>All of the trees and shrubs in this garden were chosen by the
+                parish committee at St Mary Redcliffe, and we were very
+                pleased that they went for the trees that we suggested as
+                they are rarely found in the urban landscape and so will
+                offer harvests that we do not see often in the city. As you
+                will see when you visit the garden, we have bought
+                substantially sized trees so that there will be fruit in the
+                next couple of years and one of the trees had fruitlets on
+                it when planted.</p>
+            <p>Trees: Medlar, Quince Vranja</p>
+            <p>Soft fruit: 3 Blackcurrants, 3 Gooseberries, 2 Redcurrants,
+                 1 Whitecurrant.</p>
+            <p>There will be limited fruit production this year but next
+                year everything in the garden will fruit, with the soft
+                fruit beginning in late June and July, the Quince in late
+                September to October and the Medlar in October and November.
+            </p>
+        </div>
         
-        <!-- Dev.start - gulp-replace(delete-block-start) -->
-        <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
-        <script src="bower_components/Leaflet.defaultextent/dist/leaflet.defaultextent.js"></script>
-        <script src="bower_components/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
-        <script src="js/leaflet.locateme.js"></script>
-        <script src="js/leaflet.button.js"></script>
-        <script src="js/trail_geojson.js"></script>
-        <script src="js/trail_info.js"></script>
-        <script src="js/urban_food_trail.js"></script>
-         <!-- Dev.end - gulp-replace(delete-block-end) -->
-   </body>
+        <!-- Selectable content: Anchor square Herb Garden -->
+        <div id="anchor-square-info" style="display:none">
+            <p>The herb bed in Anchor Square was built and planted for the first
+                Food Connections Festival in Bristol in 2014. Sponsored by
+                Almondsbury Garden Centre, it is a beautiful raised planter
+                filled with perennial herbs including lavenders, rosemary,
+                thymes, marjoram and three sages, pineapple, blackcurrant and
+                traditional. We interplant each year with annual herbs such as
+                parsley and coriander.</p>
+            <img src="http://ediblebristol.org.uk/wp-content/uploads/2014/05/IMG_4121-225x300.jpg"
+                 alt="Herb Bed"/>
+            <p>When the bed was first installed, during the food Connections
+                Festival, we worked with mainly children to plant the bed whilst
+                chatting with their parents about what we were doing and who
+                Incredible Edible Bristol were. We are shortly going to replant
+                some of the herbs to refresh the bed, but its basic make up will
+                remain the same.
+            </p>
+        </div>
+
+        <!-- Selectable content: Millenium Square Urban Allotments -->
+        <div id="millenium-square-info" style="display:none">
+            <p>The 5 beds in Millennium Square are themed  so that each bed
+                tells a story of how space can be efficiently used when it is at
+                a premium, to grow maximum crops and show what can be grown in a
+                small, urban space.</p>
+            <p>Starting with the bed by the Planetarium, the themes are:</p>
+            <ul>
+                <li>Soft fruit, herbs and edible flowers/pollinator friendly planting</li>
+                <li>Soft fruit - mainly strawberries</li>
+                <li>Salads and quick crops along with beans</li>
+                <li>Vegetables</li>
+                <li>Herbs and late winter crops</li>
+            </ul>
+            <p>Each bed also contains fruit trees that over the years will
+                become fully fruiting if small trees. These are all apples and
+                pears at the moment but other species will be added over time.
+            </p>
+            <p>These are by no means set in stone but we hope that by doing
+                things this way we can guarantee that something will be growing
+                in each bed all year round. This winter we are going to grow
+                some green manures in some of the beds overwinter as well, in
+                order to continue to work on the soil health in each bed.</p>
+            <p>These beds are supported by Almondsbury Garden Centre and
+                @Bristol, who own the beds.</p>
+        </div>
+        
+        <!-- Optional link to site-specific info on main website -->
+        <div id="site-specific-link" style="display:none">
+            <p><a id="site-link" href="#" target="_blank">
+                    (Latest site-specific information on main website)</a>
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Right Sidebar: Site selector -->
+    <div id="sidebarR" style="display:none">
+        <img src="img/Urban-Food-Growing-Trail.png"
+             alt="Urban Food Growing Trail">
+        <div id="sidebarButtons">
+            <p><button id="intro-button" type="button">INTRODUCTION
+                </button></p>
+            <h3>Site locations:</h3>
+        </div>
+        <p><input type="checkbox" id="auto-hide-site-selector" checked="true">
+            Auto-hide site list</p>
+        <p><input type="checkbox" id="auto-hide-info-pane" checked="true">
+            Auto-hide information pane on new popup</p>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Production.start - gulp-replace(delete-line)
+    <script src="leaflet.js"></script>
+    <script src="leaflet.defaultextent.js"></script>
+    <script src="L.Control.Sidebar.js"></script>
+    <script src="main.js"></script>
+    .... Production.end - gulp-replace(delete-line) -->
+
+    <!-- Dev.start - gulp-replace(delete-block-start) -->
+    <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+    <script src="bower_components/Leaflet.defaultextent/dist/leaflet.defaultextent.js"></script>
+    <script src="bower_components/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
+    <script src="js/leaflet.locateme.js"></script>
+    <script src="js/leaflet.button.js"></script>
+    <script src="js/trail_geojson.js"></script>
+    <script src="js/trail_info.js"></script>
+    <script src="js/urban_food_trail.js"></script>
+     <!-- Dev.end - gulp-replace(delete-block-end) -->
+</body>
 </html>

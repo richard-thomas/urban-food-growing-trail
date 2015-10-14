@@ -112,9 +112,7 @@ var trail = (function () {
 
 /*
  * ---- Right Sidebar (Site selector) ----
- */ 
-    var siteMenuOpen = false;
-    
+ */   
     // Add menu button to select site (via right sidebar)
     L.control.button({
         position: 'topright',
@@ -142,13 +140,12 @@ var trail = (function () {
      * Open/Close right sidebar to show selector for garden sites
      */
     function toggleSiteMenu() {
-        if (siteMenuOpen) {
+        if (rightSidebar.isVisible()) {
             rightSidebar.hide();
         } else {
             leftSidebar.hideOnAuto();
             rightSidebar.show();
         }
-        siteMenuOpen = !siteMenuOpen;
     }
     
     // Safe to make sidebar contents visible now without them getting flashed
