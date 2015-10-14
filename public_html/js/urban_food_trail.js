@@ -243,11 +243,11 @@ trail.markers = (function (map) {
     var greenIcon = L.icon({
         iconUrl: 'img/leaf-green.png',
         shadowUrl: 'img/leaf-shadow.png',
-        iconSize:     [38, 95], // size of the icon
-        shadowSize:   [50, 64], // size of the shadow
-        iconAnchor:   [22, 94], // point of icon which corresponds to marker location
-        shadowAnchor: [4, 62],  // the same for the shadow
-        popupAnchor:  [-3, -76] // point from which popup opens relative to iconAnchor
+        iconSize:     [19, 48], // size of the icon
+        shadowSize:   [25, 32], // size of the shadow
+        iconAnchor:   [11, 47], // point of icon which corresponds to marker location
+        shadowAnchor: [2, 31],  // the same for the shadow
+        popupAnchor:  [-1, -38] // point from which popup opens relative to iconAnchor
     });
 
     // Style for recommended walking route (polyline vector)
