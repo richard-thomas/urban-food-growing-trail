@@ -13,7 +13,7 @@ trailInfo = {
         "link": "temple-meads-concourse"
     },
     "engine-shed": {
-        "fullname": "Engine Shed (Wicking Bed)",
+        "fullname": "Engine Shed Wicking Bed",
         "summary": "Wicking bed outside the Engine Shed, designed to only require watering once every few weeks",
         "link": "the-wicking-bed"
     },
@@ -23,7 +23,7 @@ trailInfo = {
         "link": "100-temple-street"
     },
     "chatterton-birthplace": {
-        "fullname": "Thomas Chatterton’s Birthplace Garden",
+        "fullname": "Thomas Chatterton’s Birthplace",
         "summary": "Beds for humans and bees; designed on permaculture principles",
         "link": "thomas-chattertons-birthplace-garden"
     },

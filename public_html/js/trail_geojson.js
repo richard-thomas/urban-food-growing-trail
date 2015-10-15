@@ -379,4 +379,4 @@ trailGeoJson = {
             }
         }
     ]
-}
+};

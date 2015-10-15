@@ -114,7 +114,7 @@ var trail = (function () {
  * ---- Right Sidebar (Site selector) ----
  */   
     // Add menu button to select site (via right sidebar)
-    L.control.button({
+    var siteSelButton = L.control.button({
         position: 'topright',
         text: 'Nav Icon',
         title: 'Select growing site',
@@ -129,10 +129,15 @@ var trail = (function () {
     });
     map.addControl(rightSidebar);
 
+    L.DomEvent.on(rightSidebar._closeButton, 'click', function() {
+        return siteSelButton.addTo(map);
+    });
+
     // Allow auto-hiding of right info pane on new map popup
     rightSidebar.hideOnAuto = function() {
         if (document.getElementById("auto-hide-site-selector").checked) {
             rightSidebar.hide();
+            siteSelButton.addTo(map);
         }
     };
 
@@ -140,12 +145,13 @@ var trail = (function () {
      * Open/Close right sidebar to show selector for garden sites
      */
     function toggleSiteMenu() {
-        if (rightSidebar.isVisible()) {
-            rightSidebar.hide();
-        } else {
+        if (!rightSidebar.isVisible()) {
+            siteSelButton.removeFrom(map);
             leftSidebar.hideOnAuto();
-            rightSidebar.show();
+        } else {
+            siteSelButton.addTo(map);
         }
+        rightSidebar.toggle();
     }
     
     // Safe to make sidebar contents visible now without them getting flashed
@@ -173,7 +179,7 @@ var trail = (function () {
         var btnText = document.createTextNode(trailInfo[locationID].fullname);
         var btn = document.createElement("button");
         btn.setAttribute('data-loc-id', locationID);
-        // btn.className = "site-button";  // TODO: to Add styling information
+        btn.className = "site-button";
         btn.onclick=selectLocation;
         btn.appendChild(btnText);
         var buttonPara = document.createElement("p");

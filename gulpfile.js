@@ -79,8 +79,6 @@ gulp.task('lint:css', function() {
 
 // Build HTML, JS + CSS
 gulp.task('build:html', function() {
-//    return gulp.src('public_html/index-dist.html')
-//    .pipe(rename('index.html'))
     return gulp.src('public_html/index.html')
     .pipe(replace(/.*gulp-replace\(delete-line\).*/g, ''))
     .pipe(replace(/.*gulp-replace\(delete-block-start\).*[^]*?.*delete-block-end.*/g, ''))

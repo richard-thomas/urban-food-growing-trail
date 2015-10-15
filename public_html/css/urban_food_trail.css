@@ -28,3 +28,21 @@ html, body, #map {
   height: 26px;
   display: block;
 }
+
+/* Right Sidebar (Site Selection) */
+.trail-image-right {
+    width: 200px;
+}
+
+.leaflet-sidebar.right {
+    width: auto;
+    /*width: 300px;*/
+}
+
+#sidebarR {
+    padding: 10px;
+}
+
+.site-button {
+    width: 240px;
+}
