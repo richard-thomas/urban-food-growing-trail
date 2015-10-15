@@ -129,13 +129,20 @@ var trail = (function () {
     });
     map.addControl(rightSidebar);
 
+    // Add menu button again if menu closed with 'X' closer
     L.DomEvent.on(rightSidebar._closeButton, 'click', function() {
         return siteSelButton.addTo(map);
     });
+    
+    // Auto-hide sidebar if map is clicked (anywhere)
+    map.on('click', function() {
+        rightSidebar.hideOnAuto();
+    });
 
-    // Allow auto-hiding of right info pane on new map popup
+    // Hide sidebar if visible and auto-hide box checked
     rightSidebar.hideOnAuto = function() {
-        if (document.getElementById("auto-hide-site-selector").checked) {
+        if (rightSidebar.isVisible() &&
+                document.getElementById("auto-hide-site-selector").checked) {
             rightSidebar.hide();
             siteSelButton.addTo(map);
         }
@@ -145,13 +152,14 @@ var trail = (function () {
      * Open/Close right sidebar to show selector for garden sites
      */
     function toggleSiteMenu() {
-        if (!rightSidebar.isVisible()) {
+        if (rightSidebar.isVisible()) {
+            rightSidebar.hide();
+            siteSelButton.addTo(map);
+        } else {
             siteSelButton.removeFrom(map);
             leftSidebar.hideOnAuto();
-        } else {
-            siteSelButton.addTo(map);
+            rightSidebar.show();
         }
-        rightSidebar.toggle();
     }
     
     // Safe to make sidebar contents visible now without them getting flashed
@@ -199,6 +207,7 @@ var trail = (function () {
     function moreInfo(locationNameStr) {
         map.closePopup();
         leftSidebar.show();
+        rightSidebar.hideOnAuto();
     }
 
     // Publicly visible functions
