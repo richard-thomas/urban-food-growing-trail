@@ -35,15 +35,39 @@ html, body, #map {
     
 /* Left Sidebar (Information Pane) */
 
-/* Organisation logos (in Introduction) */
-.org-logos {
-    padding-left: 20px;
+#info-pane-title {
+     margin: 0;
 }
 
+#intro-info > p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Organisation logos (in Introduction) */
+.org-logos {
+    padding-left: 15px;
+}
+.org-logo-images {
+    border: 1px solid #ccc;
+    padding: 2px;
+}
+
+#sidebarL > div > p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+#sidebarL > div > ul {
+    padding-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
 /* Photos within info pane */
 .info-photo {
     margin: 5px;
     border: 1px solid;
+    float: right;
+    height: 120px;
 }
 
 /* Site Selection button (to open right sidebar)*/
