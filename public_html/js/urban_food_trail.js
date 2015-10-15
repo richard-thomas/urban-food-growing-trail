@@ -180,6 +180,7 @@ var trail = (function () {
     document.getElementById("intro-button").onclick=function() {
         rightSidebar.hide();
         showIntro();
+        siteSelButton.addTo(map);
     };
     var sidebarButtonsContainer = document.getElementById("sidebarButtons");
 

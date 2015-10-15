@@ -20,6 +20,21 @@ html, body, #map {
     height: 100%;
 }
 
+/* Left Sidebar (Information Pane) */
+
+/* Organisation logos (in Introduction) */
+.org-logos {
+    padding-left: 20px;
+}
+
+
+/* Photos within info pane */
+.info-photo {
+    margin: 5px;
+    border: 1px solid;
+}
+
+/* Site Selection button (to open right sidebar)*/
 .leaflet-button-sitelist {
   text-indent: -9999px;
   white-space: nowrap;
@@ -29,9 +44,19 @@ html, body, #map {
   display: block;
 }
 
+.designer-tag {
+    font-style: italic;
+}
 /* Right Sidebar (Site Selection) */
+.intro-button-para {
+    padding-left: 40px;
+}
+#intro-button:hover {
+    background: #eeccbb;
+}
 .trail-image-right {
-    width: 200px;
+    width: 240px;
+    border:0;
 }
 
 .leaflet-sidebar.right {
@@ -45,4 +70,7 @@ html, body, #map {
 
 .site-button {
     width: 240px;
+}
+.site-button:hover {
+    background: #cceecc;
 }
