@@ -326,8 +326,9 @@ trail.markers = (function (map) {
             
             // Only prompt for more info if info-pane content exists
             if (siteDetailsDomEl) {
-                popupContent += "<br><button type='button'" +
-                        " onclick='trail.moreInfo();')>More Info</button>";
+                popupContent += "<div class='more-info-div'>" +
+                        "<button type='button' onclick='trail.moreInfo();')>" +
+                        "More Information</button></div>";
             }
 
             newMarker.bindPopup(popupContent, {

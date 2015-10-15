@@ -20,13 +20,25 @@ html, body, #map {
     height: 100%;
 }
 
+/* Popup "More Info" button */
+.more-info-div {
+    text-align: center;
+    padding-top: 4px;
+}
+.more-info-div > button {
+    border-radius:1em;
+    font-size: 1em;
+    box-shadow: none;
+    background-color: #eee;
+    border: 1px solid grey;
+}
+    
 /* Left Sidebar (Information Pane) */
 
 /* Organisation logos (in Introduction) */
 .org-logos {
     padding-left: 20px;
 }
-
 
 /* Photos within info pane */
 .info-photo {
@@ -47,6 +59,7 @@ html, body, #map {
 .designer-tag {
     font-style: italic;
 }
+
 /* Right Sidebar (Site Selection) */
 .intro-button-para {
     padding-left: 40px;
@@ -61,7 +74,6 @@ html, body, #map {
 
 .leaflet-sidebar.right {
     width: auto;
-    /*width: 300px;*/
 }
 
 #sidebarR {
