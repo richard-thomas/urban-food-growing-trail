@@ -1,10 +1,29 @@
+/*
+ * Copyright (C) 2015 Richard Thomas
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the Artistic License 2.0 as published by the
+ * Open Source Initiative (http://opensource.org/licenses/Artistic-2.0)
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @fileoverview Leaflet plugin of minimal code to produce a locator marker
+ * plus an associated button for panning to currently detected location.
+ *
+ * @author richard.thomas _at_ yahoo.co.uk
+ */
+
 (function () {
   /* global L */
   'use strict';
   L.Control.LocateMe = L.Control.extend({
     options: {
       position: 'topleft',
-      text: 'Locate Me',
+      text: 'Locate Me!',
       title: 'Pan to current location',
       className: 'leaflet-control-locateme'
     },
@@ -39,29 +58,31 @@
         return link;
     },
     
-    // On event "location found", add a marker and a circle showing accuracy + pop-up
+    // On event "location found", add a marker and a circle showing accuracy
+    // and update the text for a popup
     _onLocationFound: function (e) {
         var radius = e.accuracy / 2;
+        var popupText = "You are within " + radius + " metres of this point";
         
-        // Save location for if locator icon is pressed
+        // Save location for panning if locator icon is later pressed
         this._myLatlng = e.latlng;
 
         // On first successful geolocation, create marker and accuracy circle
         if (this._meMarkerExists === false) {
             // FIXME: "this" is not locate_me when fn called!
             this._meMarker = L.marker(e.latlng).addTo(this._map)
-                .bindPopup("You are within " + radius + " metres of this point");
+                .bindPopup(popupText);
             this._meCircle = L.circle(e.latlng, radius).addTo(this._map);
             this._meMarkerExists = true;
         } else {
             this._meMarker.setLatLng(e.latlng).update();
-            this._meMarker.setPopupContent("You have moved to within " + radius + " metres of this point");
+            this._meMarker.setPopupContent(popupText);
             this._meCircle.setLatLng(e.latlng);
             this._meCircle.setRadius(radius);
         }
     },
     
-    // Show an error message if the geolocation failed
+    // Show raw error message if geolocation fails
     _onLocationError: function (e) {
         alert(e.message);
     },
@@ -74,7 +95,7 @@
         this._map.locate({
             enableHighAccuracy: true,   // Use GPS if available
             watch: true,        // Continuous watching of location
-            maximumAge: 5000    // milliseconds within which a cached location used
+            maximumAge: 5000    // milliseconds persistence for cached location
             });
         
         return this;
@@ -86,16 +107,11 @@
     }
   });
 
+  // Automatically load if "locateMeControl: true" included in map options
   L.Map.addInitHook(function () {
     if (this.options.locateMeControl) {
       this.addControl(new L.Control.LocateMe());
     }
   });
-
-  L.control.locateMe = function (options) {
-    return new L.Control.LocateMe(options);
-  };
-
-  return L.Control.LocateMe;
 
 }());

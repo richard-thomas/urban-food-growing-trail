@@ -1,22 +1,9 @@
-/*
-html {
-   height: 100%;
-   margin: 0px;
-   padding: 0px;
-   border: 0px;
-}
-*/
-
+/* Ensure we fill the screen */
 body {
- /*
-   height: 100%;
-   border: 0px;
- */
-    margin: 0px; /* otherwise body defaults to 4px border */
-    padding: 0px; /* Avoid vertical scrollbar with 100% height (?) */
+    height: 100%;
+    margin: 0;   /* otherwise body defaults to 4px border and adds scrollbar */
 }
-
-html, body, #map {
+html, #map {
     height: 100%;
 }
 
@@ -33,15 +20,10 @@ html, body, #map {
     border: 1px solid grey;
 }
     
-/* Left Sidebar (Information Pane) */
+/**** Left Sidebar (Information Pane) *****/
 
 #info-pane-title {
      margin: 0;
-}
-
-#intro-info > p {
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 /* Organisation logos (in Introduction) */
@@ -53,6 +35,10 @@ html, body, #map {
     padding: 2px;
 }
 
+.designer-tag {
+    font-style: italic;
+}
+
 #sidebarL > div > p {
     margin-top: 8px;
     margin-bottom: 8px;
@@ -62,13 +48,16 @@ html, body, #map {
     margin-top: 8px;
     margin-bottom: 8px;
 }
-/* Photos within info pane */
+
+/* All photos within info pane */
 .info-photo {
     margin: 5px;
     border: 1px solid;
     float: right;
     height: 120px;
 }
+
+/**** Right Sidebar (Site Selection) ****/
 
 /* Site Selection button (to open right sidebar)*/
 .leaflet-button-sitelist {
@@ -80,11 +69,14 @@ html, body, #map {
   display: block;
 }
 
-.designer-tag {
-    font-style: italic;
+.leaflet-sidebar.right {
+    width: auto;
 }
 
-/* Right Sidebar (Site Selection) */
+#sidebarR {
+    padding: 10px;
+}
+
 .intro-button-para {
     padding-left: 55px;
 }
@@ -99,19 +91,13 @@ html, body, #map {
 #intro-button:hover {
     background: #ddd;
 }
+
 .trail-image-right {
     width: 240px;
     border:0;
 }
 
-.leaflet-sidebar.right {
-    width: auto;
-}
-
-#sidebarR {
-    padding: 10px;
-}
-
+/* Buttons for each garden site */
 .site-button {
     width: 240px;
 }

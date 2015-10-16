@@ -29,37 +29,21 @@ gulp.task('clean', function(cb) {
 });
 
 // Copy across unchanged files
-gulp.task('images', ['images:favicon'], function() {
+gulp.task('distcopy', ['distcopy:img'], function() {
+    return gulp.src([
+        'public_html/favicon.ico',
+        'public_html/bower_components/Leaflet.defaultextent/dist/*.png'])
+    .pipe(gulp.dest('public_html/dist/'));
+});
+
+gulp.task('distcopy:img', function() {
   return gulp.src([
       'public_html/img/*'])
     .pipe(gulp.dest('public_html/dist/img'));
 });
 
-gulp.task('images:favicon', function() {
-    return gulp.src([
-        'public_html/favicon.ico'])
-    .pipe(gulp.dest('public_html/dist/'));
-});
-
-// Copy external libraries and plugins
-gulp.task('external', ['external:images'], function() {
-  return gulp.src([
-      'public_html/bower_components/leaflet/dist/leaflet.js',
-      'public_html/bower_components/leaflet/dist/leaflet.css',
-      'public_html/bower_components/leaflet-sidebar/src/*',
-      'public_html/bower_components/Leaflet.defaultextent/dist/*'])
-    .pipe(gulp.dest('public_html/dist'));
-});
-
-gulp.task('external:images', function() {
-  return gulp.src([
-      'public_html/bower_components/leaflet/dist/images/*'])
-    .pipe(gulp.dest('public_html/dist/images'));
-});
-
 // Lint JS + CSS
-gulp.task('lint', ['lint:js']);
-//gulp.task('lint', ['lint:js', 'lint:css']);
+gulp.task('lint', ['lint:js', 'lint:css']);
 
 gulp.task('lint:js', function() {
   return gulp.src('public_html/js/*.js')
@@ -86,9 +70,12 @@ gulp.task('build:html', function() {
 });
 
 gulp.task('build:js', function() {
-    return gulp.src('public_html/js/*.js')
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('public_html/dist/'))
+    return gulp.src([
+        'public_html/bower_components/leaflet-sidebar/src/*.js',
+        'public_html/bower_components/Leaflet.defaultextent/dist/*.js',
+        'public_html/js/*.js'])
+    .pipe(concat('trail_map.js'))
+    /*.pipe(gulp.dest('public_html/dist/'))*/
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(header(banner, { pkg : pkg } ))
@@ -96,14 +83,17 @@ gulp.task('build:js', function() {
 });
 
 gulp.task('build:css', function() {
-    return gulp.src('public_html/css/*.css')
-    .pipe(concat('main.css'))
+    return gulp.src([
+        'public_html/bower_components/leaflet-sidebar/src/*.css',
+        'public_html/bower_components/Leaflet.defaultextent/dist/*.css',
+        'public_html/css/*.css'])
+    .pipe(concat('trail_map.css'))
     .pipe(header(banner, { pkg : pkg } ))
     .pipe(gulp.dest('public_html/dist/'));
 });
 
 gulp.task('build',
-    ['lint', 'build:html', 'build:js', 'build:css', 'images', 'external']);
+    ['lint:js', 'build:html', 'build:js', 'build:css', 'distcopy']);
 
 gulp.task('default', function () {
     gulp.start('lint');

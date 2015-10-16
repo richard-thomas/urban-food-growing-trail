@@ -10,6 +10,12 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * @fileoverview Top level JS code for rendering the trail interactive map.
+ *
+ * @author richard.thomas _at_ yahoo.co.uk
+ */
+
 var trail = (function () {
     /* global L */
     /* global trailInfo */
