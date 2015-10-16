@@ -6,7 +6,7 @@
   "description": "Interactive web map for the Incredible Edible Bristol Urban Food Growing Trail",
   "repository" : {
     "type" : "git",
-    "url" : "https://github.com/richard-thomas/Urban_Food_Growing_Trail"
+    "url" : "https://github.com/richard-thomas/urban-food-growing-trail"
   },
   "contributors": [],
   "dependencies": {},
