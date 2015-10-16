@@ -13,7 +13,7 @@
 /**
  * @fileoverview Top level JS code for rendering the trail interactive map.
  *
- * @author richard.thomas _at_ yahoo.co.uk
+ * @author https://github.com/richard-thomas
  */
 
 var trail = (function () {
@@ -21,7 +21,7 @@ var trail = (function () {
     /* global trailInfo */
 
     /*
-     * ---- Basemap and custom controls
+     * ---- Basemap and custom controls ----
      */
     
     // Boundary of full trail
@@ -86,6 +86,12 @@ var trail = (function () {
     // are set up)
     showIntro();
 
+    // Delay initial showing of intro text to work around some CSS quirks
+    // with 'sidebar' plugin
+//    setTimeout(function () {
+//        showIntro();
+//    }, 500);
+
     function showSiteDetails(locationID) {
         hideInfoPaneContent();
 
@@ -109,12 +115,6 @@ var trail = (function () {
             siteSpecificLinkEl.style.display="inline";
         }
     }
-
-    // Delay initial showing of intro text to work around some CSS quirks
-    // with 'sidebar' plugin
-//    setTimeout(function () {
-//        showIntro();
-//    }, 500);
 
 /*
  * ---- Right Sidebar (Site selector) ----
