@@ -31,10 +31,9 @@ gulp.task('clean', function(cb) {
 });
 
 // Copy across unchanged files
-gulp.task('distcopy', ['distcopy:img'], function() {
+gulp.task('distcopy', ['distcopy:img', 'distcopy:css'], function() {
     return gulp.src([
-        'public_html/favicon.ico',
-        'public_html/bower_components/Leaflet.defaultextent/dist/*.png'])
+        'public_html/favicon.ico'])
     .pipe(gulp.dest('public_html/dist/'));
 });
 
@@ -42,6 +41,11 @@ gulp.task('distcopy:img', function() {
   return gulp.src([
       'public_html/img/*'])
     .pipe(gulp.dest('public_html/dist/img'));
+});
+
+gulp.task('distcopy:css', function() {
+  return gulp.src('public_html/bower_components/Leaflet.defaultextent/dist/*.png')
+    .pipe(gulp.dest('public_html/dist/css'));
 });
 
 // Lint JS + CSS
@@ -81,7 +85,7 @@ gulp.task('build:js', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(header(banner, { pkg : pkg } ))
-    .pipe(gulp.dest('public_html/dist/'));
+    .pipe(gulp.dest('public_html/dist/js/'));
 });
 
 gulp.task('build:css', function() {
@@ -91,7 +95,7 @@ gulp.task('build:css', function() {
         'public_html/css/*.css'])
     .pipe(concat('trail_map.css'))
     .pipe(header(banner, { pkg : pkg } ))
-    .pipe(gulp.dest('public_html/dist/'));
+    .pipe(gulp.dest('public_html/dist/css/'));
 });
 
 gulp.task('build',
