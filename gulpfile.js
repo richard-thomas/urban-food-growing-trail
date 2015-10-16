@@ -22,8 +22,10 @@ var gulp = require('gulp'),
 
 var pkg = require('./package.json'),
     basename = pkg.name + '-' + pkg.version,
-    banner = '/*! {{ pkg.name }} v{{ pkg.version }} */';
-
+    banner = '/* <%= pkg.name %> - v<%= pkg.version %>\n' +
+             ' * <%= pkg.repository.url %>\n' +
+             ' */\n';
+    
 gulp.task('clean', function(cb) {
     del(['public_html/dist'], cb);
 });
