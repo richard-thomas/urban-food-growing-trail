@@ -31,21 +31,42 @@ var trail = (function () {
     var map = L.map('map', {
         locateMeControl: true        // Add "Locate Me" button to pan to location
     }).fitBounds(trailBounds);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
+    var streetLayer = L.tileLayer(
+        'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
     {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>' +
             'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
             'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox.streets',
-//        id: 'mapbox.streets-satellite',
         accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiJjaWZ1c2ZtZGUwMjA1dDZtN2t6amZ4cnRkIn0.2fVjrwFijZV-R6scDpeUQA'
     }).addTo(map);
+    var satelliteLayer = L.tileLayer(
+        'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
+    {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>' +
+            'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
+            'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets-satellite',
+        accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiJjaWZ1c2ZtZGUwMjA1dDZtN2t6amZ4cnRkIn0.2fVjrwFijZV-R6scDpeUQA'
+    });
+    var baseMaps = {
+        "Map": streetLayer,
+        "Satellite": satelliteLayer
+    };
+    
+    // Add Layer switcher control (Map/Satellite selector).
+    // Start with it expanded to show "Map/Satellite" to make it obvious.
+    // This will collapse to a simple layers icon on first map click or hover.
+    L.control.layers(baseMaps).addTo(map)._expand();
+    
+    // Add scale bar
     L.control.scale().addTo(map);
 
     // Add "Home" button to reset to the initial extent (i.e. the full trail)
     L.control.defaultExtent().addTo(map);
-
+    
 /*
  * ---- Left Sidebar (Intro/Site Information Pane) ----
  */
@@ -86,12 +107,6 @@ var trail = (function () {
     // Now able to show startup splash screen (before markers and right sidebar
     // are set up)
     showIntro();
-
-    // Delay initial showing of intro text to work around some CSS quirks
-    // with 'sidebar' plugin
-//    setTimeout(function () {
-//        showIntro();
-//    }, 500);
 
     function showSiteDetails(locationID) {
         hideInfoPaneContent();
@@ -135,12 +150,7 @@ var trail = (function () {
         autoPan: false
     });
     map.addControl(rightSidebar);
-
-    // Add menu button again if menu closed with 'X' closer
-    L.DomEvent.on(rightSidebar._closeButton, 'click', function() {
-        return siteSelButton.addTo(map);
-    });
-    
+   
     // Auto-hide sidebar if map is clicked (anywhere)
     map.on('click', function() {
         rightSidebar.hideOnAuto();
@@ -151,7 +161,6 @@ var trail = (function () {
         if (rightSidebar.isVisible() &&
                 document.getElementById("auto-hide-site-selector").checked) {
             rightSidebar.hide();
-            siteSelButton.addTo(map);
         }
     };
 
@@ -161,9 +170,7 @@ var trail = (function () {
     function toggleSiteMenu() {
         if (rightSidebar.isVisible()) {
             rightSidebar.hide();
-            siteSelButton.addTo(map);
         } else {
-            siteSelButton.removeFrom(map);
             leftSidebar.hideOnAuto();
             rightSidebar.show();
         }
@@ -187,7 +194,6 @@ var trail = (function () {
     document.getElementById("intro-button").onclick=function() {
         rightSidebar.hide();
         showIntro();
-        siteSelButton.addTo(map);
     };
     var sidebarButtonsContainer = document.getElementById("sidebarButtons");
 
@@ -320,7 +326,6 @@ trail.markers = (function (map) {
                 setCircleMarker(siteLatLng);
                 trail.showSiteDetails(site);
             };
-//            newMarker.on('popupopen', function() {  // alias for addEventListener
             newMarker.addEventListener('popupopen', function() {
                 sitePopupOpen(siteName);
             });
