@@ -37,8 +37,9 @@ var trail = (function () {
             'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
             'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18,
-        id: 'richardthomas.2e651224',
-        accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiIxYWMwNTMyMjMzYzRlNWU0NWY4ODYyNDQzYWVkMjQzNSJ9.VAF-W-QsoepmXOZyvoXzxw'
+        id: 'mapbox.streets',
+//        id: 'mapbox.streets-satellite',
+        accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiJjaWZ1c2ZtZGUwMjA1dDZtN2t6amZ4cnRkIn0.2fVjrwFijZV-R6scDpeUQA'
     }).addTo(map);
     L.control.scale().addTo(map);
 
