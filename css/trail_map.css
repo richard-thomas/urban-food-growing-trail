@@ -124,7 +124,7 @@ only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min-device-pixel-ratio: 1.5) {
     .icons {
         background-image: url('leaflet.defaultextent@2X.png');
-        background-size: 26px 26px;
+        background-size: 56px 56px;
         background-repeat: no-repeat;
     }
 }
@@ -200,18 +200,32 @@ html, #map {
 
 /**** Right Sidebar (Site Selection) ****/
 
-/* Site Selection button (to open right sidebar)*/
+/* Site Selection button (to open right sidebar) */
+/* - added complexity for non-standard button size (to match layers button) */
 .leaflet-button-sitelist {
   text-indent: -9999px;
   white-space: nowrap;
-  background-image: url('../img/Incredible-Edible-26x26.png');
-  width: 26px;
-  height: 26px;
+  background-image: url('../favicon.ico');
   display: block;
+}
+.leaflet-button-sitelist a {
+  width: 36px;
+  height: 36px;
+}
+a.leaflet-button-sitelist:hover {
+  width: 36px;
+  height: 36px;
+}
+.leaflet-retina .leaflet-button-sitelist a {
+  width: 44px;
+  height: 44px; 
 }
 
 .leaflet-sidebar.right {
     width: auto;
+}
+.leaflet-sidebar.right.visible ~ .leaflet-right {
+        right: 265px;
 }
 
 #sidebarR {
