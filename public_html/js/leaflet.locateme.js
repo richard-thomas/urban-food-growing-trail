@@ -14,7 +14,7 @@
  * @fileoverview Leaflet plugin of minimal code to produce a locator marker
  * plus an associated button for panning to currently detected location.
  *
- * @author richard.thomas _at_ yahoo.co.uk
+ * @author https://github.com/richard-thomas
  */
 
 (function () {
@@ -32,7 +32,6 @@
       return this._initLayout();
     },
     _initLayout: function () {
-        this._meMarkerExists = false;
         var container = L.DomUtil.create('div', 'leaflet-bar ' +
                 this.options.className);
         this._container = container;
@@ -59,26 +58,27 @@
     },
     
     // On event "location found", add a marker and a circle showing accuracy
-    // and update the text for a popup
     _onLocationFound: function (e) {
         var radius = Math.floor(e.accuracy / 2);
-        var popupText = "You are within " + radius + " metres of this point";
         
         // Save location for panning if locator icon is later pressed
         this._myLatlng = e.latlng;
 
-        // On first successful geolocation, create marker and accuracy circle
-        if (this._meMarkerExists === false) {
-            // FIXME: "this" is not locate_me when fn called!
-            this._meMarker = L.marker(e.latlng).addTo(this._map)
-                .bindPopup(popupText);
-            this._meCircle = L.circle(e.latlng, radius).addTo(this._map);
-            this._meMarkerExists = true;
-        } else {
+        // Update marker (if it exists).
+        if (this._meMarker) {
             this._meMarker.setLatLng(e.latlng).update();
-            this._meMarker.setPopupContent(popupText);
             this._meCircle.setLatLng(e.latlng);
             this._meCircle.setRadius(radius);
+            
+        // First successful geolocation, create marker and accuracy circle
+        } else {
+            this._meMarker = L.marker(e.latlng, {
+                clickable: false,
+                title: "Current Location"
+            }).addTo(this._map);
+            this._meCircle = L.circle(e.latlng, radius, {
+                clickable: false
+            }).addTo(this._map);
         }
     },
     
