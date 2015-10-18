@@ -90,6 +90,13 @@ a.leaflet-button-sitelist:hover {
 #sidebarR {
     padding: 10px;
 }
+#sidebarR h4 {
+    margin-bottom: 5px;
+}
+#sidebarR p {
+    margin-bottom: 7px;
+    margin-top: 7px;
+}
 
 .intro-button-para {
     padding-left: 55px;
@@ -117,4 +124,11 @@ a.leaflet-button-sitelist:hover {
 }
 .site-button:hover {
     background: #cceecc;
+}
+
+.key-icon {
+    width: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: middle;
 }

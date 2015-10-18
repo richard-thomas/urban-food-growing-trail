@@ -202,6 +202,7 @@ var trail = (function () {
      * @param {type} ev     button event
      */
     function selectLocation(ev) {
+        map.closePopup();
         var locId = ev.target.getAttribute('data-loc-id');
         trailInfo[locId].marker.openPopup();
     }
@@ -324,7 +325,6 @@ trail.markers = (function (map) {
         pointToLayer: function (feature, latlng) {
             var siteName = feature.properties.name;
             var siteLatLng = latlng;
-            // TODO: Handle case if siteInfo not defined
             var siteInfo = trailInfo[siteName];
             var newMarker = L.marker(latlng, {
                 icon: greenIcon,
@@ -336,8 +336,6 @@ trail.markers = (function (map) {
             siteInfo.marker = newMarker;
 
             // Handle other map objects when a popup opens
-            // TODO: addEventListener() not supported in IE8, but does Leaflet
-            //       version work round this?
             var sitePopupOpen = function(site) {
                 trail.leftSidebarHideOnAuto();
                 trail.rightSidebarHideOnAuto();

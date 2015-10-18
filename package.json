@@ -1,6 +1,6 @@
 {
   "name": "UrbanFoodTrail",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": ["leaflet", "map", "bristol"],
   "author": "Richard Thomas",
   "description": "Interactive web map for the Incredible Edible Bristol Urban Food Growing Trail",
