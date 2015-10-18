@@ -29,7 +29,8 @@ var trail = (function () {
     var trailBounds = [[51.4486598, -2.6009005], [51.4493936, -2.5805962]];
     
     var map = L.map('map', {
-        locateMeControl: true        // Add "Locate Me" button to pan to location
+        locateMeControl: true,      // Add "Locate Me" button to pan to location
+        fullscreenControl: true     // Add "Fullscreen" toggle button
     }).fitBounds(trailBounds);
     var streetLayer = L.tileLayer(
         'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
