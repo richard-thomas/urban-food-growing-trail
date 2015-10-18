@@ -104,6 +104,22 @@ var trail = (function () {
         leftSidebar.show();
     }
 
+    // Create callback popup for contact details (at end of  Intro)
+    // Attempt to avoid email address being web-scraped..
+    contactEl = document.getElementById("contact-details");
+    contactDomEl = document.getElementById("contact-domain");
+    var showingEmail = false;
+    contactEl.onclick=function() {
+        if (showingEmail) {
+            contactEl.innerHTML = 'Richard Thomas'; 
+            contactDomEl.innerHTML = '';
+        } else {
+            contactEl.innerHTML = 'Richard.Thomas';
+            contactDomEl.innerHTML = '@yahoo.co.uk<br>';
+        }
+        showingEmail = !showingEmail;
+    };
+    
     // Now able to show startup splash screen (before markers and right sidebar
     // are set up)
     showIntro();
@@ -287,12 +303,14 @@ trail.markers = (function (map) {
 
     // Popup sizing: Pad from window edge and limit max width so popup doesn't
     // hide under buttons. Subtract extra width (40) to take account of MaxWidth
-    // being of text, but margins added in popup.
-    var paddingLR = 45;
+    // being of text, but margins added in popup. Allow for larger buttons on
+    // retina displays too.
+    var paddingL = 45;
+    var paddingR = 60;
     var winWidth = window.innerWidth ||
             document.documentElement.clientWidth ||
             document.body.clientWidth;
-    var popupMaxWidth = winWidth - (2 * paddingLR) - 40;
+    var popupMaxWidth = winWidth - paddingL -paddingR - 40;
     popupMaxWidth = (popupMaxWidth > 300) ? 300 : popupMaxWidth;
             
     // Create site markers (and walking trail route) from GeoJSON data
@@ -344,7 +362,8 @@ trail.markers = (function (map) {
             }
 
             newMarker.bindPopup(popupContent, {
-                autoPanPadding: L.point(paddingLR, 5),
+                autoPanPaddingTopLeft: L.point(paddingL, 5),
+                autoPanPaddingBottomRight: L.point(paddingR, 5),
                 maxWidth: popupMaxWidth
             });
 

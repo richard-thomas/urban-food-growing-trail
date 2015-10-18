@@ -61,7 +61,7 @@
     // On event "location found", add a marker and a circle showing accuracy
     // and update the text for a popup
     _onLocationFound: function (e) {
-        var radius = e.accuracy / 2;
+        var radius = Math.floor(e.accuracy / 2);
         var popupText = "You are within " + radius + " metres of this point";
         
         // Save location for panning if locator icon is later pressed
