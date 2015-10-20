@@ -6,3 +6,4 @@ to experiment with web development using the Leaflet JavaScript library. The con
 ## Known Issues
 - Scrolling in sidebars not working in some early webkit (Android 2) browsers due to their lack of support for overflow "auto" setting.
 - Text duplication covering map makes it unusable in Internet Explorer 8 and earlier due to issue in Leaflet Sidebar plugin.
+- Fullscreen icon (mapbox plugin) is off-centre on some retina displays
