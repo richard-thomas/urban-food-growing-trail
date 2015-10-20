@@ -175,7 +175,9 @@ html, #map {
     border: 1px solid #ccc;
     padding: 2px;
 }
-
+.org-logo-images:hover {
+  background-color: #dedede;
+}
 .designer-tag {
     font-style: italic;
 }
