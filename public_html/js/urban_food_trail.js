@@ -27,17 +27,16 @@ var trail = (function () {
     // Boundary of full trail
     // (specifically the coordinates of the furthest apart points on trail)
     var trailBounds = [[51.4486598, -2.6009005], [51.4493936, -2.5805962]];
-    
+
     var map = L.map('map', {
-        locateMeControl: true,      // Add "Locate Me" button to pan to location
-        fullscreenControl: true     // Add "Fullscreen" toggle button
+        locateMeControl: true   // Add "Locate Me" button to pan to location
     }).fitBounds(trailBounds);
     var streetLayer = L.tileLayer(
         'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
     {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>' +
-            'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
-            'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+        attribution: '&copy; <a href="http://openstreetmap.org/copyright">' +
+                'OpenStreetMap contributors</a>' +
+                ' &copy; <a href="http://mapbox.com/map-feedback/">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiJjaWZ1c2ZtZGUwMjA1dDZtN2t6amZ4cnRkIn0.2fVjrwFijZV-R6scDpeUQA'
@@ -91,6 +90,10 @@ var trail = (function () {
     var siteSpecificLinkEl = document.getElementById("site-specific-link");
     var siteLinkEl = document.getElementById("site-link");
     
+    // TODO: make this just an icon that gets loaded conditional on @media
+    // for screens where full width is used for info bar / site selector
+    //leftSidebarEl.getElementsByTagName("a").innerHTML = 'Go to map';
+
     // Ensure all info pane content is hidden
     function hideInfoPaneContent() {
         for (var i = 0; i < infoPaneDivs.length; i++) {
@@ -362,7 +365,7 @@ trail.markers = (function (map) {
 
             newMarker.bindPopup(popupContent, {
                 autoPanPaddingTopLeft: L.point(paddingL, 5),
-                autoPanPaddingBottomRight: L.point(paddingR, 5),
+                autoPanPaddingBottomRight: L.point(paddingR, 75),
                 maxWidth: popupMaxWidth
             });
 
