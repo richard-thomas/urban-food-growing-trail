@@ -32,6 +32,11 @@ trailInfo = {
         "summary": "Trees and shrubs adjacent to steps up to the church",
         "link": "st-mary-redcliffe-fruit-garden"
     },
+    "quakers-burial-ground": {
+        "fullname": "Quakers Burial Ground",
+        "summary": "Bristol's first Edible Park",
+        "link": ""        
+    },
     "hole-in-the-wall": {
         "fullname": "The Grove",
         "summary": "Beds adjacent to the 'Hole in the Wall' public house",

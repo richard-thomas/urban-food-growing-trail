@@ -18,7 +18,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "tm-plat3",
+                "name": "tm-plat3"
             }
         },
         {
@@ -32,7 +32,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "tm-outdoor-beds",
+                "name": "tm-outdoor-beds"
             }
         },
         {
@@ -46,7 +46,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "temple-st-100",
+                "name": "temple-st-100"
             }
         },
         {
@@ -60,7 +60,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "chatterton-birthplace",
+                "name": "chatterton-birthplace"
             }
         },
         {
@@ -74,7 +74,21 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "mary-redcliffe",
+                "name": "mary-redcliffe"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.5908,
+                    51.4489,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "quakers-burial-ground"
             }
         },
         {
@@ -88,7 +102,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "engine-shed",
+                "name": "engine-shed"
             }
         },
         {
@@ -102,7 +116,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "hole-in-the-wall",
+                "name": "hole-in-the-wall"
             }
         },
         {
@@ -116,7 +130,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "destination-bristol",
+                "name": "destination-bristol"
             }
         },
         {
@@ -130,7 +144,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "anchor-square",
+                "name": "anchor-square"
             }
         },
         {
@@ -144,7 +158,7 @@ trailGeoJson = {
                 ]
             },
             "properties": {
-                "name": "millenium-square",
+                "name": "millenium-square"
             }
         },
         {
