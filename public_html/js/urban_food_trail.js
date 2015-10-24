@@ -78,7 +78,7 @@ var trail = (function () {
     map.addControl(leftSidebar);    // TODO: Breaks IE8
 
     // Add menu button to re-open introduction (via left sidebar)
-    var siteSelButton = L.control.button({
+    L.control.button({
         position: 'topleft',
         text: 'Intro',
         title: 'View Introduction',
@@ -173,7 +173,7 @@ var trail = (function () {
  * ---- Right Sidebar (Site selector) ----
  */   
     // Add menu button to select site (via right sidebar)
-    var siteSelButton = L.control.button({
+    L.control.button({
         position: 'topright',
         text: 'Nav Icon',
         title: 'Select growing site',
@@ -311,8 +311,8 @@ trail.markers = (function (map) {
         shadowUrl: 'img/leaf-shadow.png',
         iconSize:     [67, 67], // size of the icon
         shadowSize:   [35, 40], // size of the shadow
-        iconAnchor:   [41, 35], // point of icon which corresponds to marker location
-        shadowAnchor: [2, 31],  // the same for the shadow
+        iconAnchor:   [41, 43], // point of icon which corresponds to marker location
+        shadowAnchor: [3, 39],  // the same for the shadow
         popupAnchor:  [-1, -38] // point from which popup opens relative to iconAnchor
     });
 

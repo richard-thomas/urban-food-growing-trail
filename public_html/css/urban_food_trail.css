@@ -66,7 +66,13 @@ html, #map {
     margin-top: 8px;
     margin-bottom: 8px;
 }
-
+.twitter-timeline {
+    border: 1px solid #ccc;
+    padding: 6px;
+    margin-left: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
 /* Items in map key */
 .key-icon {
     width: 16px;
