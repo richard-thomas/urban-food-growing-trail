@@ -16,4 +16,4 @@ Note: If you encounter any usability problems, please see if these are already l
 [MIT License](https://github.com/nguyenning/Leaflet.defaultextent/blob/master/LICENSE)
 * Map data: copyright (c) [OpenStreetMap contributors](http://openstreetmap.org/copyright)
 * Map imagery: copyright (c) [Mapbox](http://mapbox.com/map-feedback/)
-* Content text and photos: from [Incredible#Edible Bristol](http://ediblebristol.org.uk/) website, plus author's own contribution.
+* Content text and photos: (c)  [Incredible#Edible Bristol](http://ediblebristol.org.uk/) extracted from their [Urban Food Growing Trail](http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/) website, plus author's own contribution.
