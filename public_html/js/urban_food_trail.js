@@ -71,7 +71,7 @@ var trail = (function () {
  * ---- Left Sidebar (Intro/Site Information Pane) ----
  */
     var leftSidebar = L.control.sidebar('sidebarL', {
-        closeButton: true,
+        closeButton: false,
         position: 'left',
         autoPan: false
     });
@@ -108,6 +108,12 @@ var trail = (function () {
         leftSidebar.show();
     }
 
+    // Home made sidebar closer (mainly for mobile devices)
+    showMapEl = document.getElementById("go-to-map-icon-l");
+    showMapEl.onclick=function() {
+        leftSidebar.hide();
+    };
+    
     // Create callback popup for contact details (at end of  Intro)
     // Attempt to avoid email address being web-scraped..
     contactEl = document.getElementById("contact-details");
@@ -165,7 +171,7 @@ var trail = (function () {
     }).addTo(map);
 
     var rightSidebar = L.control.sidebar('sidebarR', {
-        closeButton: true,
+        closeButton: false,
         position: 'right',
         autoPan: false
     });
@@ -184,6 +190,12 @@ var trail = (function () {
         }
     };
 
+    // Home made sidebar closer (mainly for mobile devices)
+    showMapEl = document.getElementById("go-to-map-icon-r");
+    showMapEl.onclick=function() {
+        rightSidebar.hide();
+    };
+    
     /**
      * Open/Close right sidebar to show selector for garden sites
      */

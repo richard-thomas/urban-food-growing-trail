@@ -22,6 +22,22 @@ html, #map {
     
 /**** Left Sidebar (Information Pane) *****/
 
+#info-pane-banner {
+    border:0;
+    width:85%;
+    margin:0;
+}
+
+/* sidebar closer icon */
+.go-to-map-icon {
+    border:0;
+    margin:0;
+    float: right;
+}
+#go-to-map-icon-l {
+    width:10%;
+}
+
 #info-pane-title {
      margin: 0;
 }
@@ -116,10 +132,13 @@ a.leaflet-button-sitelist:hover {
 }
 
 .trail-image-right {
-    width: 240px;
+    width: 190px;
     border:0;
+    /*margin:0*/
 }
-
+#go-to-map-icon-r {
+    width:40px;
+}
 /* Buttons for each garden site */
 .site-button {
     width: 240px;
