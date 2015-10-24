@@ -67,6 +67,19 @@ html, #map {
     margin-bottom: 8px;
 }
 
+/* Items in map key */
+.key-icon {
+    width: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: middle;
+}
+.key-button {
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
 /* All photos within info pane */
 .info-photo {
     margin: 5px;
@@ -136,15 +149,4 @@ a.leaflet-button-sitelist:hover {
 }
 .site-button:hover {
     background: #cceecc;
-}
-
-.key-icon {
-    width: 16px;
-    padding-left: 15px;
-    padding-right: 15px;
-    vertical-align: middle;
-}
-
-.leaflet-sidebar.left.a.close {
-    
 }
