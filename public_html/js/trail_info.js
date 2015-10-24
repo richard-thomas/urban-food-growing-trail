@@ -39,8 +39,8 @@ trailInfo = {
     },
     "destination-bristol": {
         "fullname": "Destination Bristol",
-        "summary": "(TBD)"
-        //"link": "http://channels.visitbristol.co.uk/destinationbristol"
+        "summary": "Fruit and herbs in front courtyard of 53 Queens Square",
+        "link": ""
     },
     "anchor-square": {
         "fullname": "Anchor Square Herb Bed",
