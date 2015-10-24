@@ -77,6 +77,16 @@ var trail = (function () {
     });
     map.addControl(leftSidebar);    // TODO: Breaks IE8
 
+    // Add menu button to re-open introduction (via left sidebar)
+    var siteSelButton = L.control.button({
+        position: 'topleft',
+        text: 'Intro',
+        title: 'View Introduction',
+        className: 'leaflet-button-intro',
+        callback: showIntro
+    }).addTo(map);
+
+
     // Allow auto-hiding of left info pane on new map popup
     leftSidebar.hideOnAuto = function() {
         if (document.getElementById("auto-hide-info-pane").checked) {
@@ -104,6 +114,7 @@ var trail = (function () {
     function showIntro() {
         infoPaneTitleEl.innerHTML = "";
         hideInfoPaneContent();
+        document.getElementById("go-to-map-icon-l").style.display="inline";
         document.getElementById("intro-info").style.display="inline";
         leftSidebar.show();
     }
@@ -177,9 +188,10 @@ var trail = (function () {
     });
     map.addControl(rightSidebar);
    
-    // Auto-hide sidebar if map is clicked (anywhere)
+    // Auto-hide sidebars if map is clicked (anywhere)
     map.on('click', function() {
         rightSidebar.hideOnAuto();
+        leftSidebar.hideOnAuto();
     });
 
     // Hide sidebar if visible and auto-hide box checked
@@ -224,12 +236,7 @@ var trail = (function () {
     }
 
     // Add buttons to Right Sidebar
-    document.getElementById("intro-button").onclick=function() {
-        rightSidebar.hide();
-        showIntro();
-    };
     var sidebarButtonsContainer = document.getElementById("sidebarButtons");
-
     for (var locationID in trailInfo) {
         var btnText = document.createTextNode(trailInfo[locationID].fullname);
         var btn = document.createElement("button");
@@ -300,11 +307,11 @@ trail.markers = (function (map) {
 
     // Create custom icon for garden markers (the Leaflet green leaf)
     var greenIcon = L.icon({
-        iconUrl: 'img/leaf-green.png',
+        iconUrl: 'img/leaf-green-wide.png',
         shadowUrl: 'img/leaf-shadow.png',
-        iconSize:     [19, 48], // size of the icon
-        shadowSize:   [25, 32], // size of the shadow
-        iconAnchor:   [11, 47], // point of icon which corresponds to marker location
+        iconSize:     [67, 67], // size of the icon
+        shadowSize:   [35, 40], // size of the shadow
+        iconAnchor:   [41, 35], // point of icon which corresponds to marker location
         shadowAnchor: [2, 31],  // the same for the shadow
         popupAnchor:  [-1, -38] // point from which popup opens relative to iconAnchor
     });
