@@ -82,9 +82,9 @@
         }
     },
     
-    // Show raw error message if geolocation fails
+    // Send raw error message to log (only) if geolocation fails
     _onLocationError: function (e) {
-        alert(e.message);
+        console.log(e.message);
     },
     _whenReady: function () {
         
@@ -103,6 +103,14 @@
     _panToMe: function () {
         if (typeof this._myLatlng !== 'undefined') {
             this._map.setView(this._myLatlng);
+        } else {
+            alert('ERROR: Unable to determine your location!\n\n' +
+                    'If this recurs you might need to turn on "location' +
+                    ' services" on your device and reload the web page.' +
+                    ' For iOS (iPad, IPhone) check:\n' +
+                    '  [Settings > Privacy > Location Services > Safari]\n' +
+                    'For Android devices check:\n' +
+                    '  [Settings > Location]');
         }
     }
   });
