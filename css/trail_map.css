@@ -1,4 +1,4 @@
-/* UrbanFoodTrail - v1.0.2
+/* UrbanFoodTrail - v1.0.3
  * https://github.com/richard-thomas/urban-food-growing-trail
  */
 .leaflet-sidebar {
@@ -163,6 +163,22 @@ html, #map {
     
 /**** Left Sidebar (Information Pane) *****/
 
+.info-pane-banner {
+    border:0;
+    width:85%;
+    margin:0;
+}
+
+/* sidebar closer icon */
+.go-to-map-icon {
+    border:0;
+    margin:0;
+}
+#go-to-map-icon-l {
+    width:10%;
+    float: right;
+}
+
 #info-pane-title {
      margin: 0;
 }
@@ -191,6 +207,25 @@ html, #map {
     margin-top: 8px;
     margin-bottom: 8px;
 }
+.twitter-timeline {
+    border: 1px solid #ccc;
+    padding: 6px;
+    margin-left: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+/* Items in map key */
+.key-icon {
+    width: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: middle;
+}
+.key-button {
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
 
 /* All photos within info pane */
 .info-photo {
@@ -209,6 +244,12 @@ html, #map {
   white-space: nowrap;
   background-image: url('../favicon.ico');
   display: block;
+}
+.leaflet-button-intro {
+    text-indent: -9999px;
+    white-space: nowrap;
+    background-image: url('../img/info.png');
+    display: block;
 }
 .leaflet-button-sitelist a {
   width: 36px;
@@ -241,37 +282,19 @@ a.leaflet-button-sitelist:hover {
     margin-top: 7px;
 }
 
-.intro-button-para {
-    padding-left: 55px;
-}
-.intro-button-para > button {
-    padding: 0.3em;
-    border-radius:0.8em;
-    font-size: 1.1em;
-    box-shadow: none;
-    background-color: #eee;
-    border: 1px solid grey;
-}
-#intro-button:hover {
-    background: #ddd;
-}
-
 .trail-image-right {
-    width: 240px;
+    width: 200px;
     border:0;
+    /*margin:0*/
 }
-
+#go-to-map-icon-r {
+    width: 30px;
+    float: right;
+}
 /* Buttons for each garden site */
 .site-button {
     width: 240px;
 }
 .site-button:hover {
     background: #cceecc;
-}
-
-.key-icon {
-    width: 16px;
-    padding-left: 15px;
-    padding-right: 15px;
-    vertical-align: middle;
 }

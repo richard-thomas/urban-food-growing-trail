@@ -19,7 +19,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css">
-    <link rel="stylesheet" href="http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.2/leaflet.fullscreen.css">
     <link rel="stylesheet" media="all" href="css/trail_map.css">
 
     <title>Incredible#Edible Bristol Urban Food Growing Trail</title>
@@ -33,12 +32,16 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
     <div id="sidebarL">
 
         <!-- This Trail banner image is all that is seen during site loading -->
-        <a href="http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/"
-           target="_blank">
-            <img src="img/urban-food-growing-trail-banner.png"
-                 style="border:0; width:90%; margin:0;"
-                 alt="Urban Food Growing Trail"></a>
-
+        <img src="img/urban-food-growing-trail-banner.png"
+                 class="info-pane-banner"
+                 alt="Urban Food Growing Trail">
+        
+        <!-- Sidebar closer icon (hidden during loading only) -->
+        <a href="#" class="go-to-map-icon">
+            <img id="go-to-map-icon-l" src="img/go-to-map.png"
+                 style="display:none;"
+                 alt="Go to map"></a>
+        
         <!-- Title updated to match info-pane contents -->
         <h4 id='info-pane-title'></h4>
 
@@ -56,11 +59,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
                 along Redcliffe Way to Millennium Square. Its aim is to inspire
                 and educate - showing that food growing can be, and is, relevant
                 in the urban landscape, as well as to provide free food for
-                people and pollinators.</p>
-            <p>Sites are listed in the menu on the right
-                (<img src="img/Incredible-Edible-26x26.png" alt="leaf">).
-                Click on each location for details. Read more on the main
-                websites:</p>
+                people and pollinators. Read more on the main websites:</p>
             <p>
                 <a href="http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/"
                    class="org-logos"
@@ -83,6 +82,25 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
                          class="org-logo-images"
                          style="width:80px; margin-bottom: 20px;"></a>
             </p>
+            <p>
+                <a class="twitter-timeline"
+                   href="https://twitter.com/hashtag/urbanfoodtrail"
+               target="_blank">
+                    <img src="img/twitter.png" 
+                         style="width:16px;">
+                    #urbanfoodtrail</a>
+            </p>
+            <h4>Key:</h4>
+            <p><img src="img/leaf-green.png" alt="leaf icon" class="key-icon">
+                Growing space site (click for info)</p>
+            <p><img src="img/walking-route.png" alt="green dash" class="key-icon">
+                Recommended walking route</p>
+            <p><img src="img/Incredible-Edible-26x26.png" alt="leaf"
+                    style="border:1px solid grey;" class="key-button">
+                Open site list selector</p>
+            <p><img src="img/leaflet.locate.png" alt="leaf"
+                    style="border:1px solid grey;" class="key-button">
+                Pan to your current location</p>
             <p class="designer-tag">Web design:
                 <a id="contact-details" href="#">
                     Richard Thomas</a><span id="contact-domain"></span>
@@ -93,9 +111,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
         <!-- Selectable Content: Temple Meads Platform 3 -->
         <div id="tm-plat3-info" style="display:none;">
-            <img src="img/platform3-221x240.png"
+            <a href="img/platform3-221x240.png" target="_blank">
+                <img src="img/platform3-221x240.png"
                  alt="Platform 3 planter"
-                 class="info-photo">
+                 class="info-photo"></a>
             <p>After considerable conversation with Network Rail it was
                 agreed that we could put our first garden on Platform 3 of
                 Temple Meads Station. This is a difficult bed as it has very
@@ -122,9 +141,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
         <!-- Selectable Content: Engine Shed -->
         <div id="engine-shed-info" style="display:none;">
-            <img src="img/wicking-bed-222x200.png"
+            <a href="img/wicking-bed-222x200.png" target="_blank">
+                <img src="img/wicking-bed-222x200.png"
                  alt="Wicking Bed"
-                 class="info-photo">
+                 class="info-photo"></a>
             <p>When James, our strategy team member and maker of
                 extraordinary raised beds mentioned the video below, we
                 immediately knew we had to make one of these for our Urban
@@ -148,9 +168,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
         <!-- Selectable Content: 100 Temple Street -->
         <div id="temple-st-100-info" style="display:none;">
-            <img src="img/temple-st-320x240.png"
+            <a href="img/temple-st-320x240.png" target="_blank">
+                <img src="img/temple-st-320x240.png"
                  alt="Temple Street Beds"
-                 class="info-photo">
+                 class="info-photo"></a>
             <p>The decisions around what to plant into this garden were
                 taken looking making it productive for 2015 as well as
                 looking beyond this year and into the future. The backbone
@@ -172,11 +193,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
         <!-- Selectable Content: Chatterton's Birthplace -->
         <div id="chatterton-birthplace-info" style="display:none;">
-            <img src="img/chatterton-birthplace-225x240.png"
+            <a href="img/chatterton-birthplace-225x240.png" target="_blank">
+                <img src="img/chatterton-birthplace-225x240.png"
                  alt="Chatterton's Birthplace Beds"
-                 class="info-photo">
+                 class="info-photo"></a>
             <p>The garden outside Thomas Chatterton's Birthplace has been
-                designed with permaculture firmly at the forefront of it's
+                designed with permaculture firmly at the forefront of its
                 being. Rather than producing a garden that needs huge
                 amounts of maintenance we have put together a garden that is
                 mainly perennial and that has minimal watering needs. In it
@@ -199,9 +221,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
         <!-- Selectable Content: Mary Redcliffe Church -->
         <div id="mary-redcliffe-info" style="display:none;">
-            <img src="img/mary-redcliffe-garden-338x240.png"
+            <a href="img/mary-redcliffe-garden-338x240.png" target="_blank">
+                <img src="img/mary-redcliffe-garden-338x240.png"
                  alt="Mary Redcliffe beds"                 
-                 class="info-photo">
+                 class="info-photo"></a>
             <p>All of the trees and shrubs in this garden were chosen by the
                 parish committee at St Mary Redcliffe, and we were very
                 pleased that they went for the trees that we suggested as
@@ -223,11 +246,42 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
             </p>
         </div>
         
+        <!-- Selectable Content: Quakers Burial Ground -->
+        <div id="quakers-burial-ground-info" style="display:none;">
+            <a href="img/quakers-burial-ground-529x480.png" target="_blank">
+                <img src="img/quakers-burial-ground-529x480.png"
+                 alt="Quakers Burial Ground"                 
+                 class="info-photo"/></a>
+            <p>Bristol's first 'Edible Park' - an urban food garden for both
+                humans and wildlife;
+                <a href="https://heathershoneybees.wordpress.com/"
+                   target="_blank">Bee the Change</a>
+                have installed our exciting new community bee hive!
+            </p>
+        </div>
+            
+        <!-- Selectable content: Destination Bristol -->
+        <div id="destination-bristol-info" style="display:none;">
+            <a href="img/destination-bristol-259x240.png" target="_blank">
+                 <img src="img/destination-bristol-259x240.png"
+                 alt="Destination Bristol"
+                 class="info-photo"></a>
+            <p>Raised planters in the courtyard in front of the Destination
+                Bristol offices at 53 Queens Square contain a wide selection
+                of herbs and fruit.</p>
+            <p><a href="http://channels.visitbristol.co.uk/destinationbristol"
+                  target="_blank">Destination Bristol</a>
+                is involved in developing leisure and business tourism in the
+                Greater Bristol and South Gloucestershire area.                
+            </p>
+        </div>
+        
         <!-- Selectable content: Anchor square Herb Garden -->
         <div id="anchor-square-info" style="display:none;">
-            <img src="img/anchor-square-210x240.png"
+            <a href="img/anchor-square-175x240.png" target="_blank">
+                 <img src="img/anchor-square-175x240.png"
                  alt="Herb Bed"                 
-                 class="info-photo">
+                 class="info-photo"></a>
             <p>The herb bed in Anchor Square was built and planted for the first
                 Food Connections Festival in Bristol in 2014. Sponsored by
                 Almondsbury Garden Centre, it is a beautiful raised planter
@@ -247,9 +301,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
         <!-- Selectable content: Millenium Square Urban Allotments -->
         <div id="millenium-square-info" style="display:none;">
-            <img src="img/millenium-square-216x240.png"
-                 alt="Raised planter beds"                 
-                 class="info-photo">
+            <a href="img/millenium-square-260x240.png" target="_blank">
+                <img src="img/millenium-square-260x240.png"
+                     alt="Raised planter beds"
+                     class="info-photo"></a>
             <p>The 5 beds in Millennium Square are themed so that each bed
                 tells a story of how space can be efficiently used when it is at
                 a premium, to grow maximum crops and show what can be grown in a
@@ -287,18 +342,16 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
     <!-- Right Sidebar: Site selector -->
     <div id="sidebarR" style="display:none;">
         <p class="intro-button-para">
-            <button id="intro-button" type="button">View Introduction
-            </button></p>
         <img class="trail-image-right"
              src="img/urban-food-growing-trail-banner.png"
              alt="Urban Food Growing Trail">
+        <a href="#" class="go-to-map-icon">
+            <img id="go-to-map-icon-r" src="img/go-to-map.png"
+                 alt="Go to map"></a>
+        </p>
+
         <div id="sidebarButtons">
         </div>
-        <h4>Key:</h4>
-        <p><img src="img/leaf-green.png" alt="leaf icon" class="key-icon">
-        Growing space site</p>
-        <p><img src="img/walking-route.png" alt="green dash" class="key-icon">
-        Recommended walking route</p>
         <h4>Settings:</h4>
         <p><input type="checkbox" id="auto-hide-site-selector" checked="true">
             Auto-hide site list</p>
@@ -310,7 +363,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-    <script src="http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.2/Leaflet.fullscreen.min.js"></script>
     <script src="js/trail_map.min.js"></script>
 
 
