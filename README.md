@@ -7,6 +7,34 @@ author to experiment with web development using the Leaflet JavaScript library. 
 
 Note: If you encounter any usability problems, please see if these are already listed on the "Issues" page and email feedback via the link given within the web app. Alternatively, if you have a GitHub login you can add your own comment within an existing issue, or if not already listed please add a new one.
 
+### Testing
+Tested as working with the following devices/browsers, except where noted:
+* Android 4/5:
+  * Experia Z3 (Android 4.4.4)
+  * Google Nexus 4
+  * Google Nexus 7 v2 (Android 5.1.1)
+  * Motorola Moto G v3 (Android 5.1.1)
+* Android 2 (stock browser):
+  * Motorola Defy (Android 2.3.7): missing scrollbar (see "Issues" tab)
+* Apple iOS (Safari):
+  * iPhone 6+ (iOS 8)
+  * iPhone 4 (iOS 9.0.2)
+  * iPad 3
+  * iPad 2
+  * mini iPad
+* Windows Phone:
+  * Nokia Lumia 625 (Windows 8.1)
+* Google Chrome:
+  * Windows XP SP3
+  * Windows 10
+  * Lubuntu Linux 14.04 (v46.0)
+  * ArchLinux
+* Mozilla Firefox:
+  * Lubuntu Linux (41.0.2): unwanted shadowing of buttons (see "Issues" tab)
+* Internet Explorer:
+  * Windows XP (IE8): unusable (see "Issues" tab)
+* Edge (Windows 10)
+
 ### Acknowledgements
 * [Leaflet](http://leafletjs.com/) JavaScript library used under the
 [2-clause BSD License](https://github.com/Leaflet/Leaflet/blob/master/LICENSE).
@@ -16,4 +44,8 @@ Note: If you encounter any usability problems, please see if these are already l
 [MIT License](https://github.com/nguyenning/Leaflet.defaultextent/blob/master/LICENSE)
 * Map data: copyright (c) [OpenStreetMap contributors](http://openstreetmap.org/copyright)
 * Map imagery: copyright (c) [Mapbox](http://mapbox.com/map-feedback/)
-* Content text and photos: (c)  [Incredible#Edible Bristol](http://ediblebristol.org.uk/) extracted from their [Urban Food Growing Trail](http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/) website, plus author's own contribution.
+* Logo images: copyright (c) [Incredible#Edible Bristol](http://ediblebristol.org.uk/),
+[Bee The Change](https://heathershoneybees.wordpress.com/),
+[Grow Bristol](http://growbristol.co.uk/),
+[Twitter](https://twitter.com/)
+* Content text and photos: copyright (c) [Incredible#Edible Bristol](http://ediblebristol.org.uk/) extracted from their [Urban Food Growing Trail](http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/) website, plus author's own contribution.
