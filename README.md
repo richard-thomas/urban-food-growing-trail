@@ -43,7 +43,7 @@ Tested as working with the following devices/browsers, except where noted:
 * [Leaflet Default Extent](https://github.com/nguyenning/Leaflet.defaultextent) plugin used under the
 [MIT License](https://github.com/nguyenning/Leaflet.defaultextent/blob/master/LICENSE)
 * Map data: copyright (c) [OpenStreetMap contributors](http://openstreetmap.org/copyright)
-* Map imagery: copyright (c) [Mapbox](http://mapbox.com/map-feedback/)
+* Map imagery: copyright (c) [Mapbox](http://mapbox.com/)
 * Logo images: copyright (c) [Incredible#Edible Bristol](http://ediblebristol.org.uk/),
 [Bee The Change](https://heathershoneybees.wordpress.com/),
 [Grow Bristol](http://growbristol.co.uk/),
