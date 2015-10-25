@@ -10,7 +10,7 @@ Note: If you encounter any usability problems, please see if these are already l
 ### Testing
 Tested as working with the following devices/browsers, except where noted:
 * Android 4/5:
-  * Experia Z3 (Android 4.4.4)
+  * Sony Experia Z3 (Android 4.4.4)
   * Google Nexus 4
   * Google Nexus 7 v2 (Android 5.1.1)
   * Motorola Moto G v3 (Android 5.1.1)
@@ -30,7 +30,7 @@ Tested as working with the following devices/browsers, except where noted:
   * Lubuntu Linux 14.04 (v46.0)
   * ArchLinux
 * Mozilla Firefox:
-  * Lubuntu Linux (41.0.2): unwanted shadowing of buttons (see "Issues" tab)
+  * Lubuntu Linux 14.04 (41.0.2): unwanted shadowing of buttons (see "Issues" tab)
 * Internet Explorer:
   * Windows XP (IE8): unusable (see "Issues" tab)
 * Edge (Windows 10)
