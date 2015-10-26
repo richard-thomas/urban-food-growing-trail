@@ -30,9 +30,10 @@ Tested as working with the following devices/browsers, except where noted:
   * Lubuntu Linux 14.04 (v46.0)
   * ArchLinux
 * Mozilla Firefox:
-  * Lubuntu Linux 14.04 (41.0.2): unwanted shadowing of buttons (see "Issues" tab)
+  * Lubuntu Linux 14.04 (41.0.2)
 * Internet Explorer:
-  * Windows XP (IE8): unusable (see "Issues" tab)
+  * Windows 10 (IE11)
+  * Windows XP (IE8): Supported with fixed width sidebars and no Geolocation (see "Issues" tab)
 * Edge (Windows 10)
 
 ### Acknowledgements
