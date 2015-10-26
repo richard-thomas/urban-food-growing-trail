@@ -7,6 +7,11 @@ html, #map {
     height: 100%;
 }
 
+/* Fix for Firefox (avoids dotted outlines on controls) */
+a {
+    outline:0;
+}
+
 /* Popup "More Info" button */
 .more-info-div {
     text-align: center;
