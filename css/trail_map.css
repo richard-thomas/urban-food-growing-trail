@@ -148,13 +148,18 @@ html, #map {
     height: 100%;
 }
 
+/* Fix for Firefox (avoids dotted outlines on controls) */
+a {
+    outline: 0;
+}
+
 /* Popup "More Info" button */
 .more-info-div {
     text-align: center;
     padding-top: 4px;
 }
 .more-info-div > button {
-    border-radius:1em;
+    border-radius: 1em;
     font-size: 1em;
     box-shadow: none;
     background-color: #eee;
@@ -164,18 +169,19 @@ html, #map {
 /**** Left Sidebar (Information Pane) *****/
 
 .info-pane-banner {
-    border:0;
-    width:85%;
-    margin:0;
+    border: 0;
+    width: 82%;
+    margin: 0;
 }
 
 /* sidebar closer icon */
 .go-to-map-icon {
-    border:0;
-    margin:0;
+    border: 0;
+    margin: 0;
 }
 #go-to-map-icon-l {
-    width:10%;
+    border: 0;
+    width: 12%;
     float: right;
 }
 
@@ -284,7 +290,7 @@ a.leaflet-button-sitelist:hover {
 
 .trail-image-right {
     width: 200px;
-    border:0;
+    border: 0;
     /*margin:0*/
 }
 #go-to-map-icon-r {
