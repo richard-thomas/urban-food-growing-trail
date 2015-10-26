@@ -75,7 +75,7 @@ var trail = (function () {
         position: 'left',
         autoPan: false
     });
-    map.addControl(leftSidebar);    // TODO: Breaks IE8
+    map.addControl(leftSidebar);
 
     // Add menu button to re-open introduction (via left sidebar)
     L.control.button({
@@ -100,10 +100,6 @@ var trail = (function () {
     var siteSpecificLinkEl = document.getElementById("site-specific-link");
     var siteLinkEl = document.getElementById("site-link");
     
-    // TODO: make this just an icon that gets loaded conditional on @media
-    // for screens where full width is used for info bar / site selector
-    //leftSidebarEl.getElementsByTagName("a").innerHTML = 'Go to map';
-
     // Ensure all info pane content is hidden
     function hideInfoPaneContent() {
         for (var i = 0; i < infoPaneDivs.length; i++) {
@@ -231,7 +227,14 @@ var trail = (function () {
      */
     function selectLocation(ev) {
         map.closePopup();
-        var locId = ev.target.getAttribute('data-loc-id');
+        var target = null;
+        // Support IE6-8 which lacks event "target"
+        try {
+            target = ev.target;
+        } catch(e) {
+            target = event.srcElement;
+        }
+        var locId = target.getAttribute('data-loc-id');
         trailInfo[locId].marker.openPopup();
     }
 

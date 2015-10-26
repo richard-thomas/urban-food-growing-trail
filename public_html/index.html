@@ -31,10 +31,19 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
     <link rel="stylesheet" href="bower_components/leaflet-sidebar/src/L.Control.Sidebar.css">
     <link rel="stylesheet" href="css/leaflet.locateme.css">
     <link rel="stylesheet" media="all" href="css/urban_food_trail.css">
-    
     <title>(DEV) Incredible#Edible Bristol Urban Food Growing Trail</title>
      <!-- Dev.end - gulp-replace(delete-block-end) -->
 
+    <!-- Tweaks for sidebar plugin to overcome lack of CSS @media support
+         in Internet Explorer pre v9 -->
+    <!--[if lt IE 9]>
+        <style>
+            .leaflet-sidebar { width: 390px; }
+            .leaflet-sidebar.left.visible ~ .leaflet-left { left: 390px; }
+            .leaflet-sidebar.right.visible ~ .leaflet-right { right: 305px; }
+        </style>
+    <![endif]-->
+    
 </head>
 <body>
     <!-- Left Sidebar: Site Information Pane -->
@@ -95,8 +104,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
                 <a class="twitter-timeline"
                    href="https://twitter.com/hashtag/urbanfoodtrail"
                target="_blank">
-                    <img src="img/twitter.png" 
-                         style="width:16px;">
+                    <img src="img/twitter.png" alt="Twitter"
+                         style="width:16px;border:0;text-decoration:none;">
                     #urbanfoodtrail</a>
             </p>
             <h4>Key:</h4>
@@ -107,9 +116,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
             <p><img src="img/Incredible-Edible-26x26.png" alt="leaf"
                     style="border:1px solid grey;" class="key-button">
                 Open site list selector</p>
+            
+            <!-- W3C Geolocation API not supported for IE < v8 -->
+            <!--[if (gt IE 8)|!(IE)]><!-->
             <p><img src="img/leaflet.locate.png" alt="leaf"
                     style="border:1px solid grey;" class="key-button">
                 Pan to your current location</p>
+            <!--<![endif]-->
+            
             <p class="designer-tag">Web design:
                 <a id="contact-details" href="#">
                     Richard Thomas</a><span id="contact-domain"></span>
@@ -350,7 +364,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
     <!-- Right Sidebar: Site selector -->
     <div id="sidebarR" style="display:none;">
-        <p class="intro-button-para">
+        <p>
         <img class="trail-image-right"
              src="img/urban-food-growing-trail-banner.png"
              alt="Urban Food Growing Trail">

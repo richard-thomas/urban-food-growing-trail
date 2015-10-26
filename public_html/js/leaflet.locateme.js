@@ -29,7 +29,12 @@
     },
     onAdd: function (map) {
       this._map = map;
-      return this._initLayout();
+      // (Only add if W3C Geolocation API supported)
+      if (navigator.geolocation) {
+          return this._initLayout();
+      } else {
+          alert('Geolocation API not supported');
+      }
     },
     _initLayout: function () {
         var container = L.DomUtil.create('div', 'leaflet-bar ' +
@@ -84,7 +89,9 @@
     
     // Send raw error message to log (only) if geolocation fails
     _onLocationError: function (e) {
-        console.log(e.message);
+        if (window.console && window.console.log) {
+            console.log(e.message);
+        }
     },
     _whenReady: function () {
         
@@ -116,8 +123,9 @@
   });
 
   // Automatically load if "locateMeControl: true" included in map options
+  // (but suppress it if W3C Geolocation API not supported)
   L.Map.addInitHook(function () {
-    if (this.options.locateMeControl) {
+    if (navigator.geolocation && this.options.locateMeControl) {
       this.addControl(new L.Control.LocateMe());
     }
   });
