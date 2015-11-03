@@ -105,20 +105,22 @@ trailGeoJson = {
                 "name": "engine-shed"
             }
         },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -2.5930631,
-                    51.4495039,
-                    0
-                ]
-            },
-            "properties": {
-                "name": "hole-in-the-wall"
-            }
-        },
+        
+        // Field Trip: This site doesn't seem to exist
+//        {
+//            "type": "Feature",
+//            "geometry": {
+//                "type": "Point",
+//                "coordinates": [
+//                    -2.5930631,
+//                    51.4495039,
+//                    0
+//                ]
+//            },
+//            "properties": {
+//                "name": "hole-in-the-wall"
+//            }
+//        },
         {
             "type": "Feature",
             "geometry": {

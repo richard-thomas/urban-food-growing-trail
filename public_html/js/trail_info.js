@@ -37,11 +37,12 @@ trailInfo = {
         "summary": "Bristol's first Edible Park",
         "link": ""        
     },
-    "hole-in-the-wall": {
-        "fullname": "The Grove",
-        "summary": "Beds adjacent to the 'Hole in the Wall' public house",
-        "link": ""
-    },
+// Field Trip: This site doesn't seem to exist
+//    "hole-in-the-wall": {
+//        "fullname": "The Grove",
+//        "summary": "Beds adjacent to the 'Hole in the Wall' public house",
+//        "link": ""
+//    },
     "destination-bristol": {
         "fullname": "Destination Bristol",
         "summary": "Fruit and herbs in front courtyard of 53 Queens Square",
