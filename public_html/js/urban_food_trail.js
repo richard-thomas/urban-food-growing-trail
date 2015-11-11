@@ -16,14 +16,16 @@
  * @author https://github.com/richard-thomas
  */
 
-var trail = (function () {
-    /* global L */
-    /* global trailInfo */
+// Suppress "undeclared" warnings for external globals in NetBeans IDE
+/* global L */
+/* global trailGeoJson */
+/* global trailInfo */
 
-    /*
-     * ---- Basemap and custom controls ----
-     */
-    
+/*
+ * ---- Basemap and custom controls ----
+ */
+var trail = (function () {
+
     // Boundary of full trail
     // (specifically the coordinates of the furthest apart points on trail)
     var trailBounds = [[51.4486598, -2.6009005], [51.4493936, -2.5805962]];
@@ -67,15 +69,25 @@ var trail = (function () {
     // Add "Home" button to reset to the initial extent (i.e. the full trail)
     L.control.defaultExtent().addTo(map);
     
+    // Publicly visible methods and properties
+    return {
+        map: map
+    };
+}());
+    
+
 /*
- * ---- Left Sidebar (Intro/Site Information Pane) ----
+ * ---- Left Sidebar (Introduction/Site Information Pane) ----
  */
-    var leftSidebar = L.control.sidebar('sidebarL', {
+trail.leftSidebar = (function () {
+    var _map = trail.map;
+ 
+    var _sidebar = L.control.sidebar('sidebarL', {
         closeButton: false,
         position: 'left',
         autoPan: false
     });
-    map.addControl(leftSidebar);
+    _map.addControl(_sidebar);
 
     // Add menu button to re-open introduction (via left sidebar)
     L.control.button({
@@ -84,49 +96,61 @@ var trail = (function () {
         title: 'View Introduction',
         className: 'leaflet-button-intro',
         callback: showIntro
-    }).addTo(map);
+    }).addTo(_map);
 
-
-    // Allow auto-hiding of left info pane on new map popup
-    leftSidebar.hideOnAuto = function() {
-        if (document.getElementById("auto-hide-info-pane").checked) {
-            leftSidebar.hide();
-        }
-    };
-
-    var leftSidebarEl = leftSidebar.getContainer();
+    // Get various pointers to DOM elements of this sidebar
+    var leftSidebarEl = _sidebar.getContainer();
     var infoPaneTitleEl = document.getElementById("info-pane-title");
     var infoPaneDivs = leftSidebarEl.getElementsByTagName("div");
     var siteSpecificLinkEl = document.getElementById("site-specific-link");
     var siteLinkEl = document.getElementById("site-link");
     
-    // Ensure all info pane content is hidden
+    /**
+     * Hide sidebar if visible & "auto-hide" box (in other sidebar) is ticked
+     */
+    function hideOnAuto() {
+        if (_sidebar.isVisible() &&
+                document.getElementById("auto-hide-info-pane").checked) {
+            _sidebar.hide();
+        }
+    }
+
+    /**
+     * Ensure all info pane content is hidden
+     */
     function hideInfoPaneContent() {
         for (var i = 0; i < infoPaneDivs.length; i++) {
             infoPaneDivs[i].style.display="none";
         }        
     }
     
+    /**
+     * Hide any other content and make "Introduction" content visible
+     */
     function showIntro() {
         infoPaneTitleEl.innerHTML = "";
         hideInfoPaneContent();
         document.getElementById("go-to-map-icon-l").style.display="inline";
         document.getElementById("intro-info").style.display="inline";
-        leftSidebar.show();
+        _sidebar.show();
     }
 
+    // Now able to show intro... as a startup splash screen
+    // (doesn't require markers or right sidebar to be set up yet)
+    showIntro();
+
     // Home made sidebar closer (mainly for mobile devices)
-    showMapEl = document.getElementById("go-to-map-icon-l");
-    showMapEl.onclick=function() {
-        leftSidebar.hide();
+    var showMapEl = document.getElementById("go-to-map-icon-l");
+    showMapEl.onclick = function() {
+        _sidebar.hide();
     };
     
-    // Create callback popup for contact details (at end of  Intro)
+    // Create callback popup for contact details (at end of Intro)
     // Attempt to avoid email address being web-scraped..
-    contactEl = document.getElementById("contact-details");
-    contactDomEl = document.getElementById("contact-domain");
+    var contactEl = document.getElementById("contact-details");
+    var contactDomEl = document.getElementById("contact-domain");
     var showingEmail = false;
-    contactEl.onclick=function() {
+    contactEl.onclick = function() {
         if (showingEmail) {
             contactEl.innerHTML = 'Richard Thomas'; 
             contactDomEl.innerHTML = '';
@@ -137,10 +161,10 @@ var trail = (function () {
         showingEmail = !showingEmail;
     };
     
-    // Now able to show startup splash screen (before markers and right sidebar
-    // are set up)
-    showIntro();
-
+    /**
+     * Update sidebar content to that relevant to selected growing site
+     * @param {string} locationID growing site identifier used in trailInfo
+     */
     function showSiteDetails(locationID) {
         hideInfoPaneContent();
 
@@ -164,10 +188,29 @@ var trail = (function () {
             siteSpecificLinkEl.style.display="inline";
         }
     }
+    
+    /**
+     * Wrapper function required as show() references private sidebar methods
+     */
+    function show() {
+        _sidebar.show();
+    }
+
+    // Publicly visible methods and properties
+    return {
+        hideOnAuto: hideOnAuto,
+        show: show,
+        showSiteDetails: showSiteDetails
+    };
+}());
+
 
 /*
  * ---- Right Sidebar (Site selector) ----
  */   
+trail.rightSidebar = (function () {
+    var _map = trail.map;
+    
     // Add menu button to select site (via right sidebar)
     L.control.button({
         position: 'topright',
@@ -175,44 +218,40 @@ var trail = (function () {
         title: 'Select growing site',
         className: 'leaflet-button-sitelist',
         callback: toggleSiteMenu
-    }).addTo(map);
+    }).addTo(_map);
 
-    var rightSidebar = L.control.sidebar('sidebarR', {
+    var _sidebar = L.control.sidebar('sidebarR', {
         closeButton: false,
         position: 'right',
         autoPan: false
     });
-    map.addControl(rightSidebar);
+    _map.addControl(_sidebar);
    
-    // Auto-hide sidebars if map is clicked (anywhere)
-    map.on('click', function() {
-        rightSidebar.hideOnAuto();
-        leftSidebar.hideOnAuto();
-    });
-
-    // Hide sidebar if visible and auto-hide box checked
-    rightSidebar.hideOnAuto = function() {
-        if (rightSidebar.isVisible() &&
+    /**
+     * Hide sidebar if visible and "auto-hide" box (in this sidebar) is ticked
+     */
+    function hideOnAuto() {
+        if (_sidebar.isVisible() &&
                 document.getElementById("auto-hide-site-selector").checked) {
-            rightSidebar.hide();
+            _sidebar.hide();
         }
-    };
+    }
 
     // Home made sidebar closer (mainly for mobile devices)
     showMapEl = document.getElementById("go-to-map-icon-r");
     showMapEl.onclick=function() {
-        rightSidebar.hide();
+        _sidebar.hide();
     };
     
     /**
      * Open/Close right sidebar to show selector for garden sites
      */
     function toggleSiteMenu() {
-        if (rightSidebar.isVisible()) {
-            rightSidebar.hide();
+        if (_sidebar.isVisible()) {
+            _sidebar.hide();
         } else {
-            leftSidebar.hideOnAuto();
-            rightSidebar.show();
+            trail.leftSidebar.hideOnAuto();
+            _sidebar.show();
         }
     }
     
@@ -226,7 +265,7 @@ var trail = (function () {
      * @param {type} ev     button event
      */
     function selectLocation(ev) {
-        map.closePopup();
+        _map.closePopup();
         var target = null;
         // Support IE6-8 which lacks event "target"
         try {
@@ -252,40 +291,19 @@ var trail = (function () {
         sidebarButtonsContainer.appendChild(buttonPara);
     }
 
-/*
- * ---- Callbacks for non-site-specific buttons
- */
-
-    /**
-     * Switch from showing summary in popup to details in infopane left sidebar
-     * 
-     * @param {String} locationNameStr garden location as a string
-     */ 
-    function moreInfo(locationNameStr) {
-        map.closePopup();
-        leftSidebar.show();
-        rightSidebar.hideOnAuto();
-    }
-
-    // Publicly visible functions
+    // Publicly visible methods and properties
     return {
-        map: map,
-        leftSidebarHideOnAuto: leftSidebar.hideOnAuto,
-        rightSidebarHideOnAuto: rightSidebar.hideOnAuto,
-        showSiteDetails: showSiteDetails,
-        moreInfo: moreInfo
+        hideOnAuto: hideOnAuto
     };
-
 }());
+
 
 /*
  * ---- Map Markers ----
  */
-trail.markers = (function (map) {
-    /* global L */
-    /* global trailGeoJson */
-    /* global trailInfo */
-
+(function () {
+    var _map = trail.map;
+    
     // Circle marker object indicating selected garden
     var _siteCircleMarker = null;
 
@@ -304,7 +322,7 @@ trail.markers = (function (map) {
                 radius: 30,
                 clickable: false
             });
-            _siteCircleMarker.addTo(map);
+            _siteCircleMarker.addTo(_map);
         }
     }
 
@@ -362,12 +380,12 @@ trail.markers = (function (map) {
             siteInfo.marker = newMarker;
 
             // Handle other map objects when a popup opens
-            var sitePopupOpen = function(site) {
-                trail.leftSidebarHideOnAuto();
-                trail.rightSidebarHideOnAuto();
+            function sitePopupOpen(site) {
+                trail.leftSidebar.hideOnAuto();
+                trail.rightSidebar.hideOnAuto();
                 setCircleMarker(siteLatLng);
-                trail.showSiteDetails(site);
-            };
+                trail.leftSidebar.showSiteDetails(site);
+            }
             newMarker.addEventListener('popupopen', function() {
                 sitePopupOpen(siteName);
             });
@@ -394,8 +412,25 @@ trail.markers = (function (map) {
             return newMarker;
         }
     });
-    markerLayer.addTo(map);
+    markerLayer.addTo(_map);
     
-    // Publicly visible functions (none)
+    // Publicly visible methods and properties
+    // (none
+}());
 
-}(trail.map));
+
+/**
+ * Switch from showing summary in popup to details in infopane left sidebar
+ * (Click callback from Pop-up "More Information" buttons)
+ */ 
+trail.moreInfo = function() {
+    trail.map.closePopup();
+    trail.leftSidebar.show();
+    trail.rightSidebar.hideOnAuto();
+};
+
+// Auto-hide sidebars if map is clicked other than on markers
+trail.map.on('click', function() {
+    trail.rightSidebar.hideOnAuto();
+    trail.leftSidebar.hideOnAuto();
+});
