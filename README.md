@@ -49,4 +49,6 @@ Tested as working with the following devices/browsers, except where noted:
 [Bee The Change](https://heathershoneybees.wordpress.com/),
 [Grow Bristol](http://growbristol.co.uk/),
 [Twitter](https://twitter.com/)
-* Content text and photos: copyright (c) [Incredible#Edible Bristol](http://ediblebristol.org.uk/) extracted from their [Urban Food Growing Trail](http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/) website, plus author's own contribution.
+* Content text: copyright (c) [Incredible#Edible Bristol](http://ediblebristol.org.uk/) extracted from their [Urban Food Growing Trail](http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/) website, plus author's own contribution.
+* Content photos: copyright (c) Richard Thomas (same [Artistic Licence 2.0]
+(https://raw.githubusercontent.com/richard-thomas/urban-food-growing-trail/master/LICENSE) as the web app itself)
