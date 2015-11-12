@@ -54,12 +54,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
                  class="info-pane-banner"
                  alt="Urban Food Growing Trail">
         
-        <!-- Sidebar closer icon (hidden during loading only) -->
-        <a href="#" class="go-to-map-icon">
-            <img id="go-to-map-icon-l" src="img/go-to-map.png"
-                 style="display:none;"
-                 alt="Go to map"></a>
-        
         <!-- Title updated to match info-pane contents -->
         <h4 id='info-pane-title'></h4>
 
@@ -77,7 +71,15 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
                 along Redcliffe Way to Millennium Square. Its aim is to inspire
                 and educate - showing that food growing can be, and is, relevant
                 in the urban landscape, as well as to provide free food for
-                people and pollinators. Read more on the main websites:</p>
+                people and pollinators.</p>
+            
+            <!-- Additional sidebar closer button as not obvious on startup
+                 if sidebar is fullscreen (e.g. on mobile devices) -->
+            <p class="get-started">
+                <button type="button" id="get-started-button">
+                    GET STARTED: View Map</button>
+            </p>        
+            <p>Read more on the main websites:</p>
             <p>
                 <a href="http://ediblebristol.org.uk/urban-food-growing-trail-a-bristol-2015-project/"
                    class="org-logos"
@@ -124,9 +126,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
                 Pan to your current location</p>
             <!--<![endif]-->
             
-            <p class="designer-tag">Web design:
+            <p class="designer-tag">Web App design:
                 <a id="contact-details" href="#">
                     Richard Thomas</a><span id="contact-domain"></span>
+                </p>
+            <p><a href="https://github.com/richard-thomas/urban-food-growing-trail#acknowledgements"
+                  target="_blank">Copyright and Licence details</a>
                 (source @
                 <a href="https://github.com/richard-thomas/urban-food-growing-trail"
                    target="_blank">GitHub</a>)</p>
@@ -372,9 +377,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
         <img class="trail-image-right"
              src="img/urban-food-growing-trail-banner.png"
              alt="Urban Food Growing Trail">
-        <a href="#" class="go-to-map-icon">
-            <img id="go-to-map-icon-r" src="img/go-to-map.png"
-                 alt="Go to map"></a>
         </p>
 
         <div id="sidebarButtons">

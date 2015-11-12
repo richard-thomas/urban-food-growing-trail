@@ -83,7 +83,6 @@ trail.leftSidebar = (function () {
     var _map = trail.map;
  
     var _sidebar = L.control.sidebar('sidebarL', {
-        closeButton: false,
         position: 'left',
         autoPan: false
     });
@@ -130,7 +129,6 @@ trail.leftSidebar = (function () {
     function showIntro() {
         infoPaneTitleEl.innerHTML = "";
         hideInfoPaneContent();
-        document.getElementById("go-to-map-icon-l").style.display="inline";
         document.getElementById("intro-info").style.display="inline";
         _sidebar.show();
     }
@@ -139,12 +137,12 @@ trail.leftSidebar = (function () {
     // (doesn't require markers or right sidebar to be set up yet)
     showIntro();
 
-    // Home made sidebar closer (mainly for mobile devices)
-    var showMapEl = document.getElementById("go-to-map-icon-l");
-    showMapEl.onclick = function() {
+    // Create callback for "GET STARTED" button
+    var getStartedEl = document.getElementById("get-started-button");
+    getStartedEl.onclick = function() {
         _sidebar.hide();
     };
-    
+
     // Create callback popup for contact details (at end of Intro)
     // Attempt to avoid email address being web-scraped..
     var contactEl = document.getElementById("contact-details");
@@ -195,7 +193,7 @@ trail.leftSidebar = (function () {
     function show() {
         _sidebar.show();
     }
-
+    
     // Publicly visible methods and properties
     return {
         hideOnAuto: hideOnAuto,
@@ -221,7 +219,6 @@ trail.rightSidebar = (function () {
     }).addTo(_map);
 
     var _sidebar = L.control.sidebar('sidebarR', {
-        closeButton: false,
         position: 'right',
         autoPan: false
     });
@@ -236,12 +233,6 @@ trail.rightSidebar = (function () {
             _sidebar.hide();
         }
     }
-
-    // Home made sidebar closer (mainly for mobile devices)
-    showMapEl = document.getElementById("go-to-map-icon-r");
-    showMapEl.onclick=function() {
-        _sidebar.hide();
-    };
     
     /**
      * Open/Close right sidebar to show selector for garden sites
