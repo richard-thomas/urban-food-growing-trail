@@ -142,23 +142,7 @@ trail.leftSidebar = (function () {
     getStartedEl.onclick = function() {
         _sidebar.hide();
     };
-
-    // Create callback popup for contact details (at end of Intro)
-    // Attempt to avoid email address being web-scraped..
-    var contactEl = document.getElementById("contact-details");
-    var contactDomEl = document.getElementById("contact-domain");
-    var showingEmail = false;
-    contactEl.onclick = function() {
-        if (showingEmail) {
-            contactEl.innerHTML = 'Richard Thomas'; 
-            contactDomEl.innerHTML = '';
-        } else {
-            contactEl.innerHTML = 'Richard.Thomas';
-            contactDomEl.innerHTML = '@yahoo.co.uk<br>';
-        }
-        showingEmail = !showingEmail;
-    };
-    
+  
     /**
      * Update sidebar content to that relevant to selected growing site
      * @param {string} locationID growing site identifier used in trailInfo
