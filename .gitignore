@@ -1,3 +1,5 @@
 /node_modules/
 /junk/
 /public_html/dist/
+/nbproject/private/
+/public_html/bower_components/
