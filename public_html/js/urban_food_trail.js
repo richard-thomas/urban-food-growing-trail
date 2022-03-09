@@ -34,54 +34,58 @@ var trail = (function () {
         locateMeControl: true   // Add "Locate Me" button to pan to location
     }).fitBounds(trailBounds);
     var streetLayer = L.tileLayer(
-        'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
     {
         attribution: '&copy; <a href="http://openstreetmap.org/copyright">' +
                 'OpenStreetMap contributors</a>' +
                 ' &copy; <a href="http://mapbox.com/map-feedback/">Mapbox</a>',
+        tileSize: 512,
         maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiJjaWZ1c2ZtZGUwMjA1dDZtN2t6amZ4cnRkIn0.2fVjrwFijZV-R6scDpeUQA'
+        zoomOffset: -1,
+        id: 'mapbox/streets-v11',
+        accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiJjbDBrNHl5NXMwM3cxM21xbjFqMzVhem1qIn0.0YdvjS234F7msVY8DwzT1g'
     }).addTo(map);
     var satelliteLayer = L.tileLayer(
-        'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
     {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>' +
             'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
             'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+        tileSize: 512,
         maxZoom: 18,
-        id: 'mapbox.streets-satellite',
-        accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiJjaWZ1c2ZtZGUwMjA1dDZtN2t6amZ4cnRkIn0.2fVjrwFijZV-R6scDpeUQA'
+        zoomOffset: -1,
+        id: 'mapbox/satellite-streets-v11',
+        accessToken: 'pk.eyJ1IjoicmljaGFyZHRob21hcyIsImEiOiJjbDBrNHl5NXMwM3cxM21xbjFqMzVhem1qIn0.0YdvjS234F7msVY8DwzT1g'
     });
     var baseMaps = {
         "Map": streetLayer,
         "Satellite": satelliteLayer
     };
-    
+
     // Add Layer switcher control (Map/Satellite selector).
     // Start with it expanded to show "Map/Satellite" to make it obvious.
     // This will collapse to a simple layers icon on first map click or hover.
     L.control.layers(baseMaps).addTo(map)._expand();
-    
+
     // Add scale bar
     L.control.scale().addTo(map);
 
     // Add "Home" button to reset to the initial extent (i.e. the full trail)
     L.control.defaultExtent().addTo(map);
-    
+
     // Publicly visible methods and properties
     return {
         map: map
     };
 }());
-    
+
 
 /*
  * ---- Left Sidebar (Introduction/Site Information Pane) ----
  */
 trail.leftSidebar = (function () {
     var _map = trail.map;
- 
+
     var _sidebar = L.control.sidebar('sidebarL', {
         position: 'left',
         autoPan: false
@@ -103,7 +107,7 @@ trail.leftSidebar = (function () {
     var infoPaneDivs = leftSidebarEl.getElementsByTagName("div");
     var siteSpecificLinkEl = document.getElementById("site-specific-link");
     var siteLinkEl = document.getElementById("site-link");
-    
+
     /**
      * Hide sidebar if visible & "auto-hide" box (in other sidebar) is ticked
      */
@@ -120,9 +124,9 @@ trail.leftSidebar = (function () {
     function hideInfoPaneContent() {
         for (var i = 0; i < infoPaneDivs.length; i++) {
             infoPaneDivs[i].style.display="none";
-        }        
+        }
     }
-    
+
     /**
      * Hide any other content and make "Introduction" content visible
      */
@@ -142,7 +146,7 @@ trail.leftSidebar = (function () {
     getStartedEl.onclick = function() {
         _sidebar.hide();
     };
-  
+
     /**
      * Update sidebar content to that relevant to selected growing site
      * @param {string} locationID growing site identifier used in trailInfo
@@ -160,7 +164,7 @@ trail.leftSidebar = (function () {
         if (siteDetailsDomEl) {
             siteDetailsDomEl.style.display="inline";
         }
-        
+
         // Display link to site-specific trail page (if it exists)
         var siteLink = trailInfo[locationID].link;
         if (siteLink) {
@@ -170,14 +174,14 @@ trail.leftSidebar = (function () {
             siteSpecificLinkEl.style.display="inline";
         }
     }
-    
+
     /**
      * Wrapper function required as show() references private sidebar methods
      */
     function show() {
         _sidebar.show();
     }
-    
+
     // Publicly visible methods and properties
     return {
         hideOnAuto: hideOnAuto,
@@ -189,10 +193,10 @@ trail.leftSidebar = (function () {
 
 /*
  * ---- Right Sidebar (Site selector) ----
- */   
+ */
 trail.rightSidebar = (function () {
     var _map = trail.map;
-    
+
     // Add menu button to select site (via right sidebar)
     L.control.button({
         position: 'topright',
@@ -207,7 +211,7 @@ trail.rightSidebar = (function () {
         autoPan: false
     });
     _map.addControl(_sidebar);
-   
+
     /**
      * Hide sidebar if visible and "auto-hide" box (in this sidebar) is ticked
      */
@@ -217,7 +221,7 @@ trail.rightSidebar = (function () {
             _sidebar.hide();
         }
     }
-    
+
     /**
      * Open/Close right sidebar to show selector for garden sites
      */
@@ -229,14 +233,14 @@ trail.rightSidebar = (function () {
             _sidebar.show();
         }
     }
-    
+
     // Safe to make sidebar contents visible now without them getting flashed
     // across the display
     document.getElementById("sidebarR").style.display="inline";
 
     /**
      * Callback function for all buttons in site selection menu
-     * 
+     *
      * @param {type} ev     button event
      */
     function selectLocation(ev) {
@@ -278,7 +282,7 @@ trail.rightSidebar = (function () {
  */
 (function () {
     var _map = trail.map;
-    
+
     // Circle marker object indicating selected garden
     var _siteCircleMarker = null;
 
@@ -332,7 +336,7 @@ trail.rightSidebar = (function () {
             document.body.clientWidth;
     var popupMaxWidth = winWidth - paddingL -paddingR - 40;
     popupMaxWidth = (popupMaxWidth > 300) ? 300 : popupMaxWidth;
-            
+
     // Create site markers (and walking trail route) from GeoJSON data
     // (which was exported from Google as KML & converted to JSON)
     var markerLayer = L.geoJson(trailGeoJson, {
@@ -370,7 +374,7 @@ trail.rightSidebar = (function () {
 
             var popupContent = "<strong>" + siteInfo.fullname +
                     "</strong><br>" + siteInfo.summary;
-            
+
             // Only prompt for more info if info-pane content exists
             if (siteDetailsDomEl) {
                 popupContent += "<div class='more-info-div'>" +
@@ -388,7 +392,7 @@ trail.rightSidebar = (function () {
         }
     });
     markerLayer.addTo(_map);
-    
+
     // Publicly visible methods and properties
     // (none
 }());
@@ -397,7 +401,7 @@ trail.rightSidebar = (function () {
 /**
  * Switch from showing summary in popup to details in infopane left sidebar
  * (Click callback from Pop-up "More Information" buttons)
- */ 
+ */
 trail.moreInfo = function() {
     trail.map.closePopup();
     trail.leftSidebar.show();
